@@ -4,10 +4,8 @@ date: 2026-10-19T21:27:00.000+08:00
 thumbnail: images/uploads/1000453267.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
-summary: >
-  #ဗီဇာဖိုး ရပါပြီ Visa fee funds have been successfully raised! Embassy
-  confirmation received from Milan to Bangkok. Special thanks to all supporters
-  via GoFundMe, KBZ Pay, and AYA Pay.
+summary: |
+  #ဗီဇာဖိုး ရပါပြီ Visa fee funds have been successfully raised!
 ---
 ### Visa Application Progress & Gratitude
 
