@@ -958,7 +958,7 @@
 							const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
 							let summaryText = '';
-							const summaryBlock = fm.match(/^summary:\s*(?:>|-)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
+							const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
 							if (summaryBlock && summaryBlock[1].trim()) {
 								summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
 							}
@@ -971,7 +971,7 @@
 							const category = mapCategoryToEnglish(rawCategory);
 
 							const fullBody = body ? body.trim() : summaryText;
-							const displaySummary = summaryText ? summaryText : fullBody.substring(0, 150) + '...';
+							const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
 
 							const postObj = { title, date, thumbnail, category, fullBody, displaySummary };
 							newsPostsData.push(postObj);
