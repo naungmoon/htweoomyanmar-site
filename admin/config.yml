@@ -26,14 +26,25 @@ collections:
           default: "သတင်းနှင့်ထုတ်ပြန်ချက်"
         }
       - { label: "Summary / Caption (အကျဉ်းချုပ်/Facebook Caption)", name: "summary", widget: "text", required: false }
-      - { 
-          label: "Photo Gallery (Facebook Post Style ပုံအများကြီးတင်ရန်)", 
-          name: "gallery", 
-          widget: "list", 
-          required: false,
-          field: { label: "Image", name: "image", widget: "image" }
-        }
       - { label: "Body Content (စာမူအပြည့်အစုံ ရေးရန်)", name: "body", widget: "markdown" }
+
+  - name: "gallery"
+    label: "Performance Moments (Gallery)"
+    folder: "content/gallery"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title / Caption (ပုံခေါင်းစဉ်/ဖော်ပြချက်)", name: "title", widget: "string" }
+      - { label: "Photo (ဓာတ်ပုံ)", name: "image", widget: "image" }
+
+  - name: "videos"
+    label: "Featured Performances (Videos)"
+    folder: "content/videos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Video Title (ဗီဒီယို ခေါင်းစဉ်)", name: "title", widget: "string" }
+      - { label: "YouTube Video URL or Embed ID (ဥပမာ- https://www.youtube.com/watch?v=c-PD2fwMVuU သို့မဟုတ် c-PD2fwMVuU)", name: "video_url", widget: "string" }
 
   - name: "pages"
     label: "Pages"
