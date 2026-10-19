@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;600;700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
 
 	<!-- Bootstrap 5 CSS CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,14 +30,14 @@
 		}
 
 		body {
-			font-family: 'Poppins', sans-serif;
+			font-family: 'Poppins', 'Padauk', sans-serif;
 			background-color: var(--deep-bg);
 			color: var(--text-light);
 			overflow-x: hidden;
 		}
 
 		h1, h2, h3, h4, .brand-title {
-			font-family: 'Cinzel', serif;
+			font-family: 'Cinzel', 'Padauk', serif;
 		}
 
 		.animated-bg {
@@ -79,13 +79,29 @@
 		.nav-link {
 			color: #fff !important;
 			font-weight: 500;
-			margin: 0 8px;
+			margin: 0 6px;
 			transition: all 0.3s;
 		}
 
 		.nav-link:hover, .nav-link-highlight {
 			color: var(--primary-gold) !important;
 			text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+		}
+
+		.lang-btn {
+			border: 1px solid var(--primary-gold);
+			color: var(--primary-gold);
+			border-radius: 20px;
+			padding: 2px 10px;
+			font-size: 0.8rem;
+			background: transparent;
+			transition: all 0.3s;
+		}
+
+		.lang-btn.active, .lang-btn:hover {
+			background: var(--primary-gold);
+			color: #000;
+			font-weight: bold;
 		}
 
 		/* Hero Section */
@@ -274,12 +290,16 @@
 			</button>
 			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 				<ul class="navbar-nav text-center py-2 align-items-center">
-					<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="#events">News & Events</a></li>
-					<li class="nav-item"><a class="nav-link" href="#moments">Moments</a></li>
-					<li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
-					<li class="nav-item"><a class="nav-link text-warning fw-bold" href="#support">Support</a></li>
-					<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+					<li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav_about">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="#events" data-i18n="nav_events">News & Events</a></li>
+					<li class="nav-item"><a class="nav-link" href="#moments" data-i18n="nav_moments">Moments</a></li>
+					<li class="nav-item"><a class="nav-link" href="#videos" data-i18n="nav_videos">Videos</a></li>
+					<li class="nav-item"><a class="nav-link text-warning fw-bold" href="#support" data-i18n="nav_support">Support</a></li>
+					<li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
+					<li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+						<button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">🇬🇧 EN</button>
+						<button class="lang-btn" id="btn-mm" onclick="switchLanguage('mm')">🇲🇲 MM</button>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -288,9 +308,9 @@
 	<!-- Hero Header -->
 	<section class="hero-section">
 		<div class="container" data-aos="zoom-in" data-aos-duration="1000">
-			<span class="badge-gold mb-2"><i class="fa-solid fa-masks-theater me-2"></i>TRADITIONAL PUPPETRY ART</span>
+			<span class="badge-gold mb-2"><i class="fa-solid fa-masks-theater me-2"></i><span data-i18n="hero_badge">TRADITIONAL PUPPETRY ART</span></span>
 			<h1 class="hero-title">HTWE OO MYANMAR</h1>
-			<p class="lead text-light max-w-700 mx-auto opacity-75 mb-3 small">
+			<p class="lead text-light max-w-700 mx-auto opacity-75 mb-3 small" data-i18n="hero_sub">
 				Phnom Penh, Cambodia | Traditional Myanmar Marionette Performance
 			</p>
 
@@ -299,24 +319,24 @@
 				<div class="col-4 col-md-3">
 					<div class="stat-box">
 						<div class="stat-number">15+</div>
-						<div class="small opacity-75" style="font-size:0.68rem;">Years Heritage</div>
+						<div class="small opacity-75" style="font-size:0.68rem;" data-i18n="stat_heritage">Years Heritage</div>
 					</div>
 				</div>
 				<div class="col-4 col-md-3">
 					<div class="stat-box">
 						<div class="stat-number">100+</div>
-						<div class="small opacity-75" style="font-size:0.68rem;">Live Shows</div>
+						<div class="small opacity-75" style="font-size:0.68rem;" data-i18n="stat_shows">Live Shows</div>
 					</div>
 				</div>
 				<div class="col-4 col-md-3">
 					<div class="stat-box">
 						<div class="stat-number">Global</div>
-						<div class="small opacity-75" style="font-size:0.68rem;">Recognition</div>
+						<div class="small opacity-75" style="font-size:0.68rem;" data-i18n="stat_recognition">Recognition</div>
 					</div>
 				</div>
 			</div>
 
-			<a href="#about" class="btn-glow"><i class="fa-solid fa-masks-theater me-2"></i>Discover Our Story</a>
+			<a href="#about" class="btn-glow"><i class="fa-solid fa-masks-theater me-2"></i><span data-i18n="hero_btn">Discover Our Story</span></a>
 		</div>
 	</section>
 
@@ -328,18 +348,18 @@
 		<!-- ABOUT SECTION -->
 		<section id="about" class="mb-5">
 			<div class="text-center mb-4" data-aos="fade-up">
-				<h2 class="text-warning h4 font-weight-bold"><i class="fa-solid fa-masks-theater me-2"></i>ABOUT HTWE OO MYANMAR</h2>
-				<p class="text-muted small">Preserving & Celebrating Myanmar's Intangible Cultural Heritage</p>
+				<h2 class="text-warning h4 font-weight-bold"><i class="fa-solid fa-masks-theater me-2"></i><span data-i18n="about_title">ABOUT HTWE OO MYANMAR</span></h2>
+				<p class="text-muted small" data-i18n="about_subtitle">Preserving & Celebrating Myanmar's Intangible Cultural Heritage</p>
 			</div>
 
 			<div class="art-card" data-aos="fade-up">
 				<div class="row align-items-center">
 					<div class="col-lg-6 mb-3 mb-lg-0">
-						<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-heart-pulse text-danger me-2"></i>Pulling Strings by Emotion, Not Just by Hand</h3>
-						<p class="text-light opacity-75 small">
+						<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-heart-pulse text-danger me-2"></i><span data-i18n="about_heading">Pulling Strings by Emotion, Not Just by Hand</span></h3>
+						<p class="text-light opacity-75 small" data-i18n="about_p1">
 							<strong>HTWE OO MYANMAR</strong> is a premier cultural organization dedicated to preserving, promoting, and reviving the centuries-old art of <strong>Myanmar Traditional String Puppetry (Yoke Thé)</strong>.
 						</p>
-						<p class="text-light opacity-75 small">
+						<p class="text-light opacity-75 small" data-i18n="about_p2">
 							Founded by master puppeteer & Art Director <strong>Khin Maung Htwe</strong>, our troupe brings to life ancient mythology, royal court dances, and folklore using intricate marionettes handcrafted with traditional craftsmanship.
 						</p>
 					</div>
@@ -355,8 +375,8 @@
 		<!-- News & Events Section (Decap CMS Dynamic Auto-Loading) -->
 		<section id="events" class="mb-5">
 			<div class="text-center mb-3" data-aos="fade-up">
-				<h2 class="text-warning h4 font-weight-bold"><i class="fa-solid fa-star me-2"></i>EXCITING NEWS & EVENTS</h2>
-				<p class="text-muted small">Global Recognition, Updates & Special Announcements</p>
+				<h2 class="text-warning h4 font-weight-bold"><i class="fa-solid fa-star me-2"></i><span data-i18n="news_title">EXCITING NEWS & EVENTS</span></h2>
+				<p class="text-muted small" data-i18n="news_subtitle">Global Recognition, Updates & Special Announcements</p>
 			</div>
 
 			<!-- CMS Dynamic News Cards Container -->
@@ -372,7 +392,7 @@
 					<div class="col-lg-7">
 						<span class="badge bg-danger mb-2">August 2026</span>
 						<h3 class="text-gold h5 mb-2">Songkhla Harmony World Puppet Festival 2026</h3>
-						<p class="text-light opacity-75 small">
+						<p class="text-light opacity-75 small" data-i18n="songkhla_desc">
 							HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!
 						</p>
 						<p class="small mb-1"><strong><i class="fa-solid fa-microphone-lines text-warning me-2"></i>Panel Discussion:</strong> Khin Maung Htwe (Art Director & Founder)</p>
@@ -394,7 +414,7 @@
 					<div class="col-lg-8">
 						<span class="badge bg-warning text-dark mb-2">Milan, Italy</span>
 						<h3 class="text-gold h5 mb-2">The Opening Act for 2025/2026 Season in Milan!</h3>
-						<p class="text-light opacity-75 small">
+						<p class="text-light opacity-75 small" data-i18n="milan_desc">
 							Selected for the XVII International Prize "Il Teatro Nudo" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy.
 						</p>
 					</div>
@@ -407,17 +427,17 @@
 
 		<!-- Google Calendar & Booking -->
 		<section class="art-card text-center my-4" data-aos="fade-up">
-			<h3 class="text-warning h5 mb-3"><i class="fa-regular fa-calendar-days me-2"></i>Live Performance Schedule</h3>
+			<h3 class="text-warning h5 mb-3"><i class="fa-regular fa-calendar-days me-2"></i><span data-i18n="schedule_title">Live Performance Schedule</span></h3>
 			<div class="ratio ratio-16x9 mb-3" style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,215,0,0.3);">
-				<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FBangkok&bgcolor=%23ffffff&title=HTWE%20OO%20MYANMAR%20Traditional%20Puppet%20Show%2C%20Phnom Penh-Cambodia%20(%2B855%2012%20831%20950)&src=ZGlyZWN0b3JAaHR3ZW9vbXlhbm1hci5jb20&color=%234285F4" style="border:0;" width="100%" height="600"></iframe>
+				<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FBangkok&bgcolor=%23ffffff&title=HTWE%20OO%20MYANMAR%20Traditional%20Puppet%20Show%2C%20Phnom Phnom Penh-Cambodia%20(%2B855%2012%20831%20950)&src=ZGlyZWN0b3JAaHR3ZW9vbXlhbm1hci5jb20&color=%234285F4" style="border:0;" width="100%" height="600"></iframe>
 			</div>
-			<a href="https://www.theboxofficephnompenh.com/events" target="_blank" class="btn-glow"><i class="fa-solid fa-ticket me-2"></i>Reserve Tickets Online</a>
+			<a href="https://www.theboxofficephnompenh.com/events" target="_blank" class="btn-glow"><i class="fa-solid fa-ticket me-2"></i><span data-i18n="ticket_btn">Reserve Tickets Online</span></a>
 		</section>
 
 		<!-- Moments Gallery -->
 		<section id="moments" class="my-4">
 			<div class="text-center mb-3" data-aos="fade-up">
-				<h2 class="text-warning h5"><i class="fa-solid fa-camera-retro me-2"></i>PERFORMANCE MOMENTS</h2>
+				<h2 class="text-warning h5"><i class="fa-solid fa-camera-retro me-2"></i><span data-i18n="moments_title">PERFORMANCE MOMENTS</span></h2>
 			</div>
 
 			<div class="row g-2">
@@ -432,7 +452,7 @@
 		<!-- Videos Section -->
 		<section id="videos" class="my-4">
 			<div class="text-center mb-3" data-aos="fade-up">
-				<h2 class="text-warning h5"><i class="fa-solid fa-compact-disc me-2"></i>FEATURED PERFORMANCES</h2>
+				<h2 class="text-warning h5"><i class="fa-solid fa-compact-disc me-2"></i><span data-i18n="videos_title">FEATURED PERFORMANCES</span></h2>
 			</div>
 
 			<div class="row g-3">
@@ -458,16 +478,16 @@
 		<!-- SUPPORT SECTION -->
 		<section id="support" class="mb-5">
 			<div class="text-center mb-3" data-aos="fade-up">
-				<h2 class="text-success h4 font-weight-bold"><i class="fa-solid fa-hand-holding-heart me-2"></i>SUPPORT HTWE OO MYANMAR</h2>
-				<p class="text-muted small">Help Myanmar Marionettes Reach Milan for International Prize Ceremony</p>
+				<h2 class="text-success h4 font-weight-bold"><i class="fa-solid fa-hand-holding-heart me-2"></i><span data-i18n="support_title">SUPPORT HTWE OO MYANMAR</span></h2>
+				<p class="text-muted small" data-i18n="support_subtitle">Help Myanmar Marionettes Reach Milan for International Prize Ceremony</p>
 			</div>
 
 			<div class="art-card support-card" data-aos="fade-up">
 				<div class="row align-items-center">
 					<div class="col-lg-7 mb-3 mb-lg-0">
-						<span class="badge bg-danger mb-2">Urgent Travel Support Appeal</span>
-						<h3 class="text-warning h5 mb-2">Milan International Prize XVII Attendance</h3>
-						<p class="text-light opacity-75 small">
+						<span class="badge bg-danger mb-2" data-i18n="support_badge">Urgent Travel Support Appeal</span>
+						<h3 class="text-warning h5 mb-2" data-i18n="support_heading">Milan International Prize XVII Attendance</h3>
+						<p class="text-light opacity-75 small" data-i18n="support_desc">
 							မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာရှင်ကြီး <strong>ဦးခင်မောင်ထွေး (Htwe Oo Myanmar)</strong> မီလန်မြို့ International Prize ဆုပေးပွဲ တက်ရောက်နိုင်ရန် ကူညီပေးပါခင်ဗျာ။
 						</p>
 						
@@ -483,10 +503,10 @@
 
 						<div class="d-flex flex-wrap gap-2">
 							<a href="https://www.gofundme.com/f/help-myanmar-marionettes-reach-milan-for-international-prize?utm_source=product" target="_blank" class="btn btn-sm btn-success fw-bold">
-								<i class="fa-solid fa-globe me-1"></i> GoFundMe ပြည်ပမှ လှူဒါန်းရန်
+								<i class="fa-solid fa-globe me-1"></i> <span data-i18n="gofundme_btn">GoFundMe ပြည်ပမှ လှူဒါန်းရန်</span>
 							</a>
 							<button class="btn btn-sm btn-outline-warning fw-bold" data-bs-toggle="modal" data-bs-target="#kpayModal">
-								<i class="fa-solid fa-mobile-screen me-1"></i> မြန်မာပြည်တွင်းမှ (KPay/AYA)
+								<i class="fa-solid fa-mobile-screen me-1"></i> <span data-i18n="kpay_btn">မြန်မာပြည်တွင်းမှ (KPay/AYA)</span>
 							</button>
 						</div>
 					</div>
@@ -495,7 +515,7 @@
 						<div class="p-3 bg-dark rounded border border-warning">
 							<h6 class="text-warning mb-2"><i class="fa-solid fa-plane-departure me-2"></i>Travel & Visa Logistics Status</h6>
 							<p class="small opacity-75 mb-1">• Phnom Penh ➔ Bangkok VFS ➔ Milan Route</p>
-							<p class="small opacity-75 mb-0">• မီလန်မြို့ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် သံရုံးနှင့် တိုက်ရိုက် ချိတ်ဆက်ဆောင်ရွက်လျက်ရှိပါသည်။</p>
+							<p class="small opacity-75 mb-0" data-i18n="logistics_desc">• မီလန်မြို့ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် သံရုံးနှင့် တိုက်ရိုက် ချိတ်ဆက်ဆောင်ရွက်လျက်ရှိပါသည်။</p>
 						</div>
 					</div>
 				</div>
@@ -504,7 +524,7 @@
 
 		<!-- SOCIAL SHARE BAR SECTION (Clean 6 Icons in a row) -->
 		<div class="share-bar-container" data-aos="fade-up">
-			<div class="share-bar-title">SHARE HTWE OO MYANMAR</div>
+			<div class="share-bar-title" data-i18n="share_title">SHARE HTWE OO MYANMAR</div>
 			<div class="share-icons-flex">
 				<!-- WhatsApp -->
 				<a href="https://api.whatsapp.com/send?text=Htwe%20Oo%20Myanmar%20Traditional%20Puppetry%20Art%3A%20https%3A%2F%2Fhtweoomyanmar.netlify.app%2F" target="_blank" class="share-btn-circle bg-whatsapp" title="Share on WhatsApp">
@@ -542,7 +562,7 @@
 					</div>
 				</div>
 				<div class="col-lg-5 d-flex flex-column justify-content-center ps-lg-3">
-					<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-compass me-2"></i>Contact Information</h3>
+					<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-compass me-2"></i><span data-i18n="contact_title">Contact Information</span></h3>
 					<p class="small mb-2"><i class="fa-regular fa-clock text-warning me-2"></i><strong>Show Time:</strong> 3:00 PM</p>
 					<p class="small mb-2"><i class="fa-solid fa-map-location-dot text-danger me-2"></i><strong>Address:</strong> #8, Long Nget St. (258), Phnom Penh 12207</p>
 					<p class="small mb-2"><i class="fa-solid fa-phone text-success me-2"></i><strong>Phone:</strong> +855 12 831 950</p>
@@ -631,7 +651,116 @@
 			alert("Website Link copied to clipboard for Instagram!");
 		}
 
-		// Decap CMS Dynamic News Loader Script (With Modal Pop-up)
+		// Bilingual Translation Dictionary
+		const translations = {
+			en: {
+				nav_about: "About",
+				nav_events: "News & Events",
+				nav_moments: "Moments",
+				nav_videos: "Videos",
+				nav_support: "Support",
+				nav_contact: "Contact",
+				hero_badge: "TRADITIONAL PUPPETRY ART",
+				hero_sub: "Phnom Penh, Cambodia | Traditional Myanmar Marionette Performance",
+				stat_heritage: "Years Heritage",
+				stat_shows: "Live Shows",
+				stat_recognition: "Recognition",
+				hero_btn: "Discover Our Story",
+				about_title: "ABOUT HTWE OO MYANMAR",
+				about_subtitle: "Preserving & Celebrating Myanmar's Intangible Cultural Heritage",
+				about_heading: "Pulling Strings by Emotion, Not Just by Hand",
+				about_p1: "<strong>HTWE OO MYANMAR</strong> is a premier cultural organization dedicated to preserving, promoting, and reviving the centuries-old art of <strong>Myanmar Traditional String Puppetry (Yoke Thé)</strong>.",
+				about_p2: "Founded by master puppeteer & Art Director <strong>Khin Maung Htwe</strong>, our troupe brings to life ancient mythology, royal court dances, and folklore using intricate marionettes handcrafted with traditional craftsmanship.",
+				news_title: "EXCITING NEWS & EVENTS",
+				news_subtitle: "Global Recognition, Updates & Special Announcements",
+				songkhla_desc: "HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!",
+				milan_desc: "Selected for the XVII International Prize \"Il Teatro Nudo\" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy.",
+				schedule_title: "Live Performance Schedule",
+				ticket_btn: "Reserve Tickets Online",
+				moments_title: "PERFORMANCE MOMENTS",
+				videos_title: "FEATURED PERFORMANCES",
+				support_title: "SUPPORT HTWE OO MYANMAR",
+				support_subtitle: "Help Myanmar Marionettes Reach Milan for International Prize Ceremony",
+				support_badge: "Urgent Travel Support Appeal",
+				support_heading: "Milan International Prize XVII Attendance",
+				support_desc: "Help master puppeteer Khin Maung Htwe (Htwe Oo Myanmar) attend the XVII International Prize Ceremony in Milan, Italy.",
+				gofundme_btn: "Donate via GoFundMe",
+				kpay_btn: "Domestic Support (KPay/AYA)",
+				logistics_desc: "• Active communication with embassies and VFS for visa and travel logistics to Milan.",
+				share_title: "SHARE HTWE OO MYANMAR",
+				contact_title: "Contact Information",
+				read_more: "Read Full Post"
+			},
+			mm: {
+				nav_about: "အကြောင်းအရာ",
+				nav_events: "သတင်းနှင့်ပွဲစဉ်များ",
+				nav_moments: "အမှတ်တရပုံရိပ်များ",
+				nav_videos: "ဗီဒီယိုများ",
+				nav_support: "ကူညီပံ့ပိုးရန်",
+				nav_contact: "ဆက်သွယ်ရန်",
+				hero_badge: "မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာ",
+				hero_sub: "ဖနွမ်းပင်မြို့၊ ကမ္ဘောဒီးယား | မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်စုံ ကပြဖျော်ဖြေမှု",
+				stat_heritage: "နှစ်ပေါင်းများစွာ လက်ရာ",
+				stat_shows: "ပွဲပေါင်း ၁၀၀ ကျော်",
+				stat_recognition: "ကမ္ဘာ့အသိအမှတ်ပြု",
+				hero_btn: "ကျွန်ုပ်တို့အကြောင်း ဖတ်ရန်",
+				about_title: "ထွေးဦးမြန်မာ အကြောင်း",
+				about_subtitle: "မြန်မာ့ဒြပ်မဲ့ယဉ်ကျေးမှုအမွေအနှစ်ကို ထိန်းသိမ်းစောင့်ရှောက်ခြင်း",
+				about_heading: "လက်ဖြင့်တင်မကဘဲ နှလုံးသားဖြင့် ကြိုးဆွဲကပြသူများ",
+				about_p1: "<strong>ထွေးဦးမြန်မာ (HTWE OO MYANMAR)</strong> သည် နှစ်ပေါင်းရာချီ သက်တမ်းရှိသော <strong>မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်စုံသဘင် (Yoke Thé)</strong> အနုပညာကို ထိန်းသိမ်း၊ မြှင့်တင်၊ ဖော်ထုတ်နေသည့် ထိပ်တန်းယဉ်ကျေးမှုအဖွဲ့အစည်းဖြစ်ပါသည်။",
+				about_p2: "ရုပ်စုံဆရာကြီးနှင့် အနုပညာဒါရိုက်တာ <strong>ဦးခင်မောင်ထွေး</strong> မှ တည်ထောင်ထားပြီး၊ ရိုးရာလက်ရာမြောက် ပြုလုပ်ထားသော ကြိုးဆွဲရုပ်စုံများဖြင့် ရှေးဟောင်းဒဏ္ဍာရီများ၊ နန်းတွင်းအကများနှင့် ရိုးရာပုံပြင်များကို အသက်ဝင်စွာ ကပြဖျော်ဖြေလျက်ရှိပါသည်။",
+				news_title: "သတင်းများနှင့် ပွဲစဉ်များ",
+				news_subtitle: "ကမ္ဘာ့အသိအမှတ်ပြုမှုများ၊ သတင်းအချက်အလက်များနှင့် ထူးခြားထုတ်ပြန်ချက်များ",
+				songkhla_desc: "ထွေးဦးမြန်မာ အဖွဲ့သည် ထိုင်းနိုင်ငံတွင် ကျင်းပမည့် UNIMA Asia Pacific Forum သို့ တရားဝင် ဖိတ်ကြားခြင်း ခံရပါသည်။",
+				milan_desc: "အီတလီနိုင်ငံ၊ မီလန်မြို့ Spazio Teatro No'hma တွင် ကျင်းပမည့် XVII International Prize \"Il Teatro Nudo\" ဆုပေးပွဲအတွက် ရွေးချယ်ခံရပါသည်။",
+				schedule_title: "ကပြဖျော်ဖြေပွဲ အစီအစဉ်များ",
+				ticket_btn: "လက်မှတ်ကြိုတင်ဝယ်ယူရန်",
+				moments_title: "ဖျော်ဖြေမှု အမှတ်တရပုံရိပ်များ",
+				videos_title: "ထူးခြားသော ကပြဖျော်ဖြေမှု ဗီဒီယိုများ",
+				support_title: "ထွေးဦးမြန်မာ ကို ကူညီပံ့ပိုးရန်",
+				support_subtitle: "မီလန်မြို့ အပြည်ပြည်ဆိုင်ရာ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် ကူညီပေးပါ",
+				support_badge: "အရေးပေါ် ခရီးစရိတ် ပံ့ပိုးကူညီပေးပါရန်",
+				support_heading: "မီလန်မြို့ International Prize XVII တက်ရောက်ရေး",
+				support_desc: "မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာရှင်ကြီး ဦးခင်မောင်ထွေး (Htwe Oo Myanmar) မီလန်မြို့ International Prize ဆုပေးပွဲ တက်ရောက်နိုင်ရန် ကူညီပေးပါခင်ဗျာ။",
+				gofundme_btn: "GoFundMe ပြည်ပမှ လှူဒါန်းရန်",
+				kpay_btn: "မြန်မာပြည်တွင်းမှ (KPay/AYA)",
+				logistics_desc: "• မီလန်မြို့ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် သံရုံးနှင့် တိုက်ရိုက် ချိတ်ဆက်ဆောင်ရွက်လျက်ရှိပါသည်။",
+				share_title: "မျှဝေရန်",
+				contact_title: "ဆက်သွယ်ရန် အချက်အလက်များ",
+				read_more: "အပြည့်အစုံဖတ်ရန်"
+			}
+		};
+
+		let currentLang = 'en';
+
+		function switchLanguage(lang) {
+			currentLang = lang;
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				const key = el.getAttribute('data-i18n');
+				if (translations[lang] && translations[lang][key]) {
+					el.innerHTML = translations[lang][key];
+				}
+			});
+
+			document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+			document.getElementById('btn-mm').classList.toggle('active', lang === 'mm');
+
+			// Re-render CMS News with current language translation
+			loadDecapCMSNews();
+		}
+
+		// Category English Map
+		function mapCategoryToEnglish(cat) {
+			if (!cat) return 'News & Updates';
+			const lower = cat.trim().toLowerCase();
+			if (lower.includes('သတင်း') || lower.includes('ထုတ်ပြန်')) return 'News & Announcements';
+			if (lower.includes('ရုပ်သေး') || lower.includes('ပွဲစဉ်')) return 'Puppet Shows';
+			if (lower.includes('ခရီးစဉ်')) return 'Overseas Tours';
+			if (lower.includes('အထွေထွေ')) return 'General';
+			return cat;
+		}
+
+		// Decap CMS Dynamic News Loader Script (With Modal Pop-up & Language Switch)
 		let newsPostsData = [];
 
 		async function loadDecapCMSNews() {
@@ -679,8 +808,11 @@
 							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
 							const date = dateMatch ? new Date(dateMatch[1].replace(/^["']|["']$/g, '').trim()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 							const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-							const category = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
 							
+							// Map Category to English
+							const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+							const category = mapCategoryToEnglish(rawCategory);
+
 							const fullBody = body ? body.trim() : summaryText;
 							const displaySummary = summaryText ? summaryText : fullBody.substring(0, 150) + '...';
 
@@ -695,6 +827,8 @@
 							card.className = 'art-card mb-4';
 							card.setAttribute('data-aos', 'fade-up');
 
+							const btnLabel = translations[currentLang].read_more || "Read Full Post";
+
 							card.innerHTML = `
 								<div class="row align-items-center">
 									<div class="${thumbnail ? 'col-lg-7' : 'col-lg-12'}">
@@ -703,7 +837,7 @@
 										<h3 class="text-gold h5 mb-2">${title}</h3>
 										<div class="text-light opacity-75 small mb-3">${marked.parse(displaySummary)}</div>
 										<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
-											<i class="fa-solid fa-book-open me-1"></i> Read Full Post
+											<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
 										</button>
 									</div>
 									${thumbnail ? `
