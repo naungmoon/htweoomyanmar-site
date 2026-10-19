@@ -582,6 +582,31 @@
 	  </div>
 	</div>
 
+	<!-- CMS Dynamic News Detail Modal -->
+	<div class="modal fade" id="cmsNewsModal" tabindex="-1" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-lg">
+	    <div class="modal-content bg-dark text-light border-warning" style="box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);">
+	      <div class="modal-header border-secondary">
+	        <div>
+	        	<span id="modalCategory" class="badge bg-danger me-2"></span>
+	        	<span id="modalDate" class="badge bg-secondary"></span>
+	        </div>
+	        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body p-4">
+	        <h3 id="modalTitle" class="text-gold h4 mb-3"></h3>
+	        <div id="modalImageContainer" class="text-center mb-3 d-none">
+	        	<img id="modalImage" src="" class="img-fluid rounded border border-warning" style="max-height: 400px; object-fit: contain;">
+	        </div>
+	        <div id="modalBody" class="text-light opacity-90 leading-relaxed"></div>
+	      </div>
+	      <div class="modal-footer border-secondary">
+	        <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<!-- Footer -->
 	<footer class="text-center text-muted small">
 		<div class="container">
@@ -606,7 +631,9 @@
 			alert("Website Link copied to clipboard for Instagram!");
 		}
 
-		// Decap CMS Dynamic News Loader Script (Full Summary & Body Support)
+		// Decap CMS Dynamic News Loader Script (With Modal Pop-up)
+		let newsPostsData = [];
+
 		async function loadDecapCMSNews() {
 			const container = document.getElementById('cms-news-container');
 			if (!container) return;
@@ -624,9 +651,11 @@
 					return;
 				}
 
-				container.innerHTML = ''; // Loading စာသားကို ဖျက်မည်
+				container.innerHTML = ''; // Clear loading
+				newsPostsData = [];
 
-				for (const file of files) {
+				for (let index = 0; index < files.length; index++) {
+					const file = files[index];
 					if (file.name.endsWith('.md')) {
 						const res = await fetch(file.download_url);
 						const mdText = await res.text();
@@ -636,46 +665,50 @@
 							const fm = match[1];
 							const body = match[2];
 
-							// Extract Metadata
 							const titleMatch = fm.match(/^title:\s*(.*)$/m);
 							const dateMatch = fm.match(/^date:\s*(.*)$/m);
 							const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
 							const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-							// Extract Summary Block OR Body
 							let summaryText = '';
 							const summaryBlock = fm.match(/^summary:\s*(?:>|-)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
 							if (summaryBlock && summaryBlock[1].trim()) {
 								summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
-							}
-							
-							// Combine Summary and Body Content for Full Display
-							let fullContent = summaryText;
-							if (body && body.trim()) {
-								fullContent += (fullContent ? '\n\n' : '') + body.trim();
 							}
 
 							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
 							const date = dateMatch ? new Date(dateMatch[1].replace(/^["']|["']$/g, '').trim()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 							const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
 							const category = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+							
+							const fullBody = body ? body.trim() : summaryText;
+							const displaySummary = summaryText ? summaryText : fullBody.substring(0, 150) + '...';
+
+							// Store for Modal Access
+							const postObj = { title, date, thumbnail, category, fullBody, displaySummary };
+							newsPostsData.push(postObj);
+
+							const postIndex = newsPostsData.length - 1;
 
 							// Create Dynamic Art Card
 							const card = document.createElement('div');
 							card.className = 'art-card mb-4';
 							card.setAttribute('data-aos', 'fade-up');
-							
+
 							card.innerHTML = `
 								<div class="row align-items-center">
 									<div class="${thumbnail ? 'col-lg-7' : 'col-lg-12'}">
 										<span class="badge bg-danger mb-2">${category}</span>
 										${date ? `<span class="badge bg-secondary mb-2 ms-1">${date}</span>` : ''}
 										<h3 class="text-gold h5 mb-2">${title}</h3>
-										<div class="text-light opacity-75 small mb-3">${marked.parse(fullContent)}</div>
+										<div class="text-light opacity-75 small mb-3">${marked.parse(displaySummary)}</div>
+										<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
+											<i class="fa-solid fa-book-open me-1"></i> Read Full Post
+										</button>
 									</div>
 									${thumbnail ? `
-									<div class="col-lg-5 text-center mt-3 mt-lg-0">
-										<img src="${thumbnail}" class="gallery-img" alt="${title}">
+									<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
+										<img src="${thumbnail}" class="gallery-img" alt="${title}" style="cursor: pointer;">
 									</div>
 									` : ''}
 								</div>
@@ -689,6 +722,29 @@
 				console.error('Error fetching CMS news:', err);
 				container.innerHTML = '';
 			}
+		}
+
+		function openNewsModal(index) {
+			const post = newsPostsData[index];
+			if (!post) return;
+
+			document.getElementById('modalTitle').innerText = post.title;
+			document.getElementById('modalCategory').innerText = post.category;
+			document.getElementById('modalDate').innerText = post.date;
+			document.getElementById('modalBody').innerHTML = marked.parse(post.fullBody);
+
+			const imgContainer = document.getElementById('modalImageContainer');
+			const modalImg = document.getElementById('modalImage');
+
+			if (post.thumbnail) {
+				modalImg.src = post.thumbnail;
+				imgContainer.classList.remove('d-none');
+			} else {
+				imgContainer.classList.add('d-none');
+			}
+
+			const modal = new bootstrap.Modal(document.getElementById('cmsNewsModal'));
+			modal.show();
 		}
 
 		document.addEventListener('DOMContentLoaded', loadDecapCMSNews);
