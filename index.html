@@ -606,7 +606,7 @@
 			alert("Website Link copied to clipboard for Instagram!");
 		}
 
-		// Decap CMS Dynamic News Loader Script (Enhanced Parser)
+		// Decap CMS Dynamic News Loader Script (Full Summary & Body Support)
 		async function loadDecapCMSNews() {
 			const container = document.getElementById('cms-news-container');
 			if (!container) return;
@@ -636,28 +636,31 @@
 							const fm = match[1];
 							const body = match[2];
 
-							// Multiline / Standard Key Matchers
+							// Extract Metadata
 							const titleMatch = fm.match(/^title:\s*(.*)$/m);
 							const dateMatch = fm.match(/^date:\s*(.*)$/m);
 							const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
 							const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-							// Extract Multiline Summary or Fallback to Body Content
+							// Extract Summary Block OR Body
 							let summaryText = '';
 							const summaryBlock = fm.match(/^summary:\s*(?:>|-)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
 							if (summaryBlock && summaryBlock[1].trim()) {
 								summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
-							} else if (body && body.trim()) {
-								summaryText = body.trim();
+							}
+							
+							// Combine Summary and Body Content for Full Display
+							let fullContent = summaryText;
+							if (body && body.trim()) {
+								fullContent += (fullContent ? '\n\n' : '') + body.trim();
 							}
 
 							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
 							const date = dateMatch ? new Date(dateMatch[1].replace(/^["']|["']$/g, '').trim()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 							const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
 							const category = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
-							const summary = summaryText;
 
-							// HTML Art Card ဖန်တီးခြင်း
+							// Create Dynamic Art Card
 							const card = document.createElement('div');
 							card.className = 'art-card mb-4';
 							card.setAttribute('data-aos', 'fade-up');
@@ -668,7 +671,7 @@
 										<span class="badge bg-danger mb-2">${category}</span>
 										${date ? `<span class="badge bg-secondary mb-2 ms-1">${date}</span>` : ''}
 										<h3 class="text-gold h5 mb-2">${title}</h3>
-										<div class="text-light opacity-75 small mb-3">${marked.parse(summary)}</div>
+										<div class="text-light opacity-75 small mb-3">${marked.parse(fullContent)}</div>
 									</div>
 									${thumbnail ? `
 									<div class="col-lg-5 text-center mt-3 mt-lg-0">
