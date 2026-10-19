@@ -606,7 +606,7 @@
 			alert("Website Link copied to clipboard for Instagram!");
 		}
 
-		// Decap CMS Dynamic News Loader Script
+		// Decap CMS Dynamic News Loader Script (Enhanced Parser)
 		async function loadDecapCMSNews() {
 			const container = document.getElementById('cms-news-container');
 			if (!container) return;
@@ -636,17 +636,26 @@
 							const fm = match[1];
 							const body = match[2];
 
-							const titleMatch = fm.match(/title:\s*"?([^"\n]+)"?/);
-							const dateMatch = fm.match(/date:\s*"?([^"\n]+)"?/);
-							const thumbMatch = fm.match(/thumbnail:\s*"?([^"\n]+)"?/);
-							const categoryMatch = fm.match(/category:\s*"?([^"\n]+)"?/);
-							const summaryMatch = fm.match(/summary:\s*"?([^"\n]+)"?/);
+							// Multiline / Standard Key Matchers
+							const titleMatch = fm.match(/^title:\s*(.*)$/m);
+							const dateMatch = fm.match(/^date:\s*(.*)$/m);
+							const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
+							const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-							const title = titleMatch ? titleMatch[1] : 'News Update';
-							const date = dateMatch ? new Date(dateMatch[1]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-							const thumbnail = thumbMatch ? thumbMatch[1] : '';
-							const category = categoryMatch ? categoryMatch[1] : 'General';
-							const summary = summaryMatch ? summaryMatch[1] : body.trim().substring(0, 150) + '...';
+							// Extract Multiline Summary or Fallback to Body Content
+							let summaryText = '';
+							const summaryBlock = fm.match(/^summary:\s*(?:>|-)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
+							if (summaryBlock && summaryBlock[1].trim()) {
+								summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
+							} else if (body && body.trim()) {
+								summaryText = body.trim();
+							}
+
+							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
+							const date = dateMatch ? new Date(dateMatch[1].replace(/^["']|["']$/g, '').trim()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+							const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+							const category = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+							const summary = summaryText;
 
 							// HTML Art Card ဖန်တီးခြင်း
 							const card = document.createElement('div');
