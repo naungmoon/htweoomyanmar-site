@@ -18,7 +18,7 @@ We are pleased to share crucial updates regarding our journey to Milan, Italy:
 * **Bangkok VFS Communication:** We have contacted VFS Bangkok. Due to the weekend holiday, we are currently awaiting their response.
 * **Plan B Ready:** As a precaution, we have also secured an appointment booking at VFS Phnom Penh. If we do not receive a response from Bangkok tomorrow, our application forms and supporting documents are fully prepared for Plan B.
 
----
+- - -
 
 ### Sincere Thanks to Our Donors
 
@@ -26,7 +26,9 @@ A heartfelt thank you to all our family, friends, and supporters who have contri
 
 As soon as our visa is approved, we will need to purchase flight tickets to Milan. We kindly ask for your continued support and encouragement on this artistic journey!
 
-With deep gratitude,  
+With deep gratitude,\
 **Htwe ❤️ Oo (Myanmar)**
 
-* **Support Us on GoFundMe:** [https://gofund.me/65efeac41](https://gofund.me/65efeac41)
+* **Support Us on GoFundMe:** <https://gofund.me/65efeac41>
+
+  ![](images/uploads/1000453312.jpg)
