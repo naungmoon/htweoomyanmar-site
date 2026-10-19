@@ -1,9 +1,9 @@
 backend:
   name: git-gateway
-  branch: main # သို့မဟုတ် မိမိတို့အသုံးပြုသော default branch ( master )
+  branch: main
 
-media_folder: "static/images/uploads"
-public_folder: "/images/uploads"
+media_folder: "images/uploads"
+public_folder: "images/uploads"
 
 collections:
   - name: "news"
