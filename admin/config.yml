@@ -1,8 +1,8 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main # သို့မဟုတ် မိမိတို့အသုံးပြုသော default branch ( master )
 
-media_folder: "images/uploads"
+media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
@@ -11,18 +11,36 @@ collections:
     folder: "content/news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Event Location / Venue", name: "location", widget: "string", required: false}
-      - {label: "Featured Image", name: "image", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title (ခေါင်းစဉ်)", name: "title", widget: "string" }
+      - { label: "Publish Date (ရက်စွဲ)", name: "date", widget: "datetime" }
+      - { label: "Cover Photo (ပင်တိုင်မျက်နှာဖုံးပုံ)", name: "thumbnail", widget: "image", required: false }
+      - { label: "Author (စာရေးသူ/ထုတ်ပြန်သူ)", name: "author", widget: "string", default: "Htwe Oo Myanmar" }
+      - { 
+          label: "Category (အမျိုးအစား)", 
+          name: "category", 
+          widget: "select", 
+          options: ["သတင်းနှင့်ထုတ်ပြန်ချက်", "ရိုးရာရုပ်သေးပွဲစဉ်များ", "ပြည်ပခရီးစဉ်များ", "အထွေထွေ"],
+          default: "သတင်းနှင့်ထုတ်ပြန်ချက်"
+        }
+      - { label: "Summary / Caption (အကျဉ်းချုပ်/Facebook Caption)", name: "summary", widget: "text", required: false }
+      - { 
+          label: "Photo Gallery (Facebook Post Style ပုံအများကြီးတင်ရန်)", 
+          name: "gallery", 
+          widget: "list", 
+          required: false,
+          field: { label: "Image", name: "image", widget: "image" }
+        }
+      - { label: "Body Content (စာမူအပြည့်အစုံ ရေးရန်)", name: "body", widget: "markdown" }
+
   - name: "pages"
     label: "Pages"
     files:
-      - file: "index.html"
-        label: "Home Page"
-        name: "home"
+      - file: "content/pages/about.md"
+        label: "About Us Page"
+        name: "about"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
