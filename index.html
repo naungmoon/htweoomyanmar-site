@@ -221,6 +221,7 @@
 			width: 100%;
 			max-height: 220px;
 			object-fit: cover;
+			cursor: pointer;
 		}
 
 		.gallery-img:hover {
@@ -235,6 +236,7 @@
 			max-height: 200px;
 			object-fit: cover;
 			transition: all 0.3s;
+			cursor: pointer;
 		}
 
 		/* Responsive Image Fix for Article Body Content Inside Modal */
@@ -444,7 +446,7 @@
 						</div>
 					</div>
 					<div class="col-lg-6">
-						<div class="ratio ratio-16x9 rounded overflow-hidden border border-warning">
+						<div class="ratio ratio-16x9 rounded overflow-hidden border border-warning" id="about-video-container">
 							<iframe src="https://www.youtube.com/embed/jktsO8c1Dbs" allowfullscreen></iframe>
 						</div>
 					</div>
@@ -480,9 +482,9 @@
 					</div>
 					<div class="col-lg-5 mt-3 mt-lg-0">
 						<div class="row g-2">
-							<div class="col-4"><img src="images/Songkhla1.jpeg" class="gallery-img" alt="Songkhla 1" style="max-height: 120px;"></div>
-							<div class="col-4"><img src="images/Songkhla2.jpeg" class="gallery-img" alt="Songkhla 2" style="max-height: 120px;"></div>
-							<div class="col-4"><img src="images/Songkhla3.jpeg" class="gallery-img" alt="Songkhla 3" style="max-height: 120px;"></div>
+							<div class="col-4"><img src="images/Songkhla1.jpeg" class="gallery-img" alt="Songkhla 1" onclick="showImageModal('images/Songkhla1.jpeg', 'Songkhla Harmony World Puppet Festival 2026')"></div>
+							<div class="col-4"><img src="images/Songkhla2.jpeg" class="gallery-img" alt="Songkhla 2" onclick="showImageModal('images/Songkhla2.jpeg', 'Songkhla Harmony World Puppet Festival 2026')"></div>
+							<div class="col-4"><img src="images/Songkhla3.jpeg" class="gallery-img" alt="Songkhla 3" onclick="showImageModal('images/Songkhla3.jpeg', 'Songkhla Harmony World Puppet Festival 2026')"></div>
 						</div>
 					</div>
 				</div>
@@ -499,7 +501,7 @@
 						</p>
 					</div>
 					<div class="col-lg-4 text-center mt-3 mt-lg-0">
-						<img src="images/Italy-trip.jpg" class="gallery-img" alt="Italy Trip" style="max-height: 180px;">
+						<img src="images/Italy-trip.jpg" class="gallery-img" alt="Italy Trip" onclick="showImageModal('images/Italy-trip.jpg', 'The Opening Act for 2025/2026 Season in Milan!')" style="max-height: 180px;">
 					</div>
 				</div>
 			</div>
@@ -522,11 +524,11 @@
 
 			<div class="row g-3" id="cms-gallery-container">
 				<!-- Default Backup Photos -->
-				<div class="col-md-4 col-6" data-aos="zoom-in"><img src="images/portfolio/mixed/11.jpg" class="gallery-img" alt="Moment 1"></div>
-				<div class="col-md-4 col-6" data-aos="zoom-in" data-aos-delay="100"><img src="images/portfolio/mixed/2.jpg" class="gallery-img" alt="Moment 2"></div>
-				<div class="col-md-4 col-6" data-aos="zoom-in" data-aos-delay="200"><img src="images/portfolio/mixed/3.jpg" class="gallery-img" alt="Moment 3"></div>
-				<div class="col-md-6 col-6" data-aos="zoom-in" data-aos-delay="300"><img src="images/portfolio/mixed/4.jpg" class="gallery-img" alt="Moment 4"></div>
-				<div class="col-md-6 col-6" data-aos="zoom-in" data-aos-delay="400"><img src="images/portfolio/mixed/5.jpg" class="gallery-img" alt="Moment 5"></div>
+				<div class="col-md-4 col-6" data-aos="zoom-in"><img src="images/portfolio/mixed/11.jpg" class="gallery-img" alt="Moment 1" onclick="showImageModal('images/portfolio/mixed/11.jpg', 'Performance Moment')"></div>
+				<div class="col-md-4 col-6" data-aos="zoom-in" data-aos-delay="100"><img src="images/portfolio/mixed/2.jpg" class="gallery-img" alt="Moment 2" onclick="showImageModal('images/portfolio/mixed/2.jpg', 'Performance Moment')"></div>
+				<div class="col-md-4 col-6" data-aos="zoom-in" data-aos-delay="200"><img src="images/portfolio/mixed/3.jpg" class="gallery-img" alt="Moment 3" onclick="showImageModal('images/portfolio/mixed/3.jpg', 'Performance Moment')"></div>
+				<div class="col-md-6 col-6" data-aos="zoom-in" data-aos-delay="300"><img src="images/portfolio/mixed/4.jpg" class="gallery-img" alt="Moment 4" onclick="showImageModal('images/portfolio/mixed/4.jpg', 'Performance Moment')"></div>
+				<div class="col-md-6 col-6" data-aos="zoom-in" data-aos-delay="400"><img src="images/portfolio/mixed/5.jpg" class="gallery-img" alt="Moment 5" onclick="showImageModal('images/portfolio/mixed/5.jpg', 'Performance Moment')"></div>
 			</div>
 		</section>
 
@@ -712,7 +714,7 @@
 	<!-- Footer -->
 	<footer class="text-center text-muted small">
 		<div class="container">
-			<p class="mb-0">Designed & Modernized with Puppetry Art Elegance &copy; 2026 Htwe Oo Myanmar</p>
+			<p class="mb-0">Designed & Modernized with Puppetry Art Elegance | &copy; 2026 Htwe Oo Myanmar</p>
 		</div>
 	</footer>
 
@@ -731,6 +733,21 @@
 		function copyShareLink() {
 			navigator.clipboard.writeText("https://htweoomyanmar.netlify.app/");
 			alert("Website Link copied to clipboard for Instagram!");
+		}
+
+		// Helper Function to Show Image in Modal
+		function showImageModal(imgSrc, imgTitle) {
+			document.getElementById('modalTitle').innerText = imgTitle || "Htwe Oo Myanmar";
+			document.getElementById('modalCategory').innerText = "Gallery & Events";
+			document.getElementById('modalDate').innerText = "2026";
+			document.getElementById('modalBody').innerHTML = "";
+
+			const modalImg = document.getElementById('modalImage');
+			modalImg.src = imgSrc;
+			document.getElementById('modalImageContainer').classList.remove('d-none');
+
+			const modal = new bootstrap.Modal(document.getElementById('cmsNewsModal'));
+			modal.show();
 		}
 
 		// Bilingual Translation Dictionary
@@ -850,6 +867,15 @@
 							document.getElementById('about-card-heading').innerText = dynamicTitle;
 						}
 
+						const videoUrlMatch = fm.match(/^video_url:\s*(.*)$/m);
+						if (videoUrlMatch && videoUrlMatch[1].trim()) {
+							const rawUrl = videoUrlMatch[1].replace(/^["']|["']$/g, '').trim();
+							const embedUrl = getYouTubeEmbedUrl(rawUrl);
+							if (embedUrl) {
+								document.getElementById('about-video-container').innerHTML = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+							}
+						}
+
 						if (body && body.trim()) {
 							document.getElementById('about-cms-body').innerHTML = marked.parse(body.trim());
 						}
@@ -900,7 +926,7 @@
 								col.className = 'col-md-4 col-6';
 								col.setAttribute('data-aos', 'zoom-in');
 								col.innerHTML = `
-									<img src="${image}" class="gallery-img mb-2" alt="${title}" title="${title}">
+									<img src="${image}" class="gallery-img mb-2" alt="${title}" title="${title}" onclick="showImageModal('${image}', '${title || "Performance Moment"}')">
 									${title ? `<p class="small text-center text-muted mb-0">${title}</p>` : ''}
 								`;
 								container.appendChild(col);
