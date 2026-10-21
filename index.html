@@ -80,6 +80,8 @@
 			border-bottom: 1px solid rgba(255, 215, 0, 0.2);
 			z-index: 1030;
 			width: 100%;
+			padding-top: 0.6rem;
+			padding-bottom: 0.6rem;
 		}
 
 		.navbar-brand img {
@@ -91,7 +93,7 @@
 		/* Bold & Shimmering Wave Effect Header Brand Text */
 		.header-animated-brand {
 			font-family: 'Cinzel', serif;
-			font-size: clamp(0.7rem, 2vw, 0.95rem);
+			font-size: 0.95rem; /* Desktop & Tablet မှာ မူလအရွယ်အစားအတိုင်း ကြီးမားစွာပြမည် */
 			font-weight: 900;
 			letter-spacing: 1px;
 			background: linear-gradient(90deg, #FFD700, #FFFFFF, #FFD700, #FFA500);
@@ -101,9 +103,14 @@
 			animation: shineText 3.5s linear infinite;
 			text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: 45%;
+		}
+
+		/* ဖုန်း Screen သေးသေးလေးတွေမှာ (Mobile View) ကျမှသာ Font Size ကို အနည်းငယ် ချိန်ညှိပေးမည် */
+		@media (max-width: 575.98px) {
+			.header-animated-brand {
+				font-size: 0.65rem;
+				letter-spacing: 0.5px;
+			}
 		}
 
 		@keyframes shineText {
@@ -138,6 +145,18 @@
 			background: var(--primary-gold);
 			color: #000;
 			font-weight: bold;
+		}
+
+		/* Responsive Display Control for External Language Switcher */
+		.external-lang-container {
+			display: none; /* Desktop & Tablet မှာ မပြပါ (Menu ထဲမှာပဲ ပြမည်) */
+		}
+		@media (max-width: 991.98px) {
+			.external-lang-container {
+				display: flex; /* Mobile မှာ အပြင်ဘက် Navbar မှာ ပြမည် */
+				align-items: center;
+				gap: 4px;
+			}
 		}
 
 		/* Hero Section */
@@ -418,13 +437,13 @@
 
 			<!-- Bold & Shimmering Wave Effect Header Brand Text -->
 			<div class="header-animated-brand text-center">
-				HTWE OO MYANMAR✨
+				🎭 HTWE OO MYANMAR ✨
 			</div>
 
 			<!-- Right Side Controls (Language Switcher + Hamburger Toggler) -->
 			<div class="d-flex align-items-center gap-2">
-				<!-- External Visible Language Switcher -->
-				<div>
+				<!-- External Visible Language Switcher (Mobile Only) -->
+				<div class="external-lang-container">
 					<button class="lang-btn active" id="btn-en-ext" onclick="switchLanguage('en')">EN</button>
 					<button class="lang-btn" id="btn-mm-ext" onclick="switchLanguage('mm')">MM</button>
 				</div>
