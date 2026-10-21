@@ -34,6 +34,7 @@
 			max-width: 100% !important;
 			overflow-x: hidden !important;
 			position: relative;
+			scroll-behavior: smooth;
 		}
 
 		body {
@@ -82,7 +83,7 @@
 		}
 
 		.navbar-brand img {
-			height: 40px;
+			height: 36px;
 			filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
 			transition: transform 0.3s;
 		}
@@ -90,19 +91,19 @@
 		/* Bold & Shimmering Wave Effect Header Brand Text */
 		.header-animated-brand {
 			font-family: 'Cinzel', serif;
-			font-size: clamp(0.8rem, 2.4vw, 1.02rem);
+			font-size: clamp(0.7rem, 2vw, 0.95rem);
 			font-weight: 900;
-			letter-spacing: 1.2px;
+			letter-spacing: 1px;
 			background: linear-gradient(90deg, #FFD700, #FFFFFF, #FFD700, #FFA500);
 			background-size: 200% auto;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			animation: shineText 3.5s linear infinite;
-			text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+			text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			max-width: 62%;
+			max-width: 45%;
 		}
 
 		@keyframes shineText {
@@ -127,8 +128,8 @@
 			border: 1px solid var(--primary-gold);
 			color: var(--primary-gold);
 			border-radius: 20px;
-			padding: 2px 10px;
-			font-size: 0.8rem;
+			padding: 2px 8px;
+			font-size: 0.75rem;
 			background: transparent;
 			transition: all 0.3s;
 		}
@@ -213,26 +214,6 @@
 			transform: scale(1.03);
 		}
 
-		/* Clickable Support Card Styling */
-		.support-card-link {
-			text-decoration: none !important;
-			color: inherit !important;
-			display: block;
-			cursor: pointer;
-		}
-
-		.support-card-link .art-card {
-			border: 2px solid var(--gofundme-green);
-			background: rgba(2, 169, 92, 0.05);
-			transition: all 0.3s ease;
-		}
-
-		.support-card-link:hover .art-card {
-			border-color: var(--primary-gold);
-			box-shadow: 0 0 25px rgba(2, 169, 92, 0.4);
-			transform: translateY(-4px);
-		}
-
 		/* Controlled Gallery & Card Thumbnail Heights */
 		.gallery-img {
 			border-radius: 10px;
@@ -291,6 +272,26 @@
 			height: 2px;
 			background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
 			margin: 20px 0;
+		}
+
+		/* Clickable Support Card Styling */
+		.support-card-link {
+			text-decoration: none !important;
+			color: inherit !important;
+			display: block;
+			cursor: pointer;
+		}
+
+		.support-card-link .art-card {
+			border: 2px solid var(--gofundme-green);
+			background: rgba(2, 169, 92, 0.05);
+			transition: all 0.3s ease;
+		}
+
+		.support-card-link:hover .art-card {
+			border-color: var(--primary-gold);
+			box-shadow: 0 0 25px rgba(2, 169, 92, 0.4);
+			transform: translateY(-4px);
 		}
 
 		/* Social Share Bar Styling */
@@ -352,6 +353,49 @@
 		.bg-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
 		.bg-telegram { background: #24A1DE; }
 
+		/* Floating Animated Scroll to Top Button */
+		#scrollToTopBtn {
+			position: fixed;
+			bottom: 25px;
+			right: 20px;
+			z-index: 9999;
+			width: 48px;
+			height: 48px;
+			background: linear-gradient(135deg, #FFD700, #FF8C00);
+			color: #0d0f12;
+			border: 2px solid rgba(255, 255, 255, 0.4);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.2rem;
+			cursor: pointer;
+			box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(20px) scale(0.8);
+			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		}
+
+		#scrollToTopBtn.show {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0) scale(1);
+			animation: floatBounce 2s ease-in-out infinite;
+		}
+
+		@keyframes floatBounce {
+			0%, 100% { transform: translateY(0); }
+			50% { transform: translateY(-6px); }
+		}
+
+		#scrollToTopBtn:hover {
+			transform: scale(1.12);
+			background: linear-gradient(135deg, #ffffff, #FFD700);
+			box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+			color: #D2143A;
+		}
+
 		footer {
 			background: #060708;
 			border-top: 1px solid rgba(255, 215, 0, 0.1);
@@ -374,12 +418,22 @@
 
 			<!-- Bold & Shimmering Wave Effect Header Brand Text -->
 			<div class="header-animated-brand text-center">
-				🎭 HTWE OO MYANMAR ✨
+				HTWE OO MYANMAR✨
 			</div>
 
-			<button class="navbar-toggler ms-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+			<!-- Right Side Controls (Language Switcher + Hamburger Toggler) -->
+			<div class="d-flex align-items-center gap-2">
+				<!-- External Visible Language Switcher -->
+				<div>
+					<button class="lang-btn active" id="btn-en-ext" onclick="switchLanguage('en')">EN</button>
+					<button class="lang-btn" id="btn-mm-ext" onclick="switchLanguage('mm')">MM</button>
+				</div>
+
+				<button class="navbar-toggler m-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+
 			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 				<ul class="navbar-nav text-center py-2 align-items-center">
 					<li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav_about">About</a></li>
@@ -615,7 +669,7 @@
 							
 							<div class="p-3 bg-dark rounded border border-secondary mb-3">
 								<div class="d-flex justify-content-between text-warning small mb-1">
-									<span>Goal Progress: $500 USD Raised</span>
+									<span>Goal Progress: $300 USD Raised</span>
 									<span>Target: $1,800 USD</span>
 								</div>
 								<div class="progress" style="height: 10px;">
@@ -697,6 +751,11 @@
 
 	</div>
 
+	<!-- Floating Scroll to Top Button -->
+	<button id="scrollToTopBtn" onclick="scrollToTop()" title="Go to top">
+		<i class="fa-solid fa-arrow-up"></i>
+	</button>
+
 	<!-- Domestic KPay/AYA Modal -->
 	<div class="modal fade" id="kpayModal" tabindex="-1" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
@@ -768,6 +827,24 @@
 			duration: 800,
 			once: true
 		});
+
+		// Scroll to Top Logic
+		const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+		window.addEventListener("scroll", () => {
+			if (window.pageYOffset > 300) {
+				scrollToTopBtn.classList.add("show");
+			} else {
+				scrollToTopBtn.classList.remove("show");
+			}
+		});
+
+		function scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth"
+			});
+		}
 
 		function copyShareLink() {
 			navigator.clipboard.writeText("https://htweoomyanmar.netlify.app/");
@@ -884,8 +961,9 @@
 				}
 			});
 
-			document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-			document.getElementById('btn-mm').classList.toggle('active', lang === 'mm');
+			// Update both external and internal language buttons active state
+			document.querySelectorAll('#btn-en, #btn-en-ext').forEach(btn => btn.classList.toggle('active', lang === 'en'));
+			document.querySelectorAll('#btn-mm, #btn-mm-ext').forEach(btn => btn.classList.toggle('active', lang === 'mm'));
 
 			loadDecapCMSNews();
 			loadDecapCMSAbout();
