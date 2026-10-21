@@ -1,56 +1,14 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "images/uploads"
-public_folder: "images/uploads"
-
 collections:
   - name: "news"
     label: "News & Events"
     folder: "content/news"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: true
     fields:
-      - { label: "Title (ခေါင်းစဉ်)", name: "title", widget: "string" }
-      - { label: "Publish Date (ရက်စွဲ)", name: "date", widget: "datetime" }
-      - { label: "Cover Photo (ပင်တိုင်မျက်နှာဖုံးပုံ)", name: "thumbnail", widget: "image", required: false }
-      - { label: "Author (ရေးသူ/ထုတ်ပြန်သူ)", name: "author", widget: "string", default: "Htwe Oo Myanmar" }
-      - label: "Category (မျိုးအစား)"
-        name: "category"
-        widget: "select"
-        options: ["သတင်းနှင့်ထုတ်ပြန်ချက်", "ရုပ်သေးပွဲစဉ်များ", "နိုင်ငံတကာခရီးစဉ်", "အထွေထွေ"]
-        default: "သတင်းနှင့်ထုတ်ပြန်ချက်"
-      - { label: "Summary / Caption (အကျဉ်းချုပ်/Facebook Caption)", name: "summary", widget: "text", required: false }
-      - { label: "Body Content (စာမူအပြည့်အစုံ ရေးရန်)", name: "body", widget: "markdown" }
-
-  - name: "gallery"
-    label: "Performance Moments (Gallery)"
-    folder: "content/gallery"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title / Caption (ပုံခေါင်းစဉ်)", name: "title", widget: "string", required: false }
-      - { label: "Photo (ဓာတ်ပုံ)", name: "image", widget: "image" }
-
-  - name: "videos"
-    label: "Featured Performances (Videos)"
-    folder: "content/videos"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Video Title (ဗီဒီယို ခေါင်းစဉ်)", name: "title", widget: "string" }
-      - { label: "YouTube Video URL or Embed Link", name: "video_url", widget: "string" }
-
-  - name: "pages"
-    label: "Pages"
-    files:
-      - name: "about"
-        label: "About Us Page"
-        file: "content/pages/about.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "YouTube Video URL", name: "video_url", widget: "string", required: false, hint: "Paste YouTube link or embed URL here" }
-          - { label: "Body", name: "body", widget: "markdown" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Cover Photo", name: "thumbnail", widget: "image", required: false}
+      - {label: "Video URL (Optional)", name: "video_url", widget: "string", required: false}
+      - {label: "Author", name: "author", widget: "string", default: "Htwe Oo Myanmar"}
+      - {label: "Category", name: "category", widget: "select", options: ["သတင်းနှင့်ထုတ်ပြန်ချက်", "ရုပ်သေးပွဲစဉ်များ", "ခရီးစဉ်များ", "အထွေထွေ"]}
+      - {label: "Summary / Caption", name: "summary", widget: "text", required: false}
+      - {label: "Body Content", name: "body", widget: "markdown", required: false}
