@@ -1,3 +1,11 @@
+backend:
+  name: github
+  repo: naungmoon/htweoomyanmar-site
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
 collections:
   - name: "news"
     label: "News & Events"
