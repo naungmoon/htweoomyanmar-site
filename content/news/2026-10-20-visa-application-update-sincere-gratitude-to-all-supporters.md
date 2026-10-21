@@ -1,10 +1,10 @@
 ---
-title: Visa Application Update & Sincere Gratitude to All Supporters
+title: VFS Office Update & Sincere Gratitude to All Supporters
 date: 2026-10-20T13:35:00.000+08:00
 thumbnail: images/uploads/1000454660.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
-summary: "#ဗီဇာလျှောက်လွှာတင်လိုက်ပါပြီ"
+summary: "#ဗီဇာလျှောက်လွှာတင်လိုက်ပါပြီ ​♡ Our Visa Application Has Been Submitted!"
 ---
 # #StepByStepToMilan 🎭✨
 
