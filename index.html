@@ -213,6 +213,26 @@
 			transform: scale(1.03);
 		}
 
+		/* Clickable Support Card Styling */
+		.support-card-link {
+			text-decoration: none !important;
+			color: inherit !important;
+			display: block;
+			cursor: pointer;
+		}
+
+		.support-card-link .art-card {
+			border: 2px solid var(--gofundme-green);
+			background: rgba(2, 169, 92, 0.05);
+			transition: all 0.3s ease;
+		}
+
+		.support-card-link:hover .art-card {
+			border-color: var(--primary-gold);
+			box-shadow: 0 0 25px rgba(2, 169, 92, 0.4);
+			transform: translateY(-4px);
+		}
+
 		/* Controlled Gallery & Card Thumbnail Heights */
 		.gallery-img {
 			border-radius: 10px;
@@ -271,12 +291,6 @@
 			height: 2px;
 			background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
 			margin: 20px 0;
-		}
-
-		/* Support Card UI */
-		.support-card {
-			border: 2px solid var(--gofundme-green);
-			background: rgba(2, 169, 92, 0.05);
 		}
 
 		/* Social Share Bar Styling */
@@ -582,51 +596,53 @@
 			</div>
 		</section>
 
-		<!-- SUPPORT SECTION -->
+		<!-- SUPPORT SECTION (Clickable Card wrapping support.htweoomyanmar.com) -->
 		<section id="support" class="mb-5">
 			<div class="text-center mb-3" data-aos="fade-up">
 				<h2 class="text-success h4 font-weight-bold"><i class="fa-solid fa-hand-holding-heart me-2"></i><span data-i18n="support_title">SUPPORT HTWE OO MYANMAR</span></h2>
 				<p class="text-muted small" data-i18n="support_subtitle">Help Myanmar Marionettes Reach Milan for International Prize Ceremony</p>
 			</div>
 
-			<div class="art-card support-card" data-aos="fade-up">
-				<div class="row align-items-center">
-					<div class="col-lg-7 mb-3 mb-lg-0">
-						<span class="badge bg-danger mb-2" data-i18n="support_badge">Urgent Travel Support Appeal</span>
-						<h3 class="text-warning h5 mb-2" data-i18n="support_heading">Milan International Prize XVII Attendance</h3>
-						<p class="text-light opacity-75 small" data-i18n="support_desc">
-							မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာရှင်ကြီး <strong>ဦးခင်မောင်ထွေး (Htwe Oo Myanmar)</strong> မီလန်မြို့ International Prize ဆုပေးပွဲ တက်ရောက်နိုင်ရန် ကူညီပေးပါခင်ဗျာ။
-						</p>
-						
-						<div class="p-3 bg-dark rounded border border-secondary mb-3">
-							<div class="d-flex justify-content-between text-warning small mb-1">
-								<span>Goal Progress: $300 USD Raised</span>
-								<span>Target: $1,800 USD</span>
+			<a href="https://support.htweoomyanmar.com" target="_blank" class="support-card-link" data-aos="fade-up">
+				<div class="art-card">
+					<div class="row align-items-center">
+						<div class="col-lg-7 mb-3 mb-lg-0">
+							<span class="badge bg-danger mb-2" data-i18n="support_badge">Urgent Travel Support Appeal</span>
+							<h3 class="text-warning h5 mb-2" data-i18n="support_heading">Milan International Prize XVII Attendance</h3>
+							<p class="text-light opacity-75 small" data-i18n="support_desc">
+								မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာရှင်ကြီး <strong>ဦးခင်မောင်ထွေး (Htwe Oo Myanmar)</strong> မီလန်မြို့ International Prize ဆုပေးပွဲ တက်ရောက်နိုင်ရန် ကူညီပေးပါခင်ဗျာ။
+							</p>
+							
+							<div class="p-3 bg-dark rounded border border-secondary mb-3">
+								<div class="d-flex justify-content-between text-warning small mb-1">
+									<span>Goal Progress: $300 USD Raised</span>
+									<span>Target: $1,800 USD</span>
+								</div>
+								<div class="progress" style="height: 10px;">
+								  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 17%"></div>
+								</div>
 							</div>
-							<div class="progress" style="height: 10px;">
-							  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 17%"></div>
-							</div>
-						</div>
 
-						<div class="d-flex flex-wrap gap-2">
-							<a href="https://www.gofundme.com/f/help-myanmar-marionettes-reach-milan-for-international-prize?utm_source=product" target="_blank" class="btn btn-sm btn-success fw-bold">
-								<i class="fa-solid fa-globe me-1"></i> <span data-i18n="gofundme_btn">GoFundMe ပြည်ပမှ လှူဒါန်းရန်</span>
-							</a>
-							<button class="btn btn-sm btn-outline-warning fw-bold" data-bs-toggle="modal" data-bs-target="#kpayModal">
-								<i class="fa-solid fa-mobile-screen me-1"></i> <span data-i18n="kpay_btn">မြန်မာပြည်တွင်းမှ (KPay/AYA)</span>
-							</button>
+							<div class="d-flex flex-wrap gap-2">
+								<span class="btn btn-sm btn-success fw-bold">
+									<i class="fa-solid fa-globe me-1"></i> <span data-i18n="gofundme_btn">GoFundMe ပြည်ပမှ လှူဒါန်းရန်</span>
+								</span>
+								<span class="btn btn-sm btn-outline-warning fw-bold" onclick="event.preventDefault(); var myModal = new bootstrap.Modal(document.getElementById('kpayModal')); myModal.show();">
+									<i class="fa-solid fa-mobile-screen me-1"></i> <span data-i18n="kpay_btn">မြန်မာပြည်တွင်းမှ (KPay/AYA)</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					
-					<div class="col-lg-5">
-						<div class="p-3 bg-dark rounded border border-warning">
-							<h6 class="text-warning mb-2"><i class="fa-solid fa-plane-departure me-2"></i>Travel & Visa Logistics Status</h6>
-							<p class="small opacity-75 mb-1">• Phnom Penh ➔ Bangkok VFS ➔ Milan Route</p>
-							<p class="small opacity-75 mb-0" data-i18n="logistics_desc">• မီလန်မြို့ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် သံရုံးနှင့် တိုက်ရိုက် ချိတ်ဆက်ဆောင်ရွက်လျက်ရှိပါသည်။</p>
+						
+						<div class="col-lg-5">
+							<div class="p-3 bg-dark rounded border border-warning">
+								<h6 class="text-warning mb-2"><i class="fa-solid fa-plane-departure me-2"></i>Travel & Visa Logistics Status</h6>
+								<p class="small opacity-75 mb-1">• Phnom Penh ➔ Bangkok VFS ➔ Milan Route</p>
+								<p class="small opacity-75 mb-0" data-i18n="logistics_desc">• မီလန်မြို့ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် သံရုံးနှင့် တိုက်ရိုက် ချိတ်ဆက်ဆောင်ရွက်လျက်ရှိပါသည်။</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</a>
 		</section>
 
 		<!-- SOCIAL SHARE BAR SECTION (Clean 6 Icons in a row) -->
