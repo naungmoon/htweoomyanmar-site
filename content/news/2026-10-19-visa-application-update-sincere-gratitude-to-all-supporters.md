@@ -1,11 +1,11 @@
 ---
 title: Visa Application Filed & Deep Gratitude for Your Support
-date: 2026-10-19T21:27:00.000+08:00
+date: 2026-10-18T21:27:00.000+08:00
 thumbnail: images/uploads/1000453267.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
 summary: |
-  #ဗီဇာဖိုး ရပါပြီ ☆ Visa fee funds have been successfully raised!
+  #ဗီဇာဖိုး ရပါပြီ ☆ Visa fee funds have been raised!
 ---
 ### Visa Application Progress & Gratitude
 
