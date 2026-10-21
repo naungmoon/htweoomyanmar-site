@@ -16,14 +16,14 @@ collections:
     fields:
       - { label: "Title (ခေါင်းစဉ်)", name: "title", widget: "string" }
       - { label: "Publish Date (ရက်စွဲ)", name: "date", widget: "datetime" }
-      - { label: "Cover Photo (ပင်တိုင်မျက်နှာဖုံးပုံ) (OPTIONAL)", name: "thumbnail", widget: "image", required: false }
+      - { label: "Cover Photo (ပင်တိုင်မျက်နှာဖုံးပုံ)", name: "thumbnail", widget: "image", required: false }
       - { label: "Author (ရေးသူ/ထုတ်ပြန်သူ)", name: "author", widget: "string", default: "Htwe Oo Myanmar" }
       - label: "Category (မျိုးအစား)"
         name: "category"
         widget: "select"
         options: ["သတင်းနှင့်ထုတ်ပြန်ချက်", "ရုပ်သေးပွဲစဉ်များ", "နိုင်ငံတကာခရီးစဉ်", "အထွေထွေ"]
         default: "သတင်းနှင့်ထုတ်ပြန်ချက်"
-      - { label: "Summary / Caption (အကျဉ်းချုပ်/Facebook Caption) (OPTIONAL)", name: "summary", widget: "text", required: false }
+      - { label: "Summary / Caption (အကျဉ်းချုပ်/Facebook Caption)", name: "summary", widget: "text", required: false }
       - { label: "Body Content (စာမူအပြည့်အစုံ ရေးရန်)", name: "body", widget: "markdown" }
 
   - name: "gallery"
