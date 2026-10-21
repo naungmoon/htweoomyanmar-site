@@ -6,9 +6,9 @@ author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
 summary: "#HtweOoMyanmar #HtweOoThetPaing #VientianeLao #HotelLexi #CulturalShow"
 ---
-*Special thanks* to **Hotel Lexi Vientiane** for hosting us and organizing such a wonderful event!
+*Special thanks* to **[Hotel Lexi Vientiane](https://www.facebook.com/share/1KZjLfDkgz/)** for hosting us and organizing such a wonderful event!
 
-Big thanks to the entire staff team at **Hotel Lexi Laos** for all their hard work and support behind the scenes.
+Big thanks to the entire staff team at **[Hotel Lexi Laos](https://www.facebook.com/share/1cwX5YPujK/)** for all their hard work and support behind the scenes.
 
 To our amazing audience — thank you so much for your warm presence and hearty support!
 
