@@ -507,13 +507,36 @@
 			</div>
 		</section>
 
-		<!-- Google Calendar & Booking -->
-		<section class="art-card text-center my-4" data-aos="fade-up">
-			<h3 class="text-warning h5 mb-3"><i class="fa-regular fa-calendar-days me-2"></i><span data-i18n="schedule_title">Live Performance Schedule</span></h3>
-			<div class="ratio ratio-16x9 mb-3" style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,215,0,0.3);">
-				<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FBangkok&bgcolor=%23ffffff&title=HTWE%20OO%20MYANMAR%20Traditional%20Puppet%20Show%2C%20Phnom Phnom Penh-Cambodia%20(%2B855%2012%20831%20950)&src=ZGlyZWN0b3JAaHR3ZW9vbXlhbm1hci5jb20&color=%234285F4" style="border:0;" width="100%" height="600"></iframe>
+		<!-- Enhanced Custom Live Performance Schedule Card UI -->
+		<section class="art-card text-center my-4 p-4 position-relative overflow-hidden" data-aos="fade-up" style="border: 2px solid rgba(255, 215, 0, 0.4); background: radial-gradient(circle at center, rgba(74, 14, 78, 0.4) 0%, rgba(13, 15, 18, 0.9) 85%);">
+			<div class="position-absolute top-0 start-0 w-100 h-100" style="background: repeating-linear-gradient(45deg, rgba(255,215,0,0.02) 0px, rgba(255,215,0,0.02) 2px, transparent 2px, transparent 15px); pointer-events: none;"></div>
+			
+			<div class="mb-3">
+				<span class="badge-gold mb-2"><i class="fa-solid fa-masks-theater me-2"></i><span data-i18n="schedule_badge">LIVE PERFORMANCE STAGE</span></span>
+				<h3 class="text-warning h4 fw-bold mb-1"><i class="fa-solid fa-calendar-star me-2"></i><span data-i18n="schedule_title">Live Performance Schedule</span></h3>
+				<p class="text-muted small" data-i18n="schedule_sub">Join Our Daily Traditional Marionette Show in Phnom Penh</p>
 			</div>
-			<a href="https://www.theboxofficephnompenh.com/events" target="_blank" class="btn-glow"><i class="fa-solid fa-ticket me-2"></i><span data-i18n="ticket_btn">Reserve Tickets Online</span></a>
+
+			<div class="row g-3 justify-content-center my-3">
+				<div class="col-md-4">
+					<div class="p-3 rounded bg-dark border border-warning border-opacity-50 text-start h-100">
+						<div class="text-warning small fw-bold mb-1"><i class="fa-regular fa-clock me-1"></i> DAILY SHOWTIME</div>
+						<div class="h5 text-light mb-0 font-monospace">3:00 PM (Local Time)</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="p-3 rounded bg-dark border border-warning border-opacity-50 text-start h-100">
+						<div class="text-warning small fw-bold mb-1"><i class="fa-solid fa-location-dot me-1"></i> VENUE LOCATION</div>
+						<div class="small text-light mb-0">#8, Long Nget St. (258), Phnom Penh, Cambodia</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-4">
+				<a href="https://www.theboxofficephnompenh.com/events" target="_blank" class="btn-glow px-4 py-2">
+					<i class="fa-solid fa-ticket me-2"></i><span data-i18n="ticket_btn">Reserve Tickets Online</span>
+				</a>
+			</div>
 		</section>
 
 		<!-- Dynamic Moments Gallery (CMS Driven) -->
@@ -774,7 +797,9 @@
 				news_subtitle: "Global Recognition, Updates & Special Announcements",
 				songkhla_desc: "HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!",
 				milan_desc: "Selected for the XVII International Prize \"Il Teatro Nudo\" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy.",
+				schedule_badge: "LIVE PERFORMANCE STAGE",
 				schedule_title: "Live Performance Schedule",
+				schedule_sub: "Join Our Daily Traditional Marionette Show in Phnom Penh",
 				ticket_btn: "Reserve Tickets Online",
 				moments_title: "PERFORMANCE MOMENTS",
 				videos_title: "FEATURED PERFORMANCES",
@@ -812,7 +837,9 @@
 				news_subtitle: "ကမ္ဘာ့အသိအမှတ်ပြုမှုများ၊ သတင်းအချက်အလက်များနှင့် ထူးခြားထုတ်ပြန်ချက်များ",
 				songkhla_desc: "ထွေးဦးမြန်မာ အဖွဲ့သည် ထိုင်းနိုင်ငံတွင် ကျင်းပမည့် UNIMA Asia Pacific Forum သို့ တရားဝင် ဖိတ်ကြားခြင်း ခံရပါသည်။",
 				milan_desc: "အီတလီနိုင်ငံ၊ မီလန်မြို့ Spazio Teatro No'hma တွင် ကျင်းပမည့် XVII International Prize \"Il Teatro Nudo\" ဆုပေးပွဲအတွက် ရွေးချယ်ခံရပါသည်။",
+				schedule_badge: "ရုပ်စုံသဘင် ကပြဖျော်ဖြေမှုဇုန်",
 				schedule_title: "ကပြဖျော်ဖြေပွဲ အစီအစဉ်များ",
+				schedule_sub: "ဖနွမ်းပင်မြို့တွင် နေ့စဉ်ကျင်းပပြုလုပ်မည့် ရိုးရာကြိုးဆွဲရုပ်စုံ အစီအစဉ်",
 				ticket_btn: "လက်မှတ်ကြိုတင်ဝယ်ယူရန်",
 				moments_title: "ဖျော်ဖြေမှု အမှတ်တရပုံရိပ်များ",
 				videos_title: "ထူးခြားသော ကပြဖျော်ဖြေမှု ဗီဒီယိုများ",
@@ -1000,7 +1027,7 @@
 			return cat;
 		}
 
-		// Decap CMS Dynamic News Loader Script
+		// Decap CMS Dynamic News Loader Script (Sorted by Date: Newest First)
 		let newsPostsData = [];
 
 		async function loadDecapCMSNews() {
@@ -1020,8 +1047,7 @@
 					return;
 				}
 
-				container.innerHTML = '';
-				newsPostsData = [];
+				let rawPosts = [];
 
 				for (let index = 0; index < files.length; index++) {
 					const file = files[index];
@@ -1046,7 +1072,9 @@
 							}
 
 							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
-							const date = dateMatch ? new Date(dateMatch[1].replace(/^["']|["']$/g, '').trim()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+							const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+							const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
+							const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 							const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
 							
 							const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
@@ -1055,40 +1083,50 @@
 							const fullBody = body ? body.trim() : summaryText;
 							const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
 
-							const postObj = { title, date, thumbnail, category, fullBody, displaySummary };
-							newsPostsData.push(postObj);
-
-							const postIndex = newsPostsData.length - 1;
-
-							const card = document.createElement('div');
-							card.className = 'art-card mb-4';
-							card.setAttribute('data-aos', 'fade-up');
-
-							const btnLabel = translations[currentLang].read_more || "Read Full Post";
-
-							card.innerHTML = `
-								<div class="row align-items-center">
-									<div class="${thumbnail ? 'col-lg-7' : 'col-lg-12'}">
-										<span class="badge bg-danger mb-2">${category}</span>
-										${date ? `<span class="badge bg-secondary mb-2 ms-1">${date}</span>` : ''}
-										<h3 class="text-gold h5 mb-2">${title}</h3>
-										<div class="text-light opacity-75 small mb-3">${marked.parse(displaySummary)}</div>
-										<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
-											<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
-										</button>
-									</div>
-									${thumbnail ? `
-									<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
-										<img src="${thumbnail}" class="news-card-img" alt="${title}" style="cursor: pointer;">
-									</div>
-									` : ''}
-								</div>
-							`;
-
-							container.appendChild(card);
+							rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
 						}
 					}
 				}
+
+				// Sort Posts by Date Descending (Newest First)
+				rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
+
+				container.innerHTML = '';
+				newsPostsData = [];
+
+				for (let i = 0; i < rawPosts.length; i++) {
+					const post = rawPosts[i];
+					newsPostsData.push(post);
+					const postIndex = newsPostsData.length - 1;
+
+					const card = document.createElement('div');
+					card.className = 'art-card mb-4';
+					card.setAttribute('data-aos', 'fade-up');
+
+					const btnLabel = translations[currentLang].read_more || "Read Full Post";
+
+					card.innerHTML = `
+						<div class="row align-items-center">
+							<div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
+								<span class="badge bg-danger mb-2">${post.category}</span>
+								${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
+								<h3 class="text-gold h5 mb-2">${post.title}</h3>
+								<div class="text-light opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
+								<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
+									<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
+								</button>
+							</div>
+							${post.thumbnail ? `
+							<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
+								<img src="${post.thumbnail}" class="news-card-img" alt="${post.title}" style="cursor: pointer;">
+							</div>
+							` : ''}
+						</div>
+					`;
+
+					container.appendChild(card);
+				}
+
 			} catch (err) {
 				console.error('Error fetching CMS news:', err);
 				container.innerHTML = '';
