@@ -9,5 +9,38 @@
 <body>
   <!-- Decap CMS Script -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // Decap CMS တွင် စာသားအရောင် (Text Color) ရွေးချယ်နိုင်သော Editor Component အသစ် ထည့်သွင်းခြင်း
+    CMS.registerEditorComponent({
+      id: "textcolor",
+      label: "Text Color",
+      fields: [
+        {
+          name: "color",
+          label: "Select Color (အရောင်ရွေးရန်)",
+          widget: "color"
+        },
+        {
+          name: "text",
+          label: "Colored Text (စာသားထည့်ရန်)",
+          widget: "string"
+        }
+      ],
+      pattern: /<span style="color: (.*?);">(.*?)<\/span>/,
+      fromBlock: function(match) {
+        return {
+          color: match[1],
+          text: match[2]
+        };
+      },
+      toBlock: function(obj) {
+        return `<span style="color: ${obj.color};">${obj.text}</span>`;
+      },
+      toPreview: function(obj) {
+        return `<span style="color: ${obj.color};">${obj.text}</span>`;
+      }
+    });
+  </script>
 </body>
 </html>
