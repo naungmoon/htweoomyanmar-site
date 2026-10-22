@@ -137,11 +137,9 @@
 			border: 1px solid var(--primary-gold) !important;
 			padding: 3px 7px;
 		}
-		/* Dark Theme တွင် မူရင်းအတိုင်း အဖြူရောင် ထင်ရှားစွာ ပေါ်နေစေရန် */
 		[data-theme="dark"] .navbar-toggler-icon {
 			filter: invert(1) brightness(2);
 		}
-		/* Light Theme ရောက်မှ အနက်ရောင်/မူလ အရောင်သို့ ပြောင်းလဲရန် */
 		[data-theme="light"] .navbar-toggler-icon {
 			filter: none;
 		}
@@ -377,6 +375,26 @@
 			border-color: var(--primary-gold);
 			box-shadow: 0 0 25px rgba(2, 169, 92, 0.4);
 			transform: translateY(-4px);
+		}
+
+		/* LIGHT THEME SPECIFIC COLOR ADJUSTMENTS FOR TEXT & BUTTONS */
+		[data-theme="light"] .text-warning,
+		[data-theme="light"] .text-gold {
+			color: #8B6508 !important; /* Darker Gold / Brownish tone for better readability */
+		}
+
+		[data-theme="light"] .btn-outline-warning {
+			color: #8B6508 !important;
+			border-color: #8B6508 !important;
+		}
+
+		[data-theme="light"] .btn-outline-warning:hover {
+			background-color: #8B6508 !important;
+			color: #ffffff !important;
+		}
+
+		[data-theme="light"] .progress-bar.bg-warning {
+			background-color: #B8860B !important;
 		}
 
 		.share-bar-container {
@@ -770,7 +788,7 @@
 
 							<div class="d-flex flex-wrap gap-2">
 								<span class="btn btn-sm btn-success fw-bold">
-									<i class="fa-solid fa-globe me-1"></i> <span data-i18n="gofundme_btn">GoFundMe ပြည်ပမှ လှူဒါန်းရန်</span>
+									<i class="fa-solid fa-globe me-1"></i> <span data-i18n="gofundme_btn">GoFundMe ပြည်ပမှ လှူဒန်းရန်</span>
 								</span>
 								<span class="btn btn-sm btn-outline-warning fw-bold" onclick="event.preventDefault(); var myModal = new bootstrap.Modal(document.getElementById('kpayModal')); myModal.show();">
 									<i class="fa-solid fa-mobile-screen me-1"></i> <span data-i18n="kpay_btn">မြန်မာပြည်တွင်းမှ (KPay/AYA)</span>
@@ -846,7 +864,7 @@
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content text-light border-warning" style="background-color: var(--modal-bg); color: var(--modal-text) !important;">
 	      <div class="modal-header border-secondary">
-	        <h5 class="modal-title text-warning"><i class="fa-solid fa-mobile-screen me-2"></i>မြန်မာပြည်တွင်းမှ လှူဒန်းရန်</h5>
+	        <h5 class="modal-title text-warning"><i class="fa-solid fa-mobile-screen me-2"></i>မြန်မာပြည်တွင်းမှ လှူဒါန်းရန်</h5>
 	        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
