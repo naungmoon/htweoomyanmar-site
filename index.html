@@ -113,7 +113,7 @@
 		}
 
 		.navbar-brand img {
-			height: 42px;
+			height: 52px; /* Desktop အတွက် Logo Size အနည်းငယ် ထပ်ကြီးထားပါသည် */
 			filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
 			transition: transform 0.3s;
 		}
@@ -168,7 +168,7 @@
 				margin-right: 0 !important;
 			}
 			.navbar-brand img {
-				height: 38px;
+				height: 48px; /* Mobile View အတွက် Logo Size အနည်းငယ် ထပ်ကြီးထားပါသည် */
 			}
 			.header-animated-brand {
 				font-size: 0.78rem;
@@ -380,7 +380,7 @@
 		/* LIGHT THEME SPECIFIC COLOR ADJUSTMENTS FOR TEXT & BUTTONS */
 		[data-theme="light"] .text-warning,
 		[data-theme="light"] .text-gold {
-			color: #8B6508 !important; /* Darker Gold / Brownish tone for better readability */
+			color: #8B6508 !important;
 		}
 
 		[data-theme="light"] .btn-outline-warning {
@@ -864,7 +864,7 @@
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content text-light border-warning" style="background-color: var(--modal-bg); color: var(--modal-text) !important;">
 	      <div class="modal-header border-secondary">
-	        <h5 class="modal-title text-warning"><i class="fa-solid fa-mobile-screen me-2"></i>မြန်မာပြည်တွင်းမှ လှူဒါန်းရန်</h5>
+	        <h5 class="modal-title text-warning"><i class="fa-solid fa-mobile-screen me-2"></i>မြန်မာပြည်တွင်းမှ လှူဒန်းရန်</h5>
 	        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
@@ -964,10 +964,11 @@
 			localStorage.setItem('theme', newTheme);
 		}
 
-		// Load Default Theme (Always Default to Dark Theme unless saved)
+		// Always Default to Original Dark Theme on Initial Page Load
 		window.addEventListener('DOMContentLoaded', () => {
 			const savedTheme = localStorage.getItem('theme') || 'dark';
 			document.body.setAttribute('data-theme', savedTheme);
+			
 			const iconHtml = savedTheme === 'light' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
 			document.getElementById('theme-toggle').innerHTML = iconHtml;
 			document.getElementById('theme-toggle-ext').innerHTML = iconHtml;
