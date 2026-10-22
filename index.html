@@ -1114,73 +1114,81 @@
 
 			try {
 				let fileList = [];
-				// Cache-busting to prevent browser rate limits and get latest posts always
 				const cacheBuster = '?t=' + new Date().getTime();
-				const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news' + cacheBuster);
-
-				if (apiRes.ok) {
-					fileList = await apiRes.json();
-				} else {
-					console.warn('GitHub API Rate Limited. Attempting direct raw commits tree fetch...');
-					// Smart fallback: fetch commits branch tree directly
-					const treeRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/git/trees/main?recursive=1');
-					if (treeRes.ok) {
-						const treeData = await treeRes.json();
-						fileList = treeData.tree.filter(item => item.path.startsWith('content/news/') && item.path.endsWith('.md')).map(item => ({
-							name: item.path.replace('content/news/', ''),
-							download_url: `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/${item.path}`
-						}));
+				
+				// Attempt 1: Standard GitHub API
+				try {
+					const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news' + cacheBuster);
+					if (apiRes.ok) {
+						fileList = await apiRes.json();
 					}
+				} catch(e) {
+					console.warn('API call failed, switching to Git Trees API');
+				}
+
+				// Attempt 2: Git Trees API if attempt 1 rate limited
+				if (!fileList || fileList.length === 0) {
+					try {
+						const treeRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/git/trees/main?recursive=1' + cacheBuster);
+						if (treeRes.ok) {
+							const treeData = await treeRes.json();
+							fileList = treeData.tree.filter(item => item.path.startsWith('content/news/') && item.path.endsWith('.md')).map(item => ({
+								name: item.path.replace('content/news/', ''),
+								download_url: `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/${item.path}`
+							}));
+						}
+					} catch(e) {}
 				}
 
 				let rawPosts = [];
 
-				for (let file of fileList) {
-					if (file.name && file.name.endsWith('.md')) {
-						try {
-							const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${file.name}`;
-							const res = await fetch(downloadUrl + cacheBuster);
-							if (!res.ok) continue;
-							const mdText = await res.text();
+				if (Array.isArray(fileList) && fileList.length > 0) {
+					for (let file of fileList) {
+						if (file.name && file.name.endsWith('.md')) {
+							try {
+								const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${file.name}`;
+								const res = await fetch(downloadUrl + cacheBuster);
+								if (!res.ok) continue;
+								const mdText = await res.text();
 
-							const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
-							if (match) {
-								const fm = match[1];
-								const body = match[2];
+								const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
+								if (match) {
+									const fm = match[1];
+									const body = match[2];
 
-								const titleMatch = fm.match(/^title:\s*(.*)$/m);
-								const dateMatch = fm.match(/^date:\s*(.*)$/m);
-								const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
-								const categoryMatch = fm.match(/^category:\s*(.*)$/m);
+									const titleMatch = fm.match(/^title:\s*(.*)$/m);
+									const dateMatch = fm.match(/^date:\s*(.*)$/m);
+									const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
+									const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-								let summaryText = '';
-								const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
-								if (summaryBlock && summaryBlock[1].trim()) {
-									summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
+									let summaryText = '';
+									const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
+									if (summaryBlock && summaryBlock[1].trim()) {
+										summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
+									}
+
+									const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
+									const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+									const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
+									const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+									const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+									
+									const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+									const category = mapCategoryToEnglish(rawCategory);
+
+									const fullBody = body ? body.trim() : summaryText;
+									const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
+
+									rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
 								}
-
-								const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
-								const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-								const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
-								const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-								const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-								
-								const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
-								const category = mapCategoryToEnglish(rawCategory);
-
-								const fullBody = body ? body.trim() : summaryText;
-								const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
-
-								rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
+							} catch (e) {
+								console.log('Error parsing CMS file:', file.name, e);
 							}
-						} catch (e) {
-							console.log('Error parsing CMS file:', file.name, e);
 						}
 					}
 				}
 
 				if (rawPosts.length > 0) {
-					// Sort post by newest date first (September/October will automatically show on top)
 					rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
 					container.innerHTML = '';
 					newsPostsData = [];
@@ -1216,9 +1224,12 @@
 						`;
 						container.appendChild(card);
 					}
+				} else {
+					container.innerHTML = '<div class="text-center py-3 text-muted">No news posts found at the moment.</div>';
 				}
 			} catch (err) {
 				console.error('Error fetching CMS news:', err);
+				container.innerHTML = '<div class="text-center py-3 text-muted">Unable to load news updates. Please refresh.</div>';
 			}
 		}
 
@@ -1232,7 +1243,7 @@
 			document.getElementById('modalBody').innerHTML = marked.parse(post.fullBody);
 
 			const imgContainer = document.getElementById('modalImageContainer');
-			modalImg = document.getElementById('modalImage');
+			const modalImg = document.getElementById('modalImage');
 
 			if (post.thumbnail) {
 				modalImg.src = post.thumbnail;
