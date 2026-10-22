@@ -1,4 +1,4 @@
-backend:
+Backend:
   name: git-gateway
   branch: main
 
@@ -17,6 +17,7 @@ collections:
       - { label: "Title (ခေါင်းစဉ်)", name: "title", widget: "string" }
       - { label: "Publish Date (ရက်စွဲ)", name: "date", widget: "datetime" }
       - { label: "Cover Photo (ပင်တိုင်မျက်နှာဖုံးပုံ)", name: "thumbnail", widget: "image", required: false }
+      - { label: "Video URL (YouTube ဗီဒီယိုလင့်ခ် - ထည့်လိုပါက)", name: "video_url", widget: "string", required: false, hint: "Paste YouTube link or embed URL here" }
       - { label: "Author (ရေးသူ/ထုတ်ပြန်သူ)", name: "author", widget: "string", default: "Htwe Oo Myanmar" }
       - label: "Category (မျိုးအစား)"
         name: "category"
