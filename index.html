@@ -27,6 +27,25 @@
 			--card-bg: rgba(255, 255, 255, 0.05);
 			--text-light: #f8f9fa;
 			--gofundme-green: #02a95c;
+			--navbar-bg: rgba(13, 15, 18, 0.95);
+			--footer-bg: #060708;
+			--modal-bg: #212529;
+			--modal-text: #f8f9fa;
+		}
+
+		/* Light Theme Variables */
+		[data-theme="light"] {
+			--primary-gold: #b8860b;
+			--crimson-red: #b30000;
+			--royal-purple: #3a0a3e;
+			--deep-bg: #f4f6f9;
+			--card-bg: rgba(0, 0, 0, 0.03);
+			--text-light: #212529;
+			--gofundme-green: #018746;
+			--navbar-bg: rgba(255, 255, 255, 0.95);
+			--footer-bg: #e9ecef;
+			--modal-bg: #ffffff;
+			--modal-text: #212529;
 		}
 
 		html, body {
@@ -41,6 +60,7 @@
 			font-family: 'Poppins', 'Padauk', sans-serif;
 			background-color: var(--deep-bg);
 			color: var(--text-light);
+			transition: background-color 0.3s ease, color 0.3s ease;
 		}
 
 		h1, h2, h3, h4, .brand-title {
@@ -48,11 +68,19 @@
 		}
 
 		.text-muted {
+			color: rgba(100, 100, 100, 0.85) !important;
+		}
+		[data-theme="dark"] .text-muted {
 			color: rgba(255, 255, 255, 0.75) !important;
 		}
 
 		.animated-bg {
 			background: linear-gradient(-45deg, #0d0f12, #2a082e, #0a1f28, #1a0808);
+			background-size: 400% 400%;
+			animation: gradientBG 15s ease infinite;
+		}
+		[data-theme="light"].animated-bg {
+			background: linear-gradient(-45deg, #f4f6f9, #e2d1f0, #d1f0ea, #f9e2e2);
 			background-size: 400% 400%;
 			animation: gradientBG 15s ease infinite;
 		}
@@ -73,30 +101,29 @@
 			pointer-events: none;
 		}
 
-		/* Header & Navigation */
+		/* Header & Navigation Layout */
 		.navbar {
-			background: rgba(13, 15, 18, 0.95) !important;
+			background: var(--navbar-bg) !important;
 			backdrop-filter: blur(10px);
 			border-bottom: 1px solid rgba(255, 215, 0, 0.2);
 			z-index: 1030;
 			width: 100%;
-			padding-top: 0.6rem;
-			padding-bottom: 0.6rem;
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
 		}
 
 		.navbar-brand img {
-			height: 36px;
+			height: 42px;
 			filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
 			transition: transform 0.3s;
 		}
 
-		/* Bold & Shimmering Wave Effect Header Brand Text */
 		.header-animated-brand {
 			font-family: 'Cinzel', serif;
 			font-size: 0.95rem;
 			font-weight: 900;
-			letter-spacing: 1px;
-			background: linear-gradient(90deg, #FFD700, #FFFFFF, #FFD700, #FFA500);
+			letter-spacing: 0.5px;
+			background: linear-gradient(90deg, var(--primary-gold), var(--text-light), var(--primary-gold), #FFA500);
 			background-size: 200% auto;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
@@ -105,10 +132,58 @@
 			white-space: nowrap;
 		}
 
-		@media (max-width: 575.98px) {
+		/* Menu Toggle Icon Fix for Dark/Light Theme */
+		.navbar-toggler {
+			border: 1px solid var(--primary-gold) !important;
+			padding: 3px 7px;
+		}
+		.navbar-toggler-icon {
+			filter: invert(1) brightness(2);
+		}
+		[data-theme="light"] .navbar-toggler-icon {
+			filter: none;
+		}
+
+		/* Mobile 2-Row Header Responsive Layout */
+		@media (max-width: 991.98px) {
+			.nav-header-grid {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				gap: 6px;
+			}
+			.mobile-top-row {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+			}
+			.mobile-bottom-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+			}
+			.navbar-brand {
+				margin-right: 0 !important;
+			}
+			.navbar-brand img {
+				height: 38px;
+			}
 			.header-animated-brand {
-				font-size: 0.65rem;
-				letter-spacing: 0.5px;
+				font-size: 0.78rem;
+			}
+		}
+
+		@media (min-width: 992px) {
+			.nav-header-grid {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+			}
+			.mobile-top-row, .mobile-bottom-row {
+				display: contents;
 			}
 		}
 
@@ -119,7 +194,7 @@
 		}
 
 		.nav-link {
-			color: #fff !important;
+			color: var(--text-light) !important;
 			font-weight: 500;
 			margin: 0 6px;
 			transition: all 0.3s;
@@ -130,31 +205,26 @@
 			text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
 		}
 
-		.lang-btn {
+		.lang-btn, .theme-btn {
 			border: 1px solid var(--primary-gold);
 			color: var(--primary-gold);
 			border-radius: 20px;
-			padding: 2px 8px;
-			font-size: 0.75rem;
+			padding: 2px 7px;
+			font-size: 0.72rem;
 			background: transparent;
 			transition: all 0.3s;
 		}
 
-		.lang-btn.active, .lang-btn:hover {
+		.lang-btn.active, .lang-btn:hover, .theme-btn:hover {
 			background: var(--primary-gold);
 			color: #000;
 			font-weight: bold;
 		}
 
-		.external-lang-container {
-			display: none;
-		}
-		@media (max-width: 991.98px) {
-			.external-lang-container {
-				display: flex;
-				align-items: center;
-				gap: 4px;
-			}
+		.external-controls-container {
+			display: flex;
+			align-items: center;
+			gap: 4px;
 		}
 
 		/* Hero Section */
@@ -166,7 +236,7 @@
 			align-items: center;
 			justify-content: center;
 			text-align: center;
-			background: radial-gradient(circle, rgba(74,14,78,0.3) 0%, rgba(13,15,18,0.95) 80%);
+			background: radial-gradient(circle, rgba(74,14,78,0.2) 0%, var(--deep-bg) 80%);
 			width: 100%;
 			overflow: hidden;
 		}
@@ -174,23 +244,23 @@
 		.hero-title {
 			font-size: clamp(1.4rem, 3.5vw, 2.5rem) !important;
 			font-weight: 800;
-			background: linear-gradient(45deg, #FFD700, #FF6B6B, #4ECDC4);
+			background: linear-gradient(45deg, var(--primary-gold), #FF6B6B, #4ECDC4);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
-			text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+			text-shadow: 0 4px 10px rgba(0,0,0,0.2);
 			margin-bottom: 8px !important;
 		}
 
 		/* Glassmorphic Art Cards */
 		.art-card {
-			background: rgba(255, 255, 255, 0.03);
-			border: 1px solid rgba(255, 255, 255, 0.1);
+			background: var(--card-bg);
+			border: 1px solid rgba(255, 215, 0, 0.2);
 			backdrop-filter: blur(12px);
 			border-radius: 16px;
 			padding: 20px;
 			margin-bottom: 20px;
 			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-			box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+			box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
 			width: 100%;
 			overflow: hidden;
 		}
@@ -264,12 +334,12 @@
 			border: 1px solid rgba(255, 215, 0, 0.3);
 			margin: 12px 0;
 			display: block;
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		}
 
 		.stat-box {
-			background: rgba(255, 215, 0, 0.05);
-			border: 1px solid rgba(255, 215, 0, 0.2);
+			background: var(--card-bg);
+			border: 1px solid rgba(255, 215, 0, 0.3);
 			border-radius: 12px;
 			padding: 10px 5px !important;
 			text-align: center;
@@ -297,7 +367,7 @@
 
 		.support-card-link .art-card {
 			border: 2px solid var(--gofundme-green);
-			background: rgba(2, 169, 92, 0.05);
+			background: var(--card-bg);
 			transition: all 0.3s ease;
 		}
 
@@ -311,7 +381,7 @@
 			border: 1px solid #1a73e8;
 			border-radius: 16px;
 			padding: 16px 12px;
-			background: rgba(13, 27, 42, 0.8);
+			background: var(--card-bg);
 			backdrop-filter: blur(8px);
 			text-align: center;
 			margin: 25px 0;
@@ -365,7 +435,7 @@
 		.bg-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
 		.bg-telegram { background: #24A1DE; }
 
-		/* Floating Custom Logo Badge Scroll to Top Button */
+		/* Custom Floating Logo Badge Scroll to Top Button */
 		#scrollToTopBtn {
 			position: fixed;
 			bottom: 25px;
@@ -414,7 +484,7 @@
 		}
 
 		footer {
-			background: #060708;
+			background: var(--footer-bg);
 			border-top: 1px solid rgba(255, 215, 0, 0.1);
 			padding: 20px 0;
 			width: 100%;
@@ -422,30 +492,41 @@
 	</style>
 </head>
 
-<body class="animated-bg">
+<body class="animated-bg" data-theme="dark">
 
 	<div class="string-overlay"></div>
 
 	<!-- Navigation Bar -->
-	<nav class="navbar navbar-expand-lg sticky-top navbar-dark">
-		<div class="container d-flex align-items-center justify-content-between px-3">
-			<a class="navbar-brand d-flex align-items-center me-0" href="#">
-				<img src="images/homm-cambodia-logo.png" alt="Htwe Oo Myanmar Logo">
-			</a>
-
-			<div class="header-animated-brand text-center">
-				🎭 HTWE OO MYANMAR ✨
-			</div>
-
-			<div class="d-flex align-items-center gap-2">
-				<div class="external-lang-container">
-					<button class="lang-btn active" id="btn-en-ext" onclick="switchLanguage('en')">EN</button>
-					<button class="lang-btn" id="btn-mm-ext" onclick="switchLanguage('mm')">MM</button>
+	<nav class="navbar navbar-expand-lg sticky-top">
+		<div class="container px-2 px-md-3">
+			<div class="nav-header-grid">
+				
+				<!-- Row 1 for Mobile: Logo centered -->
+				<div class="mobile-top-row">
+					<a class="navbar-brand d-flex align-items-center" href="#">
+						<img src="images/homm-cambodia-logo.png" alt="Htwe Oo Myanmar Logo">
+					</a>
 				</div>
 
-				<button class="navbar-toggler m-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+				<!-- Row 2 for Mobile: Title, Controls, Menu Toggler -->
+				<div class="mobile-bottom-row">
+					<div class="header-animated-brand">
+						🎭 HTWE OO MYANMAR ✨
+					</div>
+
+					<div class="d-flex align-items-center gap-2">
+						<div class="external-controls-container">
+							<button class="lang-btn active" id="btn-en-ext" onclick="switchLanguage('en')">EN</button>
+							<button class="lang-btn" id="btn-mm-ext" onclick="switchLanguage('mm')">MM</button>
+							<button class="theme-btn" id="theme-toggle-ext" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+						</div>
+
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>
+				</div>
+
 			</div>
 
 			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -456,9 +537,10 @@
 					<li class="nav-item"><a class="nav-link" href="#videos" data-i18n="nav_videos">Videos</a></li>
 					<li class="nav-item"><a class="nav-link text-warning fw-bold" href="#support" data-i18n="nav_support">Support</a></li>
 					<li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
-					<li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+					<li class="nav-item ms-lg-2 mt-2 mt-lg-0 d-none d-lg-flex align-items-center justify-content-center gap-1">
 						<button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">🇬🇧 EN</button>
 						<button class="lang-btn" id="btn-mm" onclick="switchLanguage('mm')">🇲🇲 MM</button>
+						<button class="theme-btn ms-1" id="theme-toggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
 					</li>
 				</ul>
 			</div>
@@ -470,7 +552,7 @@
 		<div class="container" data-aos="zoom-in" data-aos-duration="1000">
 			<span class="badge-gold mb-2"><i class="fa-solid fa-masks-theater me-2"></i><span data-i18n="hero_badge">TRADITIONAL PUPPETRY ART</span></span>
 			<h1 class="hero-title">HTWE OO MYANMAR</h1>
-			<p class="lead text-light max-w-700 mx-auto opacity-75 mb-3 small" data-i18n="hero_sub">
+			<p class="lead max-w-700 mx-auto opacity-75 mb-3 small" data-i18n="hero_sub">
 				Phnom Penh, Cambodia | Traditional Myanmar Marionette Performance
 			</p>
 
@@ -517,10 +599,10 @@
 						<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-heart-pulse text-danger me-2"></i><span id="about-card-heading" data-i18n="about_heading">Pulling Strings by Emotion, Not Just by Hand</span></h3>
 						
 						<div id="about-cms-body">
-							<p class="text-light opacity-75 small" data-i18n="about_p1">
+							<p class="opacity-75 small" data-i18n="about_p1">
 								<strong>HTWE OO MYANMAR</strong> is a premier cultural organization dedicated to preserving, promoting, and reviving the centuries-old art of <strong>Myanmar Traditional String Puppetry (Yoke Thé)</strong>.
 							</p>
-							<p class="text-light opacity-75 small" data-i18n="about_p2">
+							<p class="opacity-75 small" data-i18n="about_p2">
 								Founded by master puppeteer & Art Director <strong>Khin Maung Htwe</strong>, our troupe brings to life ancient mythology, royal court dances, and folklore using intricate marionettes handcrafted with traditional craftsmanship.
 							</p>
 						</div>
@@ -552,7 +634,7 @@
 					<div class="col-lg-7">
 						<span class="badge bg-danger mb-2">August 2026</span>
 						<h3 class="text-gold h5 mb-2">Songkhla Harmony World Puppet Festival 2026</h3>
-						<p class="text-light opacity-75 small" data-i18n="songkhla_desc">
+						<p class="opacity-75 small" data-i18n="songkhla_desc">
 							HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!
 						</p>
 						<p class="small mb-1"><strong><i class="fa-solid fa-microphone-lines text-warning me-2"></i>Panel Discussion:</strong> Khin Maung Htwe (Art Director & Founder)</p>
@@ -573,7 +655,7 @@
 					<div class="col-lg-8">
 						<span class="badge bg-warning text-dark mb-2">Milan, Italy</span>
 						<h3 class="text-gold h5 mb-2">The Opening Act for 2025/2026 Season in Milan!</h3>
-						<p class="text-light opacity-75 small" data-i18n="milan_desc">
+						<p class="opacity-75 small" data-i18n="milan_desc">
 							Selected for the XVII International Prize "Il Teatro Nudo" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy.
 						</p>
 					</div>
@@ -585,7 +667,7 @@
 		</section>
 
 		<!-- Schedule Card -->
-		<section class="art-card text-center my-4 p-4 position-relative overflow-hidden" data-aos="fade-up" style="border: 2px solid rgba(255, 215, 0, 0.4); background: radial-gradient(circle at center, rgba(74, 14, 78, 0.4) 0%, rgba(13, 15, 18, 0.9) 85%);">
+		<section class="art-card text-center my-4 p-4 position-relative overflow-hidden" data-aos="fade-up" style="border: 2px solid rgba(255, 215, 0, 0.4); background: radial-gradient(circle at center, rgba(74, 14, 78, 0.2) 0%, var(--card-bg) 85%);">
 			<div class="position-absolute top-0 start-0 w-100 h-100" style="background: repeating-linear-gradient(45deg, rgba(255,215,0,0.02) 0px, rgba(255,215,0,0.02) 2px, transparent 2px, transparent 15px); pointer-events: none;"></div>
 			
 			<div class="mb-3">
@@ -596,15 +678,15 @@
 
 			<div class="row g-3 justify-content-center my-3">
 				<div class="col-md-4">
-					<div class="p-3 rounded bg-dark border border-warning border-opacity-50 text-start h-100">
+					<div class="p-3 rounded art-card text-start h-100">
 						<div class="text-warning small fw-bold mb-1"><i class="fa-regular fa-clock me-1"></i> DAILY SHOWTIME</div>
-						<div class="h5 text-light mb-0 font-monospace">3:00 PM (Local Time)</div>
+						<div class="h5 mb-0 font-monospace">3:00 PM (Local Time)</div>
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="p-3 rounded bg-dark border border-warning border-opacity-50 text-start h-100">
+					<div class="p-3 rounded art-card text-start h-100">
 						<div class="text-warning small fw-bold mb-1"><i class="fa-solid fa-location-dot me-1"></i> VENUE LOCATION</div>
-						<div class="small text-light mb-0">#8, Long Nget St. (258), Phnom Penh, Cambodia</div>
+						<div class="small mb-0">#8, Long Nget St. (258), Phnom Penh, Cambodia</div>
 					</div>
 				</div>
 			</div>
@@ -670,11 +752,11 @@
 						<div class="col-lg-7 mb-3 mb-lg-0">
 							<span class="badge bg-danger mb-2" data-i18n="support_badge">Urgent Travel Support Appeal</span>
 							<h3 class="text-warning h5 mb-2" data-i18n="support_heading">Milan International Prize XVII Attendance</h3>
-							<p class="text-light opacity-75 small" data-i18n="support_desc">
+							<p class="opacity-75 small" data-i18n="support_desc">
 								မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာရှင်ကြီး <strong>ဦးခင်မောင်ထွေး (Htwe Oo Myanmar)</strong> မီလန်မြို့ International Prize ဆုပေးပွဲ တက်ရောက်နိုင်ရန် ကူညီပေးပါခင်ဗျာ။
 							</p>
 							
-							<div class="p-3 bg-dark rounded border border-secondary mb-3">
+							<div class="p-3 art-card rounded border border-secondary mb-3">
 								<div class="d-flex justify-content-between text-warning small mb-1">
 									<span>Goal Progress: $300 USD Raised</span>
 									<span>Target: $1,800 USD</span>
@@ -695,7 +777,7 @@
 						</div>
 						
 						<div class="col-lg-5">
-							<div class="p-3 bg-dark rounded border border-warning">
+							<div class="p-3 art-card rounded border border-warning">
 								<h6 class="text-warning mb-2"><i class="fa-solid fa-plane-departure me-2"></i>Travel & Visa Logistics Status</h6>
 								<p class="small opacity-75 mb-1">• Phnom Penh ➔ Bangkok VFS ➔ Milan Route</p>
 								<p class="small opacity-75 mb-0" data-i18n="logistics_desc">• မီလန်မြို့ ဆုပေးပွဲ တက်ရောက်နိုင်ရန် သံရုံးနှင့် တိုက်ရိုက် ချိတ်ဆက်ဆောင်ရွက်လျက်ရှိပါသည်။</p>
@@ -760,18 +842,18 @@
 	<!-- Domestic KPay/AYA Modal -->
 	<div class="modal fade" id="kpayModal" tabindex="-1" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content bg-dark text-light border-warning">
+	    <div class="modal-content text-light border-warning" style="background-color: var(--modal-bg); color: var(--modal-text) !important;">
 	      <div class="modal-header border-secondary">
 	        <h5 class="modal-title text-warning"><i class="fa-solid fa-mobile-screen me-2"></i>မြန်မာပြည်တွင်းမှ လှူဒါန်းရန်</h5>
 	        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
 	        <p class="small opacity-75">လုံခြုံစိတ်ချမှုရှိစေရန် KBZ Pay / AYA Pay အကောင့်များအတွက် Messenger မှတစ်ဆင့် တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်။</p>
-	        <div class="p-3 bg-secondary bg-opacity-25 rounded mb-2">
+	        <div class="p-3 art-card rounded mb-2">
 	        	<strong>KBZ Bank / KPay:</strong> 06030106002***** / 0996221****<br>
 	        	<small class="text-warning">Acc: KHIN MAUNG HTWE</small>
 	        </div>
-	        <div class="p-3 bg-secondary bg-opacity-25 rounded">
+	        <div class="p-3 art-card rounded">
 	        	<strong>AYA Bank / AYA Pay:</strong> 4004064**** / 0951272**<br>
 	        	<small class="text-warning">Acc: KHIN MAUNG HTWE</small>
 	        </div>
@@ -788,7 +870,7 @@
 	<!-- CMS Dynamic News Detail Modal -->
 	<div class="modal fade" id="cmsNewsModal" tabindex="-1" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered modal-lg">
-	    <div class="modal-content bg-dark text-light border-warning" style="box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);">
+	    <div class="modal-content text-light border-warning" style="background-color: var(--modal-bg); color: var(--modal-text) !important; box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);">
 	      <div class="modal-header border-secondary">
 	        <div>
 	        	<span id="modalCategory" class="badge bg-danger me-2"></span>
@@ -801,7 +883,7 @@
 	        <div id="modalImageContainer" class="text-center mb-3 d-none">
 	        	<img id="modalImage" src="" class="img-fluid rounded border border-warning" style="max-height: 350px; object-fit: contain;">
 	        </div>
-	        <div id="modalBody" class="text-light opacity-90 leading-relaxed"></div>
+	        <div id="modalBody" class="leading-relaxed"></div>
 	      </div>
 	      <div class="modal-footer border-secondary">
 	        <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">Close</button>
@@ -846,6 +928,35 @@
 				behavior: "smooth"
 			});
 		}
+
+		// Theme Toggle Logic
+		function toggleTheme() {
+			const body = document.body;
+			const currentTheme = body.getAttribute('data-theme');
+			const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+			body.setAttribute('data-theme', newTheme);
+
+			// Update icons
+			const iconHtml = newTheme === 'light' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+			document.getElementById('theme-toggle').innerHTML = iconHtml;
+			document.getElementById('theme-toggle-ext').innerHTML = iconHtml;
+
+			localStorage.setItem('theme', newTheme);
+		}
+
+		// Load Default Theme (Always Default to Dark Theme unless saved)
+		window.addEventListener('DOMContentLoaded', () => {
+			const savedTheme = localStorage.getItem('theme') || 'dark';
+			document.body.setAttribute('data-theme', savedTheme);
+			const iconHtml = savedTheme === 'light' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+			document.getElementById('theme-toggle').innerHTML = iconHtml;
+			document.getElementById('theme-toggle-ext').innerHTML = iconHtml;
+
+			loadDecapCMSNews();
+			loadDecapCMSAbout();
+			loadDecapCMSGallery();
+			loadDecapCMSVideos();
+		});
 
 		function copyShareLink() {
 			navigator.clipboard.writeText("https://htweoomyanmar.netlify.app/");
@@ -1196,7 +1307,7 @@
 								<span class="badge bg-danger mb-2">${post.category}</span>
 								${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
 								<h3 class="text-gold h5 mb-2">${post.title}</h3>
-								<div class="text-light opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
+								<div class="opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
 								<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
 									<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
 								</button>
@@ -1240,13 +1351,6 @@
 			const modal = new bootstrap.Modal(document.getElementById('cmsNewsModal'));
 			modal.show();
 		}
-
-		document.addEventListener('DOMContentLoaded', () => {
-			loadDecapCMSNews();
-			loadDecapCMSAbout();
-			loadDecapCMSGallery();
-			loadDecapCMSVideos();
-		});
 	</script>
 
 </body>
