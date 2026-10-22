@@ -113,7 +113,7 @@
 		}
 
 		.navbar-brand img {
-			height: 52px; /* Desktop အတွက် Logo Size အနည်းငယ် ထပ်ကြီးထားပါသည် */
+			height: 52px;
 			filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
 			transition: transform 0.3s;
 		}
@@ -168,7 +168,7 @@
 				margin-right: 0 !important;
 			}
 			.navbar-brand img {
-				height: 48px; /* Mobile View အတွက် Logo Size အနည်းငယ် ထပ်ကြီးထားပါသည် */
+				height: 48px;
 			}
 			.header-animated-brand {
 				font-size: 0.78rem;
@@ -643,12 +643,10 @@
 				<p class="text-muted small" data-i18n="news_subtitle">Global Recognition, Updates & Special Announcements</p>
 			</div>
 
-			<div id="cms-news-container">
-				<div class="text-center py-4 text-warning">
-					<i class="fa-solid fa-spinner fa-spin me-2"></i> Loading news updates...
-				</div>
-			</div>
+			<!-- CMS Posts Container -->
+			<div id="cms-news-container"></div>
 
+			<!-- Default Static Posts (Fallback) -->
 			<div class="art-card" data-aos="fade-up">
 				<div class="row align-items-center">
 					<div class="col-lg-7">
@@ -1254,57 +1252,58 @@
 
 			try {
 				const response = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news');
-				if (!response.ok) {
-					container.innerHTML = '';
-					return;
-				}
+				if (!response.ok) return;
 
 				const files = await response.json();
-				if (!Array.isArray(files) || files.length === 0) {
-					container.innerHTML = '';
-					return;
-				}
+				if (!Array.isArray(files) || files.length === 0) return;
 
 				let rawPosts = [];
 
 				for (let index = 0; index < files.length; index++) {
 					const file = files[index];
-					if (file.name.endsWith('.md')) {
-						const res = await fetch(file.download_url);
-						const mdText = await res.text();
+					if (file.name && file.name.endsWith('.md')) {
+						try {
+							const res = await fetch(file.download_url);
+							if (!res.ok) continue;
+							const mdText = await res.text();
 
-						const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
-						if (match) {
-							const fm = match[1];
-							const body = match[2];
+							const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
+							if (match) {
+								const fm = match[1];
+								const body = match[2];
 
-							const titleMatch = fm.match(/^title:\s*(.*)$/m);
-							const dateMatch = fm.match(/^date:\s*(.*)$/m);
-							const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
-							const categoryMatch = fm.match(/^category:\s*(.*)$/m);
+								const titleMatch = fm.match(/^title:\s*(.*)$/m);
+								const dateMatch = fm.match(/^date:\s*(.*)$/m);
+								const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
+								const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-							let summaryText = '';
-							const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
-							if (summaryBlock && summaryBlock[1].trim()) {
-								summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
+								let summaryText = '';
+								const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
+								if (summaryBlock && summaryBlock[1].trim()) {
+									summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
+								}
+
+								const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
+								const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+								const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
+								const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+								const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+								
+								const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+								const category = mapCategoryToEnglish(rawCategory);
+
+								const fullBody = body ? body.trim() : summaryText;
+								const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
+
+								rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
 							}
-
-							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
-							const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-							const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
-							const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-							const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-							
-							const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
-							const category = mapCategoryToEnglish(rawCategory);
-
-							const fullBody = body ? body.trim() : summaryText;
-							const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
-
-							rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
+						} catch (e) {
+							console.log('Error reading file:', file.name, e);
 						}
 					}
 				}
+
+				if (rawPosts.length === 0) return;
 
 				rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
 
@@ -1320,7 +1319,7 @@
 					card.className = 'art-card mb-4';
 					card.setAttribute('data-aos', 'fade-up');
 
-					const btnLabel = translations[currentLang].read_more || "Read Full Post";
+					const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
 
 					card.innerHTML = `
 						<div class="row align-items-center">
@@ -1346,7 +1345,6 @@
 
 			} catch (err) {
 				console.error('Error fetching CMS news:', err);
-				container.innerHTML = '';
 			}
 		}
 
