@@ -39,7 +39,6 @@ With heartfelt gratitude,
 **Htwe ❤️ Oo (Myanmar)**\
 *Htwe Oo Myanmar Traditional Puppetry Troupe*
 
-- - -
 
 - - -
 
