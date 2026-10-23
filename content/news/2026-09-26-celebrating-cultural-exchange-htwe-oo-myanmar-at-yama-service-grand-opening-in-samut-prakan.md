@@ -4,7 +4,7 @@ title: HTWE OO MYANMAR Performance at the Grand Opening of YAMA SERVICE CO.,
 date: 2026-09-26T17:08:00.000+08:00
 thumbnail: images/uploads/1000454949.jpg
 author: Htwe Oo Myanmar
-category: သတင်းနှင့်ထုတ်ပြန်ချက်
+category: ရုပ်သေးပွဲစဉ်များ
 summary: "#HtweOoMyanmar #MyanmarPuppet #YAMAService #SamutPrakan #GrandOpening
   #MyanmarCulture #CulturalExchange"
 ---
