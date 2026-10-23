@@ -4,13 +4,7 @@ date: 2026-10-23T09:05:00.000+08:00
 thumbnail: images/uploads/1000456654.jpg
 author: Htwe Oo Myanmar
 category: နိုင်ငံတကာခရီးစဉ်
-summary: ":#စောစောစီးစီး_မင်္ဂလာသတင်းပါခင်ဗျာ — အီတလီဗီဇာ ကျလာပါပြီ ♡
-  \"အမျိုးတွေရဲ့ ပို့သတဲ့မေတ္တာကြောင့် ဘန်ကောက်သံရုံးမှာ အီတလီဗီဇာ တင်ထားတာ
-  ပြန်ထွက်လာပါပြီ။ လေယာဉ်လက်မှတ်ဖိုးအတွက် ထပ်မံပံ့ပိုးပေးကြပါဦးလို့
-  မေတ္တာရပ်ခံပါတယ်။\" ♡ Good News! Italy Schengen Visa Approved — Urgent Flight
-  Ticket Support Appeal ♡ \"Thanks to everyone's love and support, our Italian
-  Schengen visa from the Bangkok embassy has been official approved! We now
-  urgently need support to secure our flight tickets.\" "
+summary: ":#စောစောစီးစီး_မင်္ဂလာသတင်းပါခင်ဗျာ — အီတလီဗီဇာ ကျလာပါပြီ "
 ---
 # 🌟 Exciting News & Good Morning Everyone!
 
