@@ -1153,9 +1153,13 @@
 				headingEl.innerHTML = `<i class="fa-solid fa-heart-pulse text-danger me-2"></i>` + titleText;
 			}
 
-			// 2. Split Body Content via Delimiter ---MYANMAR---
+			// 2. Split Body Content via Delimiter ---MYANMAR--- (Supports String or HTML HR format)
 			if (!rawAboutBody) return;
-			const parts = rawAboutBody.split('---MYANMAR---');
+			let parts = rawAboutBody.split('---MYANMAR---');
+			if (parts.length < 2) {
+				parts = rawAboutBody.split(/<hr\s*\/?>\s*MYANMAR\s*<hr\s*\/?>/i);
+			}
+
 			const enText = parts[0] ? parts[0].trim() : '';
 			const mmText = parts[1] ? parts[1].trim() : enText;
 
@@ -1195,10 +1199,11 @@
 					files = await apiRes.json();
 				} else {
 					files = [
-						{ name: 'htwe-oo-myanmar-performance-at-the-grand-opening-of-yama-service-co-ltd-in-thailand.md' },
-						{ name: 'first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
-						{ name: 'visa-application-filed-deep-gratitude-for-your-support.md' },
-						{ name: 'vfs-office-update-sincere-gratitude-to-all-supporters.md' }
+						{ name: '2026-09-26-celebrating-cultural-heritage.md' },
+						{ name: '2026-10-12-first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
+						{ name: '2026-10-19-visa-application-filed-deep-gratitude-for-your-support.md' },
+						{ name: '2026-10-20-visa-application-filed-deep-gratitude-for-your-support.md' },
+						{ name: '2026-10-23-great-news-special-announcement.md' }
 					];
 				}
 
