@@ -132,6 +132,7 @@
 			white-space: nowrap;
 		}
 
+		/* Menu Toggle Icon Fix */
 		.navbar-toggler {
 			border: 1px solid var(--primary-gold) !important;
 			padding: 3px 7px;
@@ -143,6 +144,7 @@
 			filter: none;
 		}
 
+		/* Mobile 2-Row Header Responsive Layout */
 		@media (max-width: 991.98px) {
 			.nav-header-grid {
 				display: flex;
@@ -183,10 +185,15 @@
 			.mobile-top-row, .mobile-bottom-row {
 				display: contents;
 			}
+			.external-controls-container {
+				display: none !important;
+			}
 		}
 
 		@keyframes shineText {
-			to { background-position: 200% center; }
+			to {
+				background-position: 200% center;
+			}
 		}
 
 		.nav-link {
@@ -373,7 +380,7 @@
 			transform: translateY(-4px);
 		}
 
-		/* LIGHT THEME SPECIFIC COLOR ADJUSTMENTS */
+		/* LIGHT THEME SPECIFIC COLOR ADJUSTMENTS FOR TEXT & BUTTONS */
 		[data-theme="light"] .text-warning,
 		[data-theme="light"] .text-gold {
 			color: #8B6508 !important;
@@ -451,6 +458,7 @@
 		.bg-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
 		.bg-telegram { background: #24A1DE; }
 
+		/* Custom Floating Logo Badge Scroll to Top Button */
 		#scrollToTopBtn {
 			position: fixed;
 			bottom: 25px;
@@ -516,19 +524,21 @@
 		<div class="container px-2 px-md-3">
 			<div class="nav-header-grid">
 				
+				<!-- Row 1 for Mobile: Logo centered -->
 				<div class="mobile-top-row">
 					<a class="navbar-brand d-flex align-items-center" href="#">
 						<img src="images/homm-cambodia-logo.png" alt="Htwe Oo Myanmar Logo">
 					</a>
 				</div>
 
+				<!-- Row 2 for Mobile: Title, Controls, Menu Toggler -->
 				<div class="mobile-bottom-row">
 					<div class="header-animated-brand">
 						🎭 HTWE OO MYANMAR ✨
 					</div>
 
 					<div class="d-flex align-items-center gap-2">
-						<div class="external-controls-container">
+						<div class="external-controls-container d-lg-none">
 							<button class="lang-btn active" id="btn-en-ext" onclick="switchLanguage('en')">EN</button>
 							<button class="lang-btn" id="btn-mm-ext" onclick="switchLanguage('mm')">MM</button>
 							<button class="theme-btn" id="theme-toggle-ext" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
@@ -637,9 +647,44 @@
 			</div>
 
 			<!-- Dynamic CMS News Posts Container -->
-			<div id="cms-news-container">
-				<div class="text-center py-4 text-warning">
-					<i class="fa-solid fa-spinner fa-spin me-2"></i> Loading news updates...
+			<div id="cms-news-container"></div>
+
+			<!-- Static Fallback Posts -->
+			<div id="static-news-fallback">
+				<div class="art-card" data-aos="fade-up">
+					<div class="row align-items-center">
+						<div class="col-lg-7">
+							<span class="badge bg-danger mb-2">August 2026</span>
+							<h3 class="text-gold h5 mb-2">Songkhla Harmony World Puppet Festival 2026</h3>
+							<p class="opacity-75 small" data-i18n="songkhla_desc">
+								HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!
+							</p>
+							<p class="small mb-1"><strong><i class="fa-solid fa-microphone-lines text-warning me-2"></i>Panel Discussion:</strong> Khin Maung Htwe (Art Director & Founder)</p>
+							<p class="small mb-0"><strong><i class="fa-solid fa-location-dot text-danger me-2"></i>Venue:</strong> TCDC Songkhla | 7th August 2026 (11:00 AM)</p>
+						</div>
+						<div class="col-lg-5 mt-3 mt-lg-0">
+							<div class="row g-2">
+								<div class="col-4"><img src="images/Songkhla1.jpeg" class="gallery-img" alt="Songkhla 1" onclick="showImageModal('images/Songkhla1.jpeg', 'Songkhla Harmony World Puppet Festival 2026')"></div>
+								<div class="col-4"><img src="images/Songkhla2.jpeg" class="gallery-img" alt="Songkhla 2" onclick="showImageModal('images/Songkhla2.jpeg', 'Songkhla Harmony World Puppet Festival 2026')"></div>
+								<div class="col-4"><img src="images/Songkhla3.jpeg" class="gallery-img" alt="Songkhla 3" onclick="showImageModal('images/Songkhla3.jpeg', 'Songkhla Harmony World Puppet Festival 2026')"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="art-card" data-aos="fade-up" data-aos-delay="100">
+					<div class="row align-items-center">
+						<div class="col-lg-8">
+							<span class="badge bg-warning text-dark mb-2">Milan, Italy</span>
+							<h3 class="text-gold h5 mb-2">The Opening Act for 2025/2026 Season in Milan!</h3>
+							<p class="opacity-75 small" data-i18n="milan_desc">
+								Selected for the XVII International Prize "Il Teatro Nudo" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy.
+							</p>
+						</div>
+						<div class="col-lg-4 text-center mt-3 mt-lg-0">
+							<img src="images/Italy-trip.jpg" class="gallery-img" alt="Italy Trip" onclick="showImageModal('images/Italy-trip.jpg', 'The Opening Act for 2025/2026 Season in Milan!')" style="max-height: 180px;">
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -914,6 +959,7 @@
 			const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 			body.setAttribute('data-theme', newTheme);
 
+			// Update icons
 			const iconHtml = newTheme === 'light' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
 			document.getElementById('theme-toggle').innerHTML = iconHtml;
 			document.getElementById('theme-toggle-ext').innerHTML = iconHtml;
@@ -976,6 +1022,8 @@
 				about_p2: "Founded by master puppeteer & Art Director <strong>Khin Maung Htwe</strong>, our troupe brings to life ancient mythology, royal court dances, and folklore using intricate marionettes handcrafted with traditional craftsmanship.",
 				news_title: "EXCITING NEWS & EVENTS",
 				news_subtitle: "Global Recognition, Updates & Special Announcements",
+				songkhla_desc: "HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!",
+				milan_desc: "Selected for the XVII International Prize \"Il Teatro Nudo\" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy.",
 				schedule_badge: "LIVE PERFORMANCE STAGE",
 				schedule_title: "Live Performance Schedule",
 				schedule_sub: "Join Our Daily Traditional Marionette Show in Phnom Penh",
@@ -1014,6 +1062,8 @@
 				about_p2: "ရုပ်စုံဆရာကြီးနှင့် အနုပညာဒါရိုက်တာ <strong>ဦးခင်မောင်ထွေး</strong> မှ တည်ထောင်ထားပြီး၊ ရိုးရာလက်ရာမြောက် ပြုလုပ်ထားသော ကြိုးဆွဲရုပ်စုံများဖြင့် ရှေးဟောင်းဒဏ္ဍာရီများ၊ နန်းတွင်းအကများနှင့် ရိုးရာပုံပြင်များကို အသက်ဝင်စွာ ကပြဖျော်ဖြေလျက်ရှိပါသည်။",
 				news_title: "သတင်းများနှင့် ပွဲစဉ်များ",
 				news_subtitle: "ကမ္ဘာ့အသိအမှတ်ပြုမှုများ၊ သတင်းအချက်အလက်များနှင့် ထူးခြားထုတ်ပြန်ချက်များ",
+				songkhla_desc: "ထွေးဦးမြန်မာ အဖွဲ့သည် ထိုင်းနိုင်ငံတွင် ကျင်းပမည့် UNIMA Asia Pacific Forum သို့ တရားဝင် ဖိတ်ကြားခြင်း ခံရပါသည်။",
+				milan_desc: "အီတလီနိုင်ငံ၊ မီလန်မြို့ Spazio Teatro No'hma တွင် ကျင်းပမည့် XVII International Prize \"Il Teatro Nudo\" ဆုပေးပွဲအတွက် ရွေးချယ်ခံရပါသည်။",
 				schedule_badge: "ရုပ်စုံသဘင် ကပြဖျော်ဖြေမှုဇုန်",
 				schedule_title: "ကပြဖျော်ဖြေပွဲ အစီအစဉ်များ",
 				schedule_sub: "ဖနွမ်းပင်မြို့တွင် နေ့စဉ်ကျင်းပပြုလုပ်မည့် ရိုးရာကြိုးဆွဲရုပ်စုံ အစီအစဉ်",
@@ -1110,126 +1160,119 @@
 
 		async function loadDecapCMSNews() {
 			const container = document.getElementById('cms-news-container');
+			const fallback = document.getElementById('static-news-fallback');
 			if (!container) return;
 
 			try {
-				let fileList = [];
-				const cacheBuster = '?t=' + new Date().getTime();
+				let files = [];
+				const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news');
 				
-				// Attempt 1: Standard GitHub API
-				try {
-					const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news' + cacheBuster);
-					if (apiRes.ok) {
-						fileList = await apiRes.json();
-					}
-				} catch(e) {
-					console.warn('API call failed, switching to Git Trees API');
-				}
-
-				// Attempt 2: Git Trees API if attempt 1 rate limited
-				if (!fileList || fileList.length === 0) {
-					try {
-						const treeRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/git/trees/main?recursive=1' + cacheBuster);
-						if (treeRes.ok) {
-							const treeData = await treeRes.json();
-							fileList = treeData.tree.filter(item => item.path.startsWith('content/news/') && item.path.endsWith('.md')).map(item => ({
-								name: item.path.replace('content/news/', ''),
-								download_url: `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/${item.path}`
-							}));
-						}
-					} catch(e) {}
+				if (apiRes.ok) {
+					files = await apiRes.json();
+				} else {
+					files = [
+						{ name: 'htwe-oo-myanmar-performance-at-the-grand-opening-of-yama-service-co-ltd-in-thailand.md' },
+						{ name: 'first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
+						{ name: 'visa-application-filed-deep-gratitude-for-your-support.md' },
+						{ name: 'vfs-office-update-sincere-gratitude-to-all-supporters.md' }
+					];
 				}
 
 				let rawPosts = [];
 
-				if (Array.isArray(fileList) && fileList.length > 0) {
-					for (let file of fileList) {
-						if (file.name && file.name.endsWith('.md')) {
-							try {
-								const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${file.name}`;
-								const res = await fetch(downloadUrl + cacheBuster);
-								if (!res.ok) continue;
-								const mdText = await res.text();
+				for (let index = 0; index < files.length; index++) {
+					const file = files[index];
+					if (file.name && file.name.endsWith('.md')) {
+						try {
+							const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${file.name}`;
+							const res = await fetch(downloadUrl);
+							if (!res.ok) continue;
+							const mdText = await res.text();
 
-								const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
-								if (match) {
-									const fm = match[1];
-									const body = match[2];
+							const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
+							if (match) {
+								const fm = match[1];
+								const body = match[2];
 
-									const titleMatch = fm.match(/^title:\s*(.*)$/m);
-									const dateMatch = fm.match(/^date:\s*(.*)$/m);
-									const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
-									const categoryMatch = fm.match(/^category:\s*(.*)$/m);
+								const titleMatch = fm.match(/^title:\s*(.*)$/m);
+								const dateMatch = fm.match(/^date:\s*(.*)$/m);
+								const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
+								const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-									let summaryText = '';
-									const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
-									if (summaryBlock && summaryBlock[1].trim()) {
-										summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
-									}
-
-									const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
-									const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-									const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
-									const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-									const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-									
-									const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
-									const category = mapCategoryToEnglish(rawCategory);
-
-									const fullBody = body ? body.trim() : summaryText;
-									const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
-
-									rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
+								let summaryText = '';
+								const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
+								if (summaryBlock && summaryBlock[1].trim()) {
+									summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
 								}
-							} catch (e) {
-								console.log('Error parsing CMS file:', file.name, e);
+
+								const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
+								const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+								const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
+								const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+								const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+								
+								const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+								const category = mapCategoryToEnglish(rawCategory);
+
+								const fullBody = body ? body.trim() : summaryText;
+								const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
+
+								rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
 							}
+						} catch (e) {
+							console.log('Error reading CMS post file:', file.name, e);
 						}
 					}
 				}
 
-				if (rawPosts.length > 0) {
-					rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
-					container.innerHTML = '';
-					newsPostsData = [];
-
-					for (let i = 0; i < rawPosts.length; i++) {
-						const post = rawPosts[i];
-						newsPostsData.push(post);
-						const postIndex = newsPostsData.length - 1;
-
-						const card = document.createElement('div');
-						card.className = 'art-card mb-4';
-						card.setAttribute('data-aos', 'fade-up');
-
-						const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
-
-						card.innerHTML = `
-							<div class="row align-items-center">
-								<div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
-									<span class="badge bg-danger mb-2">${post.category}</span>
-									${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
-									<h3 class="text-gold h5 mb-2">${post.title}</h3>
-									<div class="opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
-									<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
-										<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
-									</button>
-								</div>
-								${post.thumbnail ? `
-								<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
-									<img src="${post.thumbnail}" class="news-card-img" alt="${post.title}" style="cursor: pointer;">
-								</div>
-								` : ''}
-							</div>
-						`;
-						container.appendChild(card);
-					}
-				} else {
-					container.innerHTML = '<div class="text-center py-3 text-muted">No news posts found at the moment.</div>';
+				if (rawPosts.length === 0) {
+					if (fallback) fallback.style.display = 'block';
+					return;
 				}
+
+				if (fallback) fallback.style.display = 'none';
+
+				rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
+
+				container.innerHTML = '';
+				newsPostsData = [];
+
+				for (let i = 0; i < rawPosts.length; i++) {
+					const post = rawPosts[i];
+					newsPostsData.push(post);
+					const postIndex = newsPostsData.length - 1;
+
+					const card = document.createElement('div');
+					card.className = 'art-card mb-4';
+					card.setAttribute('data-aos', 'fade-up');
+
+					const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
+
+					card.innerHTML = `
+						<div class="row align-items-center">
+							<div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
+								<span class="badge bg-danger mb-2">${post.category}</span>
+								${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
+								<h3 class="text-gold h5 mb-2">${post.title}</h3>
+								<div class="opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
+								<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
+									<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
+								</button>
+							</div>
+							${post.thumbnail ? `
+							<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
+								<img src="${post.thumbnail}" class="news-card-img" alt="${post.title}" style="cursor: pointer;">
+							</div>
+							` : ''}
+						</div>
+					`;
+
+					container.appendChild(card);
+				}
+
 			} catch (err) {
 				console.error('Error fetching CMS news:', err);
-				container.innerHTML = '<div class="text-center py-3 text-muted">Unable to load news updates. Please refresh.</div>';
+				if (fallback) fallback.style.display = 'block';
 			}
 		}
 
