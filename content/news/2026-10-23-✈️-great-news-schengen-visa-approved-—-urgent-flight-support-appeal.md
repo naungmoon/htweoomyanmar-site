@@ -1,5 +1,5 @@
 ---
-title: '"✈️ Great News! Schengen Visa Approved — Urgent Flight Support Appeal"'
+title: ✈️ Great News! Schengen Visa Approved — Urgent Flight Support Appeal
 date: 2026-10-23T09:05:00.000+08:00
 thumbnail: images/uploads/1000456654.jpg
 author: Htwe Oo Myanmar
