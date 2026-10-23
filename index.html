@@ -1117,7 +1117,8 @@
 						const titleMatch = fm.match(/^title:\s*(.*)$/m);
 						if (titleMatch && titleMatch[1].trim()) {
 							const dynamicTitle = titleMatch[1].replace(/^["']|["']$/g, '').trim();
-							document.getElementById('about-card-heading').innerHTML = `<i class="fa-solid fa-heart-pulse text-danger me-2"></i>` + dynamicTitle;
+							document.getElementById('about-card-heading').innerText = dynamicTitle;
+
 
 						}
 
