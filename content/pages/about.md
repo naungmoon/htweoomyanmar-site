@@ -2,7 +2,7 @@
 title: PULLING STRINGS BY EMOTION, NOT JUST BY HAND
 video_url: https://www.youtube.com/watch?v=jktsO8c1Dbs
 ---
-**HTWE OO MYANMAR** is a premier traditional Burmese puppet theatre ensemble, co-founded by master puppeteer **Khin Maung Htwe** and his wife **Tin Oo**. The name "Htwe Oo" meaningfully combines their surnames to symbolize a shared passion for preserving Myanmar's rich cultural heritage.
+**HTWE OO MYANMAR** is a premier traditional Burmese puppet theatre ensemble, co-founded by master puppeteer **Khin Maung Htwe** and his wife **Tin Oo**. The name "**Htwe Oo**" meaningfully combines their surnames to symbolize a shared passion for preserving **Myanmar's** rich cultural heritage.
 
 ### 🎭 Preserving 800 Years of Cultural Legacy
 
