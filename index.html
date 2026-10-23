@@ -619,7 +619,9 @@
 			<div class="art-card" data-aos="fade-up">
 				<div class="row align-items-center">
 					<div class="col-lg-6 mb-3 mb-lg-0">
-						<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-heart-pulse text-danger me-2"></i><span id="about-card-heading" data-i18n="about_heading">Pulling Strings by Emotion, Not Just by Hand</span></h3>
+						<h3 class="text-gold h5 mb-3" id="about-card-heading">
+							<i class="fa-solid fa-heart-pulse text-danger me-2"></i><span data-i18n="about_heading">Pulling Strings by Emotion, Not Just by Hand</span>
+						</h3>
 						
 						<div id="about-cms-body">
 							<p class="opacity-75 small" data-i18n="about_p1">
@@ -785,7 +787,7 @@
 									<span>Target: $1,800 USD</span>
 								</div>
 								<div class="progress" style="height: 10px;">
-								  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 17%"></div>
+								  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 28%"></div>
 								</div>
 							</div>
 
@@ -824,7 +826,7 @@
 				<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhtweoomyanmar.com%2F" target="_blank" class="share-btn-circle bg-facebook" title="Share on Facebook">
 					<i class="fa-brands fa-facebook-f"></i>
 				</a>
-				<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fhtweoomyanmar.netlify.com%2F&text=Htwe%20Oo%20Myanmar%20Traditional%20Puppetry%20Art" target="_blank" class="share-btn-circle bg-x-twitter" title="Share on X">
+				<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fhtweoomyanmar.com%2F&text=Htwe%20Oo%20Myanmar%20Traditional%20Puppetry%20Art" target="_blank" class="share-btn-circle bg-x-twitter" title="Share on X">
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
 				</a>
 				<a href="https://www.instagram.com/" target="_blank" onclick="copyShareLink()" class="share-btn-circle bg-instagram" title="Copy Link for Instagram">
@@ -967,6 +969,10 @@
 			localStorage.setItem('theme', newTheme);
 		}
 
+		// Global variables for About Page Content
+		let rawAboutBody = '';
+		let cmsAboutTitleEn = '';
+
 		// Always Default to Original Dark Theme on Initial Page Load
 		window.addEventListener('DOMContentLoaded', () => {
 			const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -983,7 +989,7 @@
 		});
 
 		function copyShareLink() {
-			navigator.clipboard.writeText("https://htweoomyanmar.netlify.app/");
+			navigator.clipboard.writeText("https://htweoomyanmar.com/");
 			alert("Website Link copied to clipboard for Instagram!");
 		}
 
@@ -1010,7 +1016,7 @@
 				nav_support: "Support",
 				nav_contact: "Contact",
 				hero_badge: "TRADITIONAL PUPPETRY ART",
-				hero_sub: "Phnom Penh, Cambodia | Traditional Myanmar Marionette Performance",
+				hero_sub: "Phnom Penh, Cambodia ♡ Traditional Myanmar Marionette Performance",
 				stat_heritage: "Years Heritage",
 				stat_shows: "Live Shows",
 				stat_recognition: "Recognition",
@@ -1050,7 +1056,7 @@
 				nav_support: "ကူညီပံ့ပိုးရန်",
 				nav_contact: "ဆက်သွယ်ရန်",
 				hero_badge: "မြန်မာ့ရိုးရာ ရုပ်စုံသဘင် အနုပညာ",
-				hero_sub: "ဖနွမ်းပင်မြို့၊ ကမ္ဘောဒီးယား | မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်စုံ ကပြဖျော်ဖြေမှု",
+				hero_sub: "ဖနွမ်းပင်မြို့၊ ကမ္ဘောဒီးယား ♡ မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်စုံ ကပြဖျော်ဖြေမှု",
 				stat_heritage: "နှစ်ပေါင်းများစွာ လက်ရာ",
 				stat_shows: "ပွဲပေါင်း ၁၀၀ ကျော်",
 				stat_recognition: "ကမ္ဘာ့အသိအမှတ်ပြု",
@@ -1098,8 +1104,8 @@
 			document.querySelectorAll('#btn-en, #btn-en-ext').forEach(btn => btn.classList.toggle('active', lang === 'en'));
 			document.querySelectorAll('#btn-mm, #btn-mm-ext').forEach(btn => btn.classList.toggle('active', lang === 'mm'));
 
+			renderAboutLanguage();
 			loadDecapCMSNews();
-			loadDecapCMSAbout();
 			loadDecapCMSGallery();
 			loadDecapCMSVideos();
 		}
@@ -1112,14 +1118,12 @@
 					const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
 					if (match) {
 						const fm = match[1];
-						const body = match[2];
+						rawAboutBody = match[2];
 
 						const titleMatch = fm.match(/^title:\s*(.*)$/m);
 						if (titleMatch && titleMatch[1].trim()) {
-							const dynamicTitle = titleMatch[1].replace(/^["']|["']$/g, '').trim();
-							document.getElementById('about-card-heading').innerText = dynamicTitle;
-
-
+							// Strip emojis and quotes from raw title string
+							cmsAboutTitleEn = titleMatch[1].replace(/^["']|["']$/g, '').trim().replace(/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]\s*/u, '');
 						}
 
 						const videoUrlMatch = fm.match(/^video_url:\s*(.*)$/m);
@@ -1131,14 +1135,32 @@
 							}
 						}
 
-						if (body && body.trim()) {
-							document.getElementById('about-cms-body').innerHTML = marked.parse(body.trim());
-						}
+						renderAboutLanguage();
 					}
 				}
 			} catch (e) {
 				console.log("Using default About content.");
 			}
+		}
+
+		function renderAboutLanguage() {
+			// 1. Render Dynamic Heading Icon + Text
+			const headingEl = document.getElementById('about-card-heading');
+			if (headingEl) {
+				let titleText = (currentLang === 'mm') 
+					? translations.mm.about_heading 
+					: (cmsAboutTitleEn || translations.en.about_heading);
+				headingEl.innerHTML = `<i class="fa-solid fa-heart-pulse text-danger me-2"></i>` + titleText;
+			}
+
+			// 2. Split Body Content via Delimiter ---MYANMAR---
+			if (!rawAboutBody) return;
+			const parts = rawAboutBody.split('---MYANMAR---');
+			const enText = parts[0] ? parts[0].trim() : '';
+			const mmText = parts[1] ? parts[1].trim() : enText;
+
+			const selectedContent = (currentLang === 'mm' && mmText) ? mmText : enText;
+			document.getElementById('about-cms-body').innerHTML = marked.parse(selectedContent);
 		}
 
 		function getYouTubeEmbedUrl(url) {
