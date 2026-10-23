@@ -55,3 +55,17 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "YouTube Video URL", name: "video_url", widget: "string", required: false, hint: "Paste YouTube link or embed URL here" }
           - { label: "Body", name: "body", widget: "markdown" }
+
+      - name: "schedule"
+        label: "Live Performance Schedule"
+        file: "content/pages/schedule.md"
+        fields:
+          - { label: "Badge Title (အပေါ်ဘက်တံဆိပ်)", name: "badge", widget: "string", default: "LIVE PERFORMANCE STAGE" }
+          - { label: "Section Title (ခေါင်းစဉ်ကြီး)", name: "title", widget: "string", default: "Live Performance Schedule" }
+          - { label: "Subtitle (ခေါင်းစဉ်ငယ်)", name: "subtitle", widget: "string", default: "Join Our Daily Traditional Marionette Show in Phnom Penh" }
+          - { label: "Showtime Label (အချိန်ခေါင်းစဉ်)", name: "showtime_label", widget: "string", default: "DAILY SHOWTIME" }
+          - { label: "Showtime Value (ပြသမည့်အချိန်)", name: "showtime_val", widget: "string", default: "3:00 PM (Local Time)" }
+          - { label: "Venue Label (နေရာခေါင်းစဉ်)", name: "venue_label", widget: "string", default: "VENUE LOCATION" }
+          - { label: "Venue Address (လိပ်စာအပြည့်အစုံ)", name: "venue_val", widget: "text", default: "#8, Long Nget St. (258), Phnom Penh, Cambodia" }
+          - { label: "Ticket Button Text (လက်မှတ်ခလုတ်စာသား)", name: "ticket_text", widget: "string", default: "Reserve Tickets Online" }
+          - { label: "Ticket Button Link (လက်မှတ်ဝယ်ယူရန်လင့်ခ်)", name: "ticket_url", widget: "string", default: "https://www.theboxofficephnompenh.com/events" }
