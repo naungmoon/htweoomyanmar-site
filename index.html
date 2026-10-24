@@ -296,6 +296,7 @@
 			transition: all 0.3s;
 			text-decoration: none;
 			display: inline-block;
+			cursor: pointer;
 		}
 
 		.btn-glow:hover {
@@ -380,6 +381,40 @@
 			transform: translateY(-4px);
 		}
 
+		/* Date Input Calendar Icon Visibility Fix */
+		[data-theme="dark"] input[type="date"] {
+			color-scheme: dark;
+		}
+		[data-theme="light"] input[type="date"] {
+			color-scheme: light;
+		}
+		input[type="date"]::-webkit-calendar-picker-indicator {
+			cursor: pointer;
+			filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+		}
+
+		/* Action Buttons for Booking Modal */
+		.booking-action-btn {
+			border-radius: 25px;
+			font-size: 0.82rem;
+			font-weight: 600;
+			padding: 8px 14px;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			transition: all 0.25s ease;
+			text-decoration: none;
+			border: none;
+			cursor: pointer;
+		}
+		.booking-action-btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+		}
+		.btn-send-whatsapp { background-color: #25D366; color: #ffffff; }
+		.btn-send-line { background-color: #00B900; color: #ffffff; }
+		.btn-send-email { background-color: #D2143A; color: #ffffff; }
+
 		/* LIGHT THEME SPECIFIC COLOR ADJUSTMENTS FOR TEXT & BUTTONS */
 		[data-theme="light"] .text-warning,
 		[data-theme="light"] .text-gold {
@@ -451,6 +486,7 @@
 			color: #ffffff;
 		}
 
+		.bg-line { background: #00B900; }
 		.bg-whatsapp { background: #25D366; }
 		.bg-viber { background: #7360F2; }
 		.bg-facebook { background: #1877F2; }
@@ -716,9 +752,12 @@
 				</div>
 			</div>
 
-			<div class="mt-4">
-				<a id="schedule-ticket-btn" href="https://www.theboxofficephnompenh.com/events" target="_blank" class="btn-glow px-4 py-2">
+			<div class="mt-4 d-flex justify-content-center flex-wrap gap-2">
+				<button type="button" class="btn-glow px-4 py-2" onclick="openBookingModal()">
 					<i class="fa-solid fa-ticket me-2"></i><span id="schedule-ticket-text" data-i18n="ticket_btn">Reserve Tickets Online</span>
+				</button>
+				<a id="schedule-ticket-btn" href="https://www.theboxofficephnompenh.com/events" target="_blank" class="btn btn-outline-warning rounded-pill px-3 py-2 fw-bold align-self-center">
+					<i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Box Office Website
 				</a>
 			</div>
 		</section>
@@ -817,6 +856,9 @@
 		<div class="share-bar-container" data-aos="fade-up">
 			<div class="share-bar-title" data-i18n="share_title">SHARE HTWE OO MYANMAR</div>
 			<div class="share-icons-flex">
+				<a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fhtweoomyanmar.com%2F" target="_blank" class="share-btn-circle bg-line" title="Share on LINE">
+					<i class="fa-brands fa-line"></i>
+				</a>
 				<a href="https://api.whatsapp.com/send?text=Htwe%20Oo%20Myanmar%20Traditional%20Puppetry%20Art%3A%20https%3A%2F%2Fhtweoomyanmar.com%2F" target="_blank" class="share-btn-circle bg-whatsapp" title="Share on WhatsApp">
 					<i class="fa-brands fa-whatsapp"></i>
 				</a>
@@ -850,7 +892,7 @@
 					<h3 class="text-gold h5 mb-3"><i class="fa-solid fa-compass me-2"></i><span data-i18n="contact_title">Contact Information</span></h3>
 					<p class="small mb-2"><i class="fa-regular fa-clock text-warning me-2"></i><strong>Show Time:</strong> 3:00 PM</p>
 					<p class="small mb-2"><i class="fa-solid fa-map-location-dot text-danger me-2"></i><strong>Address:</strong> #8, Long Nget St. (258), Phnom Penh 12207</p>
-					<p class="small mb-2"><i class="fa-solid fa-phone text-success me-2"></i><strong>Phone:</strong> +855 12 831 950</p>
+					<p class="small mb-2"><i class="fa-solid fa-phone text-success me-2"></i><strong>Phone / Line / WhatsApp:</strong> +855 12 831 950</p>
 					<p class="small mb-2"><i class="fa-solid fa-envelope text-info me-2"></i><strong>Reservation:</strong> booking@htweoomyanmar.com</p>
 					<p class="small mb-0"><i class="fa-solid fa-paper-plane text-primary me-2"></i><strong>Enquiry:</strong> puppetshow@htweoomyanmar.com</p>
 				</div>
@@ -863,6 +905,61 @@
 	<button id="scrollToTopBtn" onclick="scrollToTop()" title="Go to top">
 		<img src="images/homm-cambodia-logo.png" alt="Htwe Oo Myanmar Logo Badge">
 	</button>
+
+	<!-- Direct Ticket Booking Modal (English Only, Layout & Multi-Channel Open With) -->
+	<div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content text-light border-warning" style="background-color: var(--modal-bg); color: var(--modal-text) !important; box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);">
+	      <div class="modal-header border-secondary">
+	        <h5 class="modal-title text-warning"><i class="fa-solid fa-ticket me-2"></i>Reserve Show Ticket</h5>
+	        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body p-4">
+	        <p class="small opacity-75 mb-3">Please fill in your details to reserve your seats for the Traditional Marionette Show in Phnom Penh.</p>
+	        
+	        <div class="mb-3">
+	        	<label class="form-label small fw-bold text-gold">Full Name</label>
+	        	<input type="text" id="bookName" class="form-control bg-dark text-light border-secondary" placeholder="e.g. John Doe / Ko Ko" required>
+	        </div>
+
+	        <div class="mb-3">
+	        	<label class="form-label small fw-bold text-gold">Phone / Line / WhatsApp</label>
+	        	<input type="text" id="bookPhone" class="form-control bg-dark text-light border-secondary" placeholder="+855 12 831 950" required>
+	        </div>
+
+	        <div class="mb-3">
+	        	<label class="form-label small fw-bold text-gold">No. of Guests</label>
+	        	<input type="text" id="bookSeats" class="form-control bg-dark text-light border-secondary" placeholder="e.g. 2 adults" value="1" required>
+	        </div>
+
+	        <div class="mb-3">
+	        	<label class="form-label small fw-bold text-gold">Date of Show</label>
+	        	<input type="date" id="bookDate" class="form-control bg-dark text-light border-secondary" required>
+	        </div>
+
+	        <div class="mb-2">
+	        	<label class="form-label small fw-bold text-gold">Special Request (Optional)</label>
+	        	<textarea id="bookNotes" class="form-control bg-dark text-light border-secondary" rows="2" placeholder="Front seats, special timing, etc."></textarea>
+	        </div>
+	      </div>
+
+	      <div class="modal-footer border-secondary flex-column align-items-stretch">
+	        <div class="text-center small text-muted mb-2">Open with:</div>
+	        <div class="d-flex justify-content-center flex-wrap gap-2">
+	        	<button type="button" class="booking-action-btn btn-send-whatsapp" onclick="sendBookingVia('whatsapp')">
+	        		<i class="fa-brands fa-whatsapp fs-5"></i> WhatsApp
+	        	</button>
+	        	<button type="button" class="booking-action-btn btn-send-line" onclick="sendBookingVia('line')">
+	        		<i class="fa-brands fa-line fs-5"></i> LINE
+	        	</button>
+	        	<button type="button" class="booking-action-btn btn-send-email" onclick="sendBookingVia('email')">
+	        		<i class="fa-solid fa-envelope fs-5"></i> Email
+	        	</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- Domestic KPay/AYA Modal -->
 	<div class="modal fade" id="kpayModal" tabindex="-1" aria-hidden="true">
@@ -967,6 +1064,49 @@
 			document.getElementById('theme-toggle-ext').innerHTML = iconHtml;
 
 			localStorage.setItem('theme', newTheme);
+		}
+
+		// Direct Booking Modal Logic
+		function openBookingModal() {
+			const today = new Date().toISOString().split('T')[0];
+			document.getElementById('bookDate').min = today;
+			document.getElementById('bookDate').value = today;
+			
+			const modal = new bootstrap.Modal(document.getElementById('bookingModal'));
+			modal.show();
+		}
+
+		// Direct Open With Button Handler (No popup alert)
+		function sendBookingVia(channel) {
+			const name = document.getElementById('bookName').value || 'Not provided';
+			const phone = document.getElementById('bookPhone').value || 'Not provided';
+			const seats = document.getElementById('bookSeats').value || '1';
+			const date = document.getElementById('bookDate').value || 'Not specified';
+			const notes = document.getElementById('bookNotes').value || 'None';
+
+			const msgText = `Htwe Oo Myanmar Ticket Booking Request:\n\n` +
+				`Name: ${name}\n` +
+				`Phone/WhatsApp/Line: ${phone}\n` +
+				`Guests/Seats: ${seats}\n` +
+				`Date: ${date}\n` +
+				`Special Notes: ${notes}\n\n` +
+				`Sent from htweoomyanmar.com`;
+
+			if (channel === 'whatsapp') {
+				const waUrl = `https://api.whatsapp.com/send?phone=85512831950&text=${encodeURIComponent(msgText)}`;
+				window.open(waUrl, '_blank');
+			} else if (channel === 'line') {
+				const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(msgText)}`;
+				window.open(lineUrl, '_blank');
+			} else if (channel === 'email') {
+				const subject = encodeURIComponent(`Ticket Booking Request - ${name}`);
+				const mailUrl = `mailto:booking@htweoomyanmar.com?subject=${subject}&body=${encodeURIComponent(msgText)}`;
+				window.location.href = mailUrl;
+			}
+
+			const modalEl = document.getElementById('bookingModal');
+			const modal = bootstrap.Modal.getInstance(modalEl);
+			if (modal) modal.hide();
 		}
 
 		// Global variables for About Page Content
@@ -1123,7 +1263,6 @@
 
 						const titleMatch = fm.match(/^title:\s*(.*)$/m);
 						if (titleMatch && titleMatch[1].trim()) {
-							// Strip emojis and quotes from raw title string
 							cmsAboutTitleEn = titleMatch[1].replace(/^["']|["']$/g, '').trim().replace(/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}]\s*/u, '');
 						}
 
@@ -1145,7 +1284,6 @@
 		}
 
 		function renderAboutLanguage() {
-			// 1. Render Dynamic Heading Icon + Text
 			const headingEl = document.getElementById('about-card-heading');
 			if (headingEl) {
 				let titleText = (currentLang === 'mm') 
@@ -1154,7 +1292,6 @@
 				headingEl.innerHTML = `<i class="fa-solid fa-heart-pulse text-danger me-2"></i>` + titleText;
 			}
 
-			// 2. Split Body Content via Delimiter ---MYANMAR--- (Supports String or HTML HR format)
 			if (!rawAboutBody) return;
 			let parts = rawAboutBody.split('---MYANMAR---');
 			if (parts.length < 2) {
@@ -1374,7 +1511,6 @@
 			const container = document.getElementById('cms-gallery-container');
 			if (!container) return;
 
-			// Store default static HTML gallery content on first load
 			if (!defaultGalleryContent) {
 				defaultGalleryContent = container.innerHTML;
 			}
@@ -1413,7 +1549,6 @@
 					}
 				}
 
-				// Combine CMS images with default static gallery photos so original ones remain visible
 				if (cmsHtml) {
 					container.innerHTML = cmsHtml + defaultGalleryContent;
 				}
@@ -1428,7 +1563,6 @@
 			const container = document.getElementById('cms-videos-container');
 			if (!container) return;
 
-			// Store default static HTML videos content on first load
 			if (!defaultVideosContent) {
 				defaultVideosContent = container.innerHTML;
 			}
@@ -1472,7 +1606,6 @@
 					}
 				}
 
-				// Combine CMS videos with default videos
 				if (cmsVideosHtml) {
 					container.innerHTML = cmsVideosHtml + defaultVideosContent;
 				}
