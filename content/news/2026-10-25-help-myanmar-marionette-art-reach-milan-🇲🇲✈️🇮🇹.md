@@ -24,7 +24,7 @@ Thank you deeply for standing with us and helping keep this precious ancient tra
 
 \#HtweOoMyanmar #HtweOoThetPaing #MyanmarTraditionalPuppetry #IntangibleCulturalHeritage #MilanItaly
 
-\---MYANMAR---
+---MYANMAR---
 
 အီတလီနိုင်ငံ၊ မီလန်မြို့ *Spazio Teatro No’hma* မှ ကြီးမှူးကျင်းပသော **(XVII) ကြိမ်မြောက် အပြည်ပြည်ဆိုင်ရာ "Il Teatro Nudo" အနုပညာဆုကြီး** ကို **ထွေးဦးမြန်မာ (HTWE OO MYANMAR)** ရိုးရာကြိုးဆွဲရုပ်စုံအဖွဲ့မှ ထိုက်တန်စွာ ဆွတ်ခူးရရှိခဲ့ကြောင်း ဝမ်းမြောက်ဂုဏ်ယူစွာ သတင်းကောင်းပါအပ်ပါသည်။
 
