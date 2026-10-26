@@ -49,10 +49,10 @@ With deep respect and affection,
 
 - - -
 
-⏳ **8 days to go to the Award Ceremony!**\
+⏳ **8 days to go to the Award Ceremony!**
 *XVII Edition of the International Prize "Il Teatro Nudo" di Teresa Pomodoro by Spazio Teatro No’hma in Milan, Italy!*
 
-\---MYANMAR---
+---MYANMAR---
 
 # 📦 ရုတ်တရက်ကြည့်ပြီး ဘာကြီးလဲလို့ မတွေးပါနဲ့
 
