@@ -563,6 +563,7 @@
 				<!-- Row 1 for Mobile: Logo centered -->
 				<div class="mobile-top-row">
 					<a class="navbar-brand d-flex align-items-center" href="#">
+					    
 						<img src="images/homm-cambodia-logo.png" alt="Htwe Oo Myanmar Logo">
 					</a>
 				</div>
@@ -1361,150 +1362,175 @@
 			return cat;
 		}
 
-		let newsPostsData = [];
+let newsPostsData = [];
 
-		async function loadDecapCMSNews() {
-			const container = document.getElementById('cms-news-container');
-			const fallback = document.getElementById('static-news-fallback');
-			if (!container) return;
+async function loadDecapCMSNews() {
+    const container = document.getElementById('cms-news-container');
+    const fallback = document.getElementById('static-news-fallback');
+    if (!container) return;
 
-			try {
-				let files = [];
-				const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news');
-				
-				if (apiRes.ok) {
-					files = await apiRes.json();
-				} else {
-					files = [
-						{ name: '2026-09-26-celebrating-cultural-heritage.md' },
-						{ name: '2026-10-12-first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
-						{ name: '2026-10-19-visa-application-filed-deep-gratitude-for-your-support.md' },
-						{ name: '2026-10-20-visa-application-filed-deep-gratitude-for-your-support.md' },
-						{ name: '2026-10-23-great-news-special-announcement.md' }
-					];
-				}
+    try {
+        let files = [];
+        const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news');
+        
+        if (apiRes.ok) {
+            files = await apiRes.json();
+        } else {
+            files = [
+                { name: '2026-09-26-celebrating-cultural-heritage.md' },
+                { name: '2026-10-12-first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
+                { name: '2026-10-19-visa-application-filed-deep-gratitude-for-your-support.md' },
+                { name: '2026-10-20-visa-application-filed-deep-gratitude-for-your-support.md' },
+                { name: '2026-10-23-great-news-special-announcement.md' }
+            ];
+        }
 
-				let rawPosts = [];
+        let rawPosts = [];
 
-				for (let index = 0; index < files.length; index++) {
-					const file = files[index];
-					if (file.name && file.name.endsWith('.md')) {
-						try {
-							const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${file.name}`;
-							const res = await fetch(downloadUrl);
-							if (!res.ok) continue;
-							const mdText = await res.text();
+        for (let index = 0; index < files.length; index++) {
+            const file = files[index];
+            if (file.name && file.name.endsWith('.md')) {
+                try {
+                    const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${file.name}`;
+                    const res = await fetch(downloadUrl);
+                    if (!res.ok) continue;
+                    const mdText = await res.text();
 
-							const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
-							if (match) {
-								const fm = match[1];
-								const body = match[2];
+                    const match = mdText.match(/^---([\s\S]*?)---([\s\S]*)$/);
+                    if (match) {
+                        const fm = match[1];
+                        const body = match[2];
 
-								const titleMatch = fm.match(/^title:\s*(.*)$/m);
-								const dateMatch = fm.match(/^date:\s*(.*)$/m);
-								const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
-								const categoryMatch = fm.match(/^category:\s*(.*)$/m);
+                        const titleMatch = fm.match(/^title:\s*(.*)$/m);
+                        const dateMatch = fm.match(/^date:\s*(.*)$/m);
+                        const thumbMatch = fm.match(/^thumbnail:\s*(.*)$/m);
+                        const categoryMatch = fm.match(/^category:\s*(.*)$/m);
 
-								let summaryText = '';
-								const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
-								if (summaryBlock && summaryBlock[1].trim()) {
-									summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
-								}
+                        let summaryText = '';
+                        const summaryBlock = fm.match(/^summary:\s*(?:>|-|\|)?\s*([\s\S]*?)(?=\n[a-z_]+:|$)/m);
+                        if (summaryBlock && summaryBlock[1].trim()) {
+                            summaryText = summaryBlock[1].replace(/^["']|["']$/g, '').trim();
+                        }
 
-								const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
-								const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-								const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
-								const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-								const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+                        const fullTitle = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'News Update';
+                        const rawDateStr = dateMatch ? dateMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+                        const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
+                        const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+                        const thumbnail = thumbMatch ? thumbMatch[1].replace(/^["']|["']$/g, '').trim() : '';
+                        
+                        const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
+                        const category = mapCategoryToEnglish(rawCategory);
+
+                        const fullBody = body ? body.trim() : summaryText;
+
+                        // Title Splitter (English & Myanmar)
+                        let titleEn = fullTitle;
+                        let titleMm = fullTitle;
+                        let titleParts = fullTitle.split('---MYANMAR---');
+                        if (titleParts.length >= 2) {
+                            titleEn = titleParts[0].trim();
+                            titleMm = titleParts[1].trim();
+                        }
+
+                        // Body Splitter (English & Myanmar)
+                        let bodyEn = fullBody;
+                        let bodyMm = fullBody;
+                        let bodyParts = fullBody.split('---MYANMAR---');
+                        if (bodyParts.length >= 2) {
+                            bodyEn = bodyParts[0].trim();
+                            bodyMm = bodyParts[1].trim();
+                        }
+
+                        rawPosts.push({ fullTitle, titleEn, titleMm, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, bodyEn, bodyMm, summaryText });
+                    }
+                } catch (e) {
+                    console.log('Error reading CMS post file:', file.name, e);
+                }
+            }
+        }
+
+        if (rawPosts.length === 0) {
+            if (fallback) fallback.style.display = 'block';
+            return;
+        }
+
+        if (fallback) fallback.style.display = 'none';
+
+        rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
+
+        container.innerHTML = '';
+        newsPostsData = [];
+
+        for (let i = 0; i < rawPosts.length; i++) {
+            const post = rawPosts[i];
+            newsPostsData.push(post);
+            const postIndex = newsPostsData.length - 1;
+
+            const card = document.createElement('div');
+            card.className = 'art-card mb-4';
+            card.setAttribute('data-aos', 'fade-up');
+
+            const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
+            const activeTitle = (currentLang === 'mm') ? post.titleMm : post.titleEn;
+            const activeBody = (currentLang === 'mm') ? post.bodyMm : post.bodyEn;
+            const displaySummary = post.summaryText ? post.summaryText : (activeBody.substring(0, 180) + '...');
+
+            card.innerHTML = `
+                <div class="row align-items-center">
+                    <div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
+                        <span class="badge bg-danger mb-2">${post.category}</span>
+                        ${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
+                        <h3 class="text-gold h5 mb-2">${activeTitle}</h3>
+                        <div class="opacity-75 small mb-3">${marked.parse(displaySummary)}</div>
+                        <button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
+                            <i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
+                        </button>
+                    </div>
+                    ${post.thumbnail ? `
+                    <div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
+                        <img src="${post.thumbnail}" class="news-card-img" alt="${activeTitle}" style="cursor: pointer;">
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+
+            container.appendChild(card);
+        }
+
+    } catch (err) {
+        console.error('Error fetching CMS news:', err);
+        if (fallback) fallback.style.display = 'block';
+    }
+}
+
+function openNewsModal(index) {
+    const post = newsPostsData[index];
+    if (!post) return;
+
+    const activeTitle = (currentLang === 'mm') ? post.titleMm : post.titleEn;
+    const activeBody = (currentLang === 'mm') ? post.bodyMm : post.bodyEn;
+
+    document.getElementById('modalTitle').innerText = activeTitle;
+    document.getElementById('modalCategory').innerText = post.category;
+    document.getElementById('modalDate').innerText = post.date;
+    document.getElementById('modalBody').innerHTML = marked.parse(activeBody);
+
+    const imgContainer = document.getElementById('modalImageContainer');
+    const modalImg = document.getElementById('modalImage');
+
+    if (post.thumbnail) {
+        modalImg.src = post.thumbnail;
+        imgContainer.classList.remove('d-none');
+    } else {
+        imgContainer.classList.add('d-none');
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById('cmsNewsModal'));
+    modal.show();
+}
+
 								
-								const rawCategory = categoryMatch ? categoryMatch[1].replace(/^["']|["']$/g, '').trim() : 'General';
-								const category = mapCategoryToEnglish(rawCategory);
-
-								const fullBody = body ? body.trim() : summaryText;
-								const displaySummary = summaryText ? summaryText : fullBody.substring(0, 180) + '...';
-
-								rawPosts.push({ title, date, parsedDate: parsedDate.getTime(), thumbnail, category, fullBody, displaySummary });
-							}
-						} catch (e) {
-							console.log('Error reading CMS post file:', file.name, e);
-						}
-					}
-				}
-
-				if (rawPosts.length === 0) {
-					if (fallback) fallback.style.display = 'block';
-					return;
-				}
-
-				if (fallback) fallback.style.display = 'none';
-
-				rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
-
-				container.innerHTML = '';
-				newsPostsData = [];
-
-				for (let i = 0; i < rawPosts.length; i++) {
-					const post = rawPosts[i];
-					newsPostsData.push(post);
-					const postIndex = newsPostsData.length - 1;
-
-					const card = document.createElement('div');
-					card.className = 'art-card mb-4';
-					card.setAttribute('data-aos', 'fade-up');
-
-					const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
-
-					card.innerHTML = `
-						<div class="row align-items-center">
-							<div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
-								<span class="badge bg-danger mb-2">${post.category}</span>
-								${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
-								<h3 class="text-gold h5 mb-2">${post.title}</h3>
-								<div class="opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
-								<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
-									<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
-								</button>
-							</div>
-							${post.thumbnail ? `
-							<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
-								<img src="${post.thumbnail}" class="news-card-img" alt="${post.title}" style="cursor: pointer;">
-							</div>
-							` : ''}
-						</div>
-					`;
-
-					container.appendChild(card);
-				}
-
-			} catch (err) {
-				console.error('Error fetching CMS news:', err);
-				if (fallback) fallback.style.display = 'block';
-			}
-		}
-
-		function openNewsModal(index) {
-			const post = newsPostsData[index];
-			if (!post) return;
-
-			document.getElementById('modalTitle').innerText = post.title;
-			document.getElementById('modalCategory').innerText = post.category;
-			document.getElementById('modalDate').innerText = post.date;
-			document.getElementById('modalBody').innerHTML = marked.parse(post.fullBody);
-
-			const imgContainer = document.getElementById('modalImageContainer');
-			const modalImg = document.getElementById('modalImage');
-
-			if (post.thumbnail) {
-				modalImg.src = post.thumbnail;
-				imgContainer.classList.remove('d-none');
-			} else {
-				imgContainer.classList.add('d-none');
-			}
-
-			const modal = new bootstrap.Modal(document.getElementById('cmsNewsModal'));
-			modal.show();
-		}
-
+				
 		let defaultGalleryContent = '';
 
 		async function loadDecapCMSGallery() {
@@ -1614,24 +1640,6 @@
 			}
 		}
 	</script>
-
-<script>
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-
-    // Disable keyboard shortcuts for viewing source / inspect
-    document.addEventListener('keydown', function(e) {
-        if (
-            e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-            (e.ctrlKey && (e.key === 'U' || e.key === 'S'))
-        ) {
-            e.preventDefault();
-        }
-    });
-</script>
 
 </body>
 </html>
