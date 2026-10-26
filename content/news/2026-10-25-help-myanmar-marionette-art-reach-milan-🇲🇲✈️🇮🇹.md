@@ -2,9 +2,7 @@
 title: Help Myanmar Marionette Art Reach Milan! 🇲🇲✈️🇮🇹
 date: 2026-10-25T22:41:00.000+08:00
 thumbnail: images/uploads/1000458663.jpg
-video_url: '"HTWE OO MYANMAR has been selected as one of the winners of the XVII
-  International Prize in Milan, Italy! Help us cover our travel expenses to
-  receive this prestigious award."'
+video_url: ""
 author: Htwe Oo Myanmar
 category: နိုင်ငံတကာခရီးစဉ်
 ---
