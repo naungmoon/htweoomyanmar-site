@@ -1027,6 +1027,9 @@
 	<!-- Marked.js CDN for Markdown Conversion -->
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
+	<!-- JS-YAML CDN to parse Frontmatter reliably without breakage -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
 	<script>
 		AOS.init({
 			duration: 800,
@@ -1076,7 +1079,7 @@
 			modal.show();
 		}
 
-		// Direct Open With Button Handler (No popup alert)
+		// Direct Open With Button Handler
 		function sendBookingVia(channel) {
 			const name = document.getElementById('bookName').value || 'Not provided';
 			const phone = document.getElementById('bookPhone').value || 'Not provided';
@@ -1246,7 +1249,7 @@
 			document.querySelectorAll('#btn-mm, #btn-mm-ext').forEach(btn => btn.classList.toggle('active', lang === 'mm'));
 
 			renderAboutLanguage();
-			loadDecapCMSNews();
+			renderNewsLanguage();
 			loadDecapCMSGallery();
 			loadDecapCMSVideos();
 		}
@@ -1353,7 +1356,7 @@
 
 		function mapCategoryToEnglish(cat) {
 			if (!cat) return 'News & Updates';
-			const lower = cat.trim().toLowerCase();
+			const lower = String(cat).trim().toLowerCase();
 			if (lower.includes('သတင်း') || lower.includes('ထုတ်ပြန်') || lower.includes('news')) return 'News & Announcements';
 			if (lower.includes('ရုပ်သေး') || lower.includes('ပွဲစဉ်') || lower.includes('puppet') || lower.includes('shows')) return 'Puppet Shows';
 			if (lower.includes('ခရီးစဉ်') || lower.includes('tours') || lower.includes('overseas') || lower.includes('နိုင်ငံတကာ')) return 'Overseas Tours';
@@ -1361,147 +1364,179 @@
 			return cat;
 		}
 
-let newsPostsData = [];
+		let newsPostsData = [];
 
-async function loadDecapCMSNews() {
-    const container = document.getElementById('cms-news-container');
-    const fallback = document.getElementById('static-news-fallback');
-    if (!container) return;
+		// Parse Markdown Content into Dual Language (English & Myanmar)
+		function parseDualLanguageMarkdown(text) {
+			if (!text) return { en: '', mm: '' };
+			
+			let parts = text.split('---MYANMAR---');
+			if (parts.length < 2) {
+				parts = text.split(/<hr\s*\/?>\s*MYANMAR\s*<hr\s*\/?>/i);
+			}
 
-    try {
-        let files = [];
-        const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news');
-        
-        if (apiRes.ok) {
-            files = await apiRes.json();
-        } else {
-            files = [
-                { name: '2026-09-26-celebrating-cultural-heritage.md' },
-                { name: '2026-10-12-first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
-                { name: '2026-10-19-visa-application-filed-deep-gratitude-for-your-support.md' },
-                { name: '2026-10-20-visa-application-filed-deep-gratitude-for-your-support.md' },
-                { name: '2026-10-23-great-news-special-announcement.md' },
-                { name: '2026-10-24-record-breaking-5-day-visa-approval-for-milan-tour-🇮🇹✈️.md' }
-            ];
-        }
+			const enText = parts[0] ? parts[0].trim() : '';
+			const mmText = parts[1] ? parts[1].trim() : enText;
 
-        let rawPosts = [];
+			return {
+				en: enText,
+				mm: mmText
+			};
+		}
 
-        for (let index = 0; index < files.length; index++) {
-            const file = files[index];
-            if (file && file.name && file.name.endsWith('.md')) {
-                try {
-                    const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${encodeURIComponent(file.name)}`;
-                    const res = await fetch(downloadUrl);
-                    if (!res.ok) continue;
-                    const mdText = await res.text();
+		async function loadDecapCMSNews() {
+			const container = document.getElementById('cms-news-container');
+			const fallback = document.getElementById('static-news-fallback');
+			if (!container) return;
 
-                    // Safe Frontmatter Splitting
-                    const parts = mdText.split(/^---$/m);
-                    if (parts.length >= 3) {
-                        const fm = parts[1];
-                        const body = parts.slice(2).join('---').trim();
+			try {
+				let files = [];
+				const apiRes = await fetch('https://api.github.com/repos/naungmoon/htweoomyanmar-site/contents/content/news');
+				
+				if (apiRes.ok) {
+					files = await apiRes.json();
+				} else {
+					files = [
+						{ name: '2026-09-26-celebrating-cultural-heritage.md' },
+						{ name: '2026-10-12-first-ever-traditional-myanmar-puppet-show-in-laos-at-hotel-lexi-vientiane.md' },
+						{ name: '2026-10-19-visa-application-filed-deep-gratitude-for-your-support.md' },
+						{ name: '2026-10-20-visa-application-filed-deep-gratitude-for-your-support.md' },
+						{ name: '2026-10-23-great-news-special-announcement.md' },
+						{ name: '2026-10-24-record-breaking-5-day-visa-approval-for-milan-tour-🇮🇹✈️.md' }
+					];
+				}
 
-                        const getFmValue = (key) => {
-                            const match = fm.match(new RegExp('^' + key + ':\\s*(.*)$', 'm'));
-                            return match ? match[1].replace(/^["']|["']$/g, '').trim() : '';
-                        };
+				let rawPosts = [];
 
-                        const title = getFmValue('title') || 'News Update';
-                        const rawDateStr = getFmValue('date');
-                        const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
-                        const date = rawDateStr ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-                        const thumbnail = getFmValue('thumbnail');
-                        const rawCategory = getFmValue('category') || 'General';
-                        const category = mapCategoryToEnglish(rawCategory);
+				for (let index = 0; index < files.length; index++) {
+					const file = files[index];
+					if (file && file.name && file.name.endsWith('.md')) {
+						try {
+							const downloadUrl = file.download_url || `https://raw.githubusercontent.com/naungmoon/htweoomyanmar-site/main/content/news/${encodeURIComponent(file.name)}`;
+							const res = await fetch(downloadUrl);
+							if (!res.ok) continue;
+							const mdText = await res.text();
 
-                        // Safe Summary Extraction
-                        let summaryText = '';
-                        const summaryMatch = fm.match(/^summary:\s*(?:>|-|\|)?\s*\n?([\s\S]*?)(?=\n[a-zA-Z0-9_-]+:|$)/m);
-                        if (summaryMatch && summaryMatch[1]) {
-                            summaryText = summaryMatch[1].replace(/^["']|["']$/g, '').trim();
-                        }
+							let fm = {};
+							let body = mdText;
 
-                        const fullBody = body || summaryText;
-                        const displaySummary = summaryText ? summaryText : (fullBody.substring(0, 180) + '...');
+							if (mdText.startsWith('---')) {
+								const firstEnd = mdText.indexOf('---', 3);
+								if (firstEnd !== -1) {
+									const yamlText = mdText.substring(3, firstEnd);
+									body = mdText.substring(firstEnd + 3).trim();
+									try {
+										fm = jsyaml.load(yamlText) || {};
+									} catch (e) {
+										console.warn('YAML parse warning for:', file.name, e);
+									}
+								}
+							}
 
-                        rawPosts.push({ 
-                            title, 
-                            date, 
-                            parsedDate: parsedDate.getTime(), 
-                            thumbnail, 
-                            category, 
-                            fullBody, 
-                            displaySummary 
-                        });
-                    }
-                } catch (e) {
-                    console.log('Error reading CMS post file:', file.name, e);
-                }
-            }
-        }
+							const titleParsed = parseDualLanguageMarkdown(fm.title || 'News Update');
+							const rawDateStr = fm.date ? String(fm.date) : '';
+							const parsedDate = rawDateStr ? new Date(rawDateStr) : new Date(0);
+							const date = rawDateStr && !isNaN(parsedDate) ? parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+							const thumbnail = fm.thumbnail || '';
+							const rawCategory = fm.category || 'General';
+							const category = mapCategoryToEnglish(rawCategory);
 
-        if (rawPosts.length === 0) {
-            if (fallback) fallback.style.display = 'block';
-            return;
-        }
+							const summaryParsed = parseDualLanguageMarkdown(fm.summary ? String(fm.summary).trim() : '');
+							const bodyParsed = parseDualLanguageMarkdown(body);
 
-        if (fallback) fallback.style.display = 'none';
+							const fullBodyEn = bodyParsed.en || summaryParsed.en;
+							const fullBodyMm = bodyParsed.mm || summaryParsed.mm || fullBodyEn;
 
-        rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
+							const displaySummaryEn = summaryParsed.en ? summaryParsed.en : (fullBodyEn.substring(0, 180) + '...');
+							const displaySummaryMm = summaryParsed.mm ? summaryParsed.mm : (fullBodyMm.substring(0, 180) + '...');
 
-        container.innerHTML = '';
-        newsPostsData = [];
+							rawPosts.push({ 
+								titleEn: titleParsed.en,
+								titleMm: titleParsed.mm || titleParsed.en,
+								date, 
+								parsedDate: parsedDate.getTime(), 
+								thumbnail, 
+								category, 
+								fullBodyEn,
+								fullBodyMm,
+								displaySummaryEn,
+								displaySummaryMm
+							});
+						} catch (e) {
+							console.error('Error reading CMS post file:', file.name, e);
+						}
+					}
+				}
 
-        for (let i = 0; i < rawPosts.length; i++) {
-            const post = rawPosts[i];
-            newsPostsData.push(post);
-            const postIndex = newsPostsData.length - 1;
+				if (rawPosts.length === 0) {
+					if (fallback) fallback.style.display = 'block';
+					return;
+				}
 
-            const card = document.createElement('div');
-            card.className = 'art-card mb-4';
-            card.setAttribute('data-aos', 'fade-up');
+				if (fallback) fallback.style.display = 'none';
 
-            const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
+				rawPosts.sort((a, b) => b.parsedDate - a.parsedDate);
+				newsPostsData = rawPosts;
 
-            card.innerHTML = `
-                <div class="row align-items-center">
-                    <div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
-                        <span class="badge bg-danger mb-2">${post.category}</span>
-                        ${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
-                        <h3 class="text-gold h5 mb-2">${post.title}</h3>
-                        <div class="opacity-75 small mb-3">${marked.parse(post.displaySummary)}</div>
-                        <button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${postIndex})">
-                            <i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
-                        </button>
-                    </div>
-                    ${post.thumbnail ? `
-                    <div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${postIndex})">
-                        <img src="${post.thumbnail}" class="news-card-img" alt="${post.title}" style="cursor: pointer;">
-                    </div>
-                    ` : ''}
-                </div>
-            `;
+				renderNewsLanguage();
 
-            container.appendChild(card);
-        }
+			} catch (err) {
+				console.error('Error fetching CMS news:', err);
+				if (fallback) fallback.style.display = 'block';
+			}
+		}
 
-    } catch (err) {
-        console.error('Error fetching CMS news:', err);
-        if (fallback) fallback.style.display = 'block';
-    }
-}
+		function renderNewsLanguage() {
+			const container = document.getElementById('cms-news-container');
+			if (!container || !newsPostsData || newsPostsData.length === 0) return;
 
+			container.innerHTML = '';
 
+			for (let i = 0; i < newsPostsData.length; i++) {
+				const post = newsPostsData[i];
+				const title = (currentLang === 'mm') ? post.titleMm : post.titleEn;
+				const displaySummary = (currentLang === 'mm') ? post.displaySummaryMm : post.displaySummaryEn;
+
+				const card = document.createElement('div');
+				card.className = 'art-card mb-4';
+				card.setAttribute('data-aos', 'fade-up');
+
+				const btnLabel = (translations[currentLang] && translations[currentLang].read_more) || "Read Full Post";
+
+				card.innerHTML = `
+					<div class="row align-items-center">
+						<div class="${post.thumbnail ? 'col-lg-7' : 'col-lg-12'}">
+							<span class="badge bg-danger mb-2">${post.category}</span>
+							${post.date ? `<span class="badge bg-secondary mb-2 ms-1">${post.date}</span>` : ''}
+							<h3 class="text-gold h5 mb-2">${title}</h3>
+							<div class="opacity-75 small mb-3">${marked.parse(displaySummary)}</div>
+							<button class="btn btn-sm btn-outline-warning rounded-pill" onclick="openNewsModal(${i})">
+								<i class="fa-solid fa-book-open me-1"></i> ${btnLabel}
+							</button>
+						</div>
+						${post.thumbnail ? `
+						<div class="col-lg-5 text-center mt-3 mt-lg-0 cursor-pointer" onclick="openNewsModal(${i})">
+							<img src="${post.thumbnail}" class="news-card-img" alt="${title}" style="cursor: pointer;">
+						</div>
+						` : ''}
+					</div>
+				`;
+
+				container.appendChild(card);
+			}
+		}
 
 		function openNewsModal(index) {
 			const post = newsPostsData[index];
 			if (!post) return;
 
-			document.getElementById('modalTitle').innerText = post.title;
+			const title = (currentLang === 'mm') ? post.titleMm : post.titleEn;
+			const fullBody = (currentLang === 'mm') ? post.fullBodyMm : post.fullBodyEn;
+
+			document.getElementById('modalTitle').innerText = title;
 			document.getElementById('modalCategory').innerText = post.category;
 			document.getElementById('modalDate').innerText = post.date;
-			document.getElementById('modalBody').innerHTML = marked.parse(post.fullBody);
+			document.getElementById('modalBody').innerHTML = marked.parse(fullBody);
 
 			const imgContainer = document.getElementById('modalImageContainer');
 			const modalImg = document.getElementById('modalImage');
@@ -1540,23 +1575,28 @@ async function loadDecapCMSNews() {
 					if (file.name.endsWith('.md')) {
 						const res = await fetch(file.download_url);
 						const mdText = await res.text();
-						const match = mdText.match(/^---([\s\S]*?)---/);
-						if (match) {
-							const fm = match[1];
-							const titleMatch = fm.match(/^title:\s*(.*)$/m);
-							const imageMatch = fm.match(/^image:\s*(.*)$/m);
-
-							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-							const image = imageMatch ? imageMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-
-							if (image) {
-								cmsHtml += `
-									<div class="col-md-4 col-6" data-aos="zoom-in">
-										<img src="${image}" class="gallery-img mb-2" alt="${title}" title="${title}" onclick="showImageModal('${image}', '${title || "Performance Moment"}')">
-										${title ? `<p class="small text-center text-muted mb-0">${title}</p>` : ''}
-									</div>
-								`;
+						
+						let fm = {};
+						if (mdText.startsWith('---')) {
+							const firstEnd = mdText.indexOf('---', 3);
+							if (firstEnd !== -1) {
+								try {
+									fm = jsyaml.load(mdText.substring(3, firstEnd)) || {};
+								} catch (e) {}
 							}
+						}
+
+						const titleParsed = parseDualLanguageMarkdown(fm.title || '');
+						const title = (currentLang === 'mm') ? (titleParsed.mm || titleParsed.en) : titleParsed.en;
+						const image = fm.image || '';
+
+						if (image) {
+							cmsHtml += `
+								<div class="col-md-4 col-6" data-aos="zoom-in">
+									<img src="${image}" class="gallery-img mb-2" alt="${title}" title="${title}" onclick="showImageModal('${image}', '${title || "Performance Moment"}')">
+									${title ? `<p class="small text-center text-muted mb-0">${title}</p>` : ''}
+								</div>
+							`;
 						}
 					}
 				}
@@ -1592,28 +1632,33 @@ async function loadDecapCMSNews() {
 					if (file.name.endsWith('.md')) {
 						const res = await fetch(file.download_url);
 						const mdText = await res.text();
-						const match = mdText.match(/^---([\s\S]*?)---/);
-						if (match) {
-							const fm = match[1];
-							const titleMatch = fm.match(/^title:\s*(.*)$/m);
-							const urlMatch = fm.match(/^video_url:\s*(.*)$/m);
-
-							const title = titleMatch ? titleMatch[1].replace(/^["']|["']$/g, '').trim() : 'Performance Video';
-							const videoUrl = urlMatch ? urlMatch[1].replace(/^["']|["']$/g, '').trim() : '';
-							const embedUrl = getYouTubeEmbedUrl(videoUrl);
-
-							if (embedUrl) {
-								cmsVideosHtml += `
-									<div class="col-md-6" data-aos="fade-up">
-										<div class="art-card h-100">
-											<div class="ratio ratio-16x9 mb-2">
-												<iframe src="${embedUrl}" allowfullscreen></iframe>
-											</div>
-											<h5 class="h6 mb-0 text-gold">${title}</h5>
-										</div>
-									</div>
-								`;
+						
+						let fm = {};
+						if (mdText.startsWith('---')) {
+							const firstEnd = mdText.indexOf('---', 3);
+							if (firstEnd !== -1) {
+								try {
+									fm = jsyaml.load(mdText.substring(3, firstEnd)) || {};
+								} catch (e) {}
 							}
+						}
+
+						const titleParsed = parseDualLanguageMarkdown(fm.title || 'Performance Video');
+						const title = (currentLang === 'mm') ? (titleParsed.mm || titleParsed.en) : titleParsed.en;
+						const videoUrl = fm.video_url || '';
+						const embedUrl = getYouTubeEmbedUrl(videoUrl);
+
+						if (embedUrl) {
+							cmsVideosHtml += `
+								<div class="col-md-6" data-aos="fade-up">
+									<div class="art-card h-100">
+										<div class="ratio ratio-16x9 mb-2">
+											<iframe src="${embedUrl}" allowfullscreen></iframe>
+										</div>
+										<h5 class="h6 mb-0 text-gold">${title}</h5>
+									</div>
+								</div>
+							`;
 						}
 					}
 				}
@@ -1646,4 +1691,4 @@ async function loadDecapCMSNews() {
 </script>
 
 </body>
-	</html>
+</html>
