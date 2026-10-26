@@ -1,6 +1,5 @@
 ---
-title: Record-Breaking 5-Day Visa Approval for Milan Tour! 🇮🇹✈️ ---MYANMAR---
-  မီလန်ခရီးစဉ်အတွက် စံချိန်တင် (၅) ရက်တည်းဖြင့် ဗီဇာအတည်ပြုချက်ရရှိ! 🇮🇹✈️
+title: "Record-Breaking 5-Day Visa Approval for Milan Tour! 🇮🇹✈️ "
 date: 2026-10-24T11:10:00.000+08:00
 thumbnail: images/uploads/1000457667.jpg
 author: Htwe Oo Myanmar
