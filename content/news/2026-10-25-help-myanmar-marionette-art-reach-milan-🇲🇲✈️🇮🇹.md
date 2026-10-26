@@ -22,7 +22,7 @@ Thank you deeply for standing with us and helping keep this precious ancient tra
 
 ![](images/uploads/1000458556.jpg)
 
-\#HtweOoMyanmar #HtweOoThetPaing #MyanmarTraditionalPuppetry #IntangibleCulturalHeritage #MilanItaly
+#HtweOoMyanmar #HtweOoThetPaing #MyanmarTraditionalPuppetry #IntangibleCulturalHeritage #MilanItaly
 
 ---MYANMAR---
 
