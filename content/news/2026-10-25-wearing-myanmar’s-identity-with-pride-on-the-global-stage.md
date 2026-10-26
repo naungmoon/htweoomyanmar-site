@@ -38,6 +38,8 @@ With deep respect and affection,
 **Htwe ❤️ Oo (Myanmar)**\
 *(25-10-2026)*
 
+![](images/uploads/1000458156.jpg)
+
 - - -
 
 🌐 **Support Our Cultural Journey:**
