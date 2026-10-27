@@ -104,6 +104,4 @@ With deep respect, love, and immense gratitude,
 
 ![](images/uploads/1000459762.jpg)
 
-![]()
-
 ![](images/uploads/1000459767.jpg)
