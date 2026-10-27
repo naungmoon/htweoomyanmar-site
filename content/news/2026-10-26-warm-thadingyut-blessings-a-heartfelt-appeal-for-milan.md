@@ -55,9 +55,9 @@ With deep respect, love, and immense gratitude,
 
 > *The Thadingyut Festival marks the end of Buddhist Lent in Myanmar. Beyond the glowing lanterns and candles, its most sacred tradition is **Kadaw (ကန်တော့)**—the act of paying homage to parents, teachers, and elders. Young generations offer gifts or tokens of respect (Thadingyut Mont-Foe) while seeking forgiveness for any unintended wrongdoings. In return, elders bestow blessings of health, longevity, and peace. Master Khin Maung Htwe reflects this beautiful ancient custom of reconciliation, gratitude, and mutual blessing.*
 
-\---MYANMAR---
+---MYANMAR---
 
-\#ဝါကျွတ်ဂါရဝ
+#ဝါကျွတ်ဂါရဝ
 
 သီတင်းကျွတ်မုန့်ဖိုးပေးတယ်၊ သီတင်းကျွတ်ကန်တော့တယ်ဆိုသော ခေါင်းစဉ်တပ်၍ K Pay/AYA Pay များနဲ့ ဝန်းရံပံ့ပိုးပေးကြသူများကို ကျေးဇူးတင်ရှိပါတယ်။
 
@@ -104,6 +104,6 @@ With deep respect, love, and immense gratitude,
 
 ![](images/uploads/1000459762.jpg)
 
-![](images/uploads/1000459763.jpg)
+![]()
 
 ![](images/uploads/1000459767.jpg)
