@@ -15,16 +15,16 @@ In accordance with our ancient customs, I also bow with my body, speech, and min
 
 If I have ever unintentionally offended, misunderstood, or been disrespectful to anyone, I humbly ask for your forgiveness. Likewise, to those who may have harbored misunderstandings toward me, I hold no resentment in my heart. Let us lengthen the bonds of love and shorten all malice—I carry no lingering grudges into samsara.
 
----
+- - -
 
 ### 🌐 A Simple Guide for GoFundMe Contributions
 
-Many have mentioned that they find **#GoFundMe** unfamiliar or complex. Please allow me to reassure you that it is very straightforward and fully secure:
+Many have mentioned that they find **\#GoFundMe** unfamiliar or complex. Please allow me to reassure you that it is very straightforward and fully secure:
 
 1. If you hold a valid **VISA or Master Card**, simply enter your card details as you would for any standard online purchase and click **Donate Now**.
 2. **Platform Tip:** GoFundMe does not deduct mandatory platform fees from organizers. The Tip slider is completely optional and can be easily adjusted to **0% (Zero)**.
 
----
+- - -
 
 ### 💧 Every Small Drop Fills the Ocean
 
@@ -38,25 +38,26 @@ You do not need to donate $100 or $200! Just as small raindrops gather to fill a
 
 If financial support is not feasible during these challenging times, we completely understand. You can still play a vital role by **sharing our campaign link** so others who wish to support can see it:
 
-👉 **Support Page:** [https://support.htweoomyanmar.com](https://support.htweoomyanmar.com)  
-👉 **Direct GoFundMe Link:** [https://gofund.me/65efeac41](https://gofund.me/65efeac41)
+👉 **Support Page:** <https://support.htweoomyanmar.com>\
+👉 **Direct GoFundMe Link:** <https://gofund.me/65efeac41>
 
 With deep respect, love, and immense gratitude,
 
-**Htwe ❤️ Oo (Myanmar)**  
+**Htwe ❤️ Oo (Myanmar)**\
 *(26 October 2026)*
 
-> ⏳ **7 Days to Go until the Award Ceremony!**  
+> ⏳ **7 Days to Go until the Award Ceremony!**\
 > *XVII Edition of the International Prize "Il Teatro Nudo" di Teresa Pomodoro by Spazio Teatro No’hma in Milan, Italy! (Award Date: Nov 5, 2026)*
 
----
+- - -
 
 ### 📜 Cultural Note: The Spirit of Thadingyut Respects (ဝါကျွတ်ဂါရဝ)
+
 > *The Thadingyut Festival marks the end of Buddhist Lent in Myanmar. Beyond the glowing lanterns and candles, its most sacred tradition is **Kadaw (ကန်တော့)**—the act of paying homage to parents, teachers, and elders. Young generations offer gifts or tokens of respect (Thadingyut Mont-Foe) while seeking forgiveness for any unintended wrongdoings. In return, elders bestow blessings of health, longevity, and peace. Master Khin Maung Htwe reflects this beautiful ancient custom of reconciliation, gratitude, and mutual blessing.*
 
----MYANMAR---
+\---MYANMAR---
 
-#ဝါကျွတ်ဂါရဝ
+\#ဝါကျွတ်ဂါရဝ
 
 သီတင်းကျွတ်မုန့်ဖိုးပေးတယ်၊ သီတင်းကျွတ်ကန်တော့တယ်ဆိုသော ခေါင်းစဉ်တပ်၍ K Pay/AYA Pay များနဲ့ ဝန်းရံပံ့ပိုးပေးကြသူများကို ကျေးဇူးတင်ရှိပါတယ်။
 
@@ -80,8 +81,8 @@ With deep respect, love, and immense gratitude,
 
 မိသားတစု၊ ရုပ်သေးတဖွဲ့ကို ပံ့ပိုးတယ်လို့ သဘောမထားဘဲ မြန်မာဆိုတာ ကမ္ဘာမှာ ပြနိုင်ဖို့ ကြိုးစားခဲ့သူတွေ၊ ရိုးရာယဉ်ကျေးမှု ဖေါ်ထုတ်ထိန်းသိမ်းနေသူတွေကို အားပေးတယ်လို့ သတ်မှတ်ပေးပါခင်ဗျား...
 
-👉 [https://support.htweoomyanmar.com](https://support.htweoomyanmar.com)  
-👉 [https://gofund.me/65efeac41](https://gofund.me/65efeac41)
+👉 <https://support.htweoomyanmar.com>\
+👉 <https://gofund.me/65efeac41>
 
 ✅ ဘယ် Link ကိုနှိပ်လိုက်ရင် ဘယ်လိုတွေ့ရမယ်၊ ဘာလုပ်ရမယ်ဆိုတာ ပုံလေးတွေနဲ့ တဆင့်ချင်း ရှင်းပြပေးထားပါတယ်နော်
 
@@ -91,8 +92,18 @@ With deep respect, love, and immense gratitude,
 
 လေးစားချစ်ခင်ကျေးဇူးတင်စွာဖြင့်
 
-**ထွေး❤️ဦး (မြန်မာ)**  
+**ထွေး❤️ဦး (မြန်မာ)**\
 *(၂၆-၁ဝ-၂ဝ၂၆)*
 
-⏳ **7 days to go to the Award Ceremony!**  
+⏳ **7 days to go to the Award Ceremony!**\
 *XVII Edition of the International Prize "Il Teatro Nudo" di Teresa Pomodoro by Spazio Teatro No’hma in Milan, Italy! (5-11-2026)*
+
+![](images/uploads/1000459751.jpg)
+
+![](images/uploads/1000459759.jpg)
+
+![](images/uploads/1000459762.jpg)
+
+![](images/uploads/1000459763.jpg)
+
+![](images/uploads/1000459767.jpg)
