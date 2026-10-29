@@ -1628,7 +1628,7 @@
 					fallbackCopyTextToClipboard(shareText);
 				}
 				alert("Post summary & link copied! Opening Messenger... Please PASTE in chat.");
-				window.open(`fb-messenger://share/?link=${encodeURIComponent(directPostUrl)}`, '_blank');
+				window.open('fb-messenger://', '_blank');
 			} else if (platform === 'whatsapp') {
 				window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
 			} else if (platform === 'telegram') {
