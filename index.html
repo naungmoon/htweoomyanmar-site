@@ -1007,9 +1007,44 @@
 	        </div>
 	        <div id="modalBody" class="leading-relaxed"></div>
 	      </div>
-	      <div class="modal-footer border-secondary">
-	        <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">Close</button>
+	 
+	 	      <div class="modal-footer border-secondary flex-column align-items-stretch">
+	        <!-- Dynamic Share Bar Container -->
+	        <div class="share-bar-container my-2 w-100 p-2 text-center" style="border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; background: rgba(0,0,0,0.3);">
+	          <div class="share-bar-title mb-2 text-warning fw-bold small" style="font-size: 0.78rem;">
+	            <i class="fa-solid fa-share-nodes me-1"></i> SHARE THIS POST
+	          </div>
+	          <div class="share-icons-flex d-flex justify-content-center flex-wrap gap-2">
+	            <button class="btn btn-sm btn-outline-light rounded-circle" onclick="shareCmsPost('facebook')" title="Share on Facebook" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-brands fa-facebook-f"></i>
+	            </button>
+	            <button class="btn btn-sm btn-outline-info rounded-circle" onclick="shareCmsPost('messenger')" title="Share on Messenger" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-brands fa-facebook-messenger"></i>
+	            </button>
+	            <button class="btn btn-sm btn-outline-success rounded-circle" onclick="shareCmsPost('whatsapp')" title="Share on WhatsApp" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-brands fa-whatsapp"></i>
+	            </button>
+	            <button class="btn btn-sm btn-outline-primary rounded-circle" onclick="shareCmsPost('telegram')" title="Share on Telegram" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-brands fa-telegram"></i>
+	            </button>
+	            <button class="btn btn-sm btn-outline-success rounded-circle" onclick="shareCmsPost('line')" title="Share on LINE" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-brands fa-line"></i>
+	            </button>
+	            <button class="btn btn-sm btn-outline-danger rounded-circle" onclick="shareCmsPost('email')" title="Share via Email" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-solid fa-envelope"></i>
+	            </button>
+	            <button class="btn btn-sm btn-outline-warning rounded-circle" onclick="shareCmsPost('copy')" title="Copy Post Link" style="width:36px; height:36px; padding:0;">
+	              <i class="fa-solid fa-link"></i>
+	            </button>
+	          </div>
+	        </div>
+
+	        <div class="d-flex justify-content-end w-100 mt-1">
+	          <button type="button" class="btn btn-sm btn-outline-warning" data-bs-dismiss="modal">Close</button>
+	        </div>
 	      </div>
+
+	 
 	    </div>
 	  </div>
 	</div>
@@ -1204,7 +1239,7 @@
 				stat_heritage: "နှစ်ပေါင်းများစွာ လက်ရာ",
 				stat_shows: "ပွဲပေါင်း ၁၀၀ ကျော်",
 				stat_recognition: "ကမ္ဘာ့အသိအမှတ်ပြု",
-				hero_btn: "ထွေးဦးမြန်မာ အကြောင်း ဖတ်ရန်",
+				hero_btn: "​ထွေးဦးမြန်မာ အကြောင်း ဖတ်ရန်",
 				about_title: "ထွေးဦးမြန်မာ အကြောင်း",
 				about_subtitle: "မြန်မာ့ဒြပ်မဲ့ယဉ်ကျေးမှုအမွေအနှစ်ကို ထိန်းသိမ်းစောင့်ရှောက်ခြင်း",
 				about_heading: "လက်ဖြင့်တင်မကဘဲ နှလုံးသားဖြင့် ကြိုးဆွဲကပြသူများ",
@@ -1526,7 +1561,7 @@
 			}
 		}
 
-		function openNewsModal(index) {
+				function openNewsModal(index) {
 			const post = newsPostsData[index];
 			if (!post) return;
 
@@ -1539,18 +1574,82 @@
 			document.getElementById('modalBody').innerHTML = marked.parse(fullBody);
 
 			const imgContainer = document.getElementById('modalImageContainer');
-			const modalImg = document.getElementById('modalImage');
-
 			if (post.thumbnail) {
-				modalImg.src = post.thumbnail;
-				imgContainer.classList.remove('d-none');
+				imgContainer.innerHTML = `<img src="${post.thumbnail}" class="img-fluid rounded mb-3" alt="${title}">`;
 			} else {
-				imgContainer.classList.add('d-none');
+				imgContainer.innerHTML = '';
 			}
 
-			const modal = new bootstrap.Modal(document.getElementById('cmsNewsModal'));
+			// Post Slug ကို သုံး၍ URL တွင် Direct Hash Link သတ်မှတ်ခြင်း
+			const postSlug = post.name ? post.name.replace('.md', '') : index;
+			window.location.hash = `post-${postSlug}`;
+
+			// Modal Data ထဲသို့ Current Post Index / Slug မှတ်ထားခြင်း
+			const modalEl = document.getElementById('cmsNewsModal');
+			modalEl.setAttribute('data-current-slug', postSlug);
+			modalEl.setAttribute('data-current-title', title);
+
+			const modal = new bootstrap.Modal(modalEl);
 			modal.show();
 		}
+
+
+					// CMS News Modal Direct Link Share Handler (With Post Excerpt)
+		function shareCmsPost(platform) {
+			const modalEl = document.getElementById('cmsNewsModal');
+			const postTitle = modalEl.getAttribute('data-current-title') || document.getElementById('modalTitle').innerText || "Htwe Oo Myanmar News";
+			const postSlug = modalEl.getAttribute('data-current-slug') || '';
+			
+			// Modal Body ထဲက စာသားအချို့ကို Excerpt (အမြည်း) အဖြစ် ယူခြင်း (အက္ခရာ ၁၅၀ အထိ)
+			const rawBodyText = document.getElementById('modalBody').innerText || '';
+			const postExcerpt = rawBodyText.trim().replace(/\s+/g, ' ').substring(0, 150) + '...';
+
+			// ပို့စ်တစ်ခုချင်းစီ၏ သီးသန့် Direct URL
+			const baseUrl = window.location.origin + window.location.pathname;
+			const directPostUrl = postSlug ? `${baseUrl}#post-${postSlug}` : baseUrl;
+			
+			// စာအမြည်း ပါဝင်သော Share Text
+			const shareText = `🎭 ${postTitle}\n\n"${postExcerpt}"\n\n👉 Read full story here:\n${directPostUrl}`;
+
+			if (platform === 'facebook') {
+				window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(directPostUrl)}`, '_blank');
+			} else if (platform === 'messenger') {
+				window.open(`fb-messenger://share/?link=${encodeURIComponent(directPostUrl)}`, '_blank');
+			} else if (platform === 'whatsapp') {
+				window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
+			} else if (platform === 'telegram') {
+				window.open(`https://t.me/share/url?url=${encodeURIComponent(directPostUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
+			} else if (platform === 'line') {
+				window.open(`https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`, '_blank');
+			} else if (platform === 'email') {
+				const subject = encodeURIComponent(`Htwe Oo Myanmar Update: ${postTitle}`);
+				const mailUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(shareText)}`;
+				window.location.href = mailUrl;
+			} else if (platform === 'copy') {
+				navigator.clipboard.writeText(shareText).then(() => {
+					alert("Post summary & link copied to clipboard!");
+				}).catch(() => {
+					alert("Copy failed. Please copy manually.");
+				});
+			}
+		}
+
+
+		// Direct Link ဖြင့် ဝင်လာပါက Modal အလိုအလျောက် ပွင့်စေခြင်း
+		window.addEventListener('load', function() {
+			if (window.location.hash && window.location.hash.startsWith('#post-')) {
+				const targetSlug = window.location.hash.replace('#post-', '');
+				setTimeout(() => {
+					if (typeof newsPostsData !== 'undefined') {
+						const foundIndex = newsPostsData.findIndex(p => p.name && p.name.replace('.md', '') === targetSlug);
+						if (foundIndex !== -1) {
+							openNewsModal(foundIndex);
+						}
+					}
+				}, 800);
+			}
+		});
+
 
 		let defaultGalleryContent = '';
 
