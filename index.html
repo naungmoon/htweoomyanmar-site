@@ -1561,7 +1561,7 @@
 			}
 		}
 
-								function openNewsModal(index) {
+										function openNewsModal(index) {
 			const post = newsPostsData[index];
 			if (!post) return;
 
@@ -1580,7 +1580,7 @@
 				imgContainer.innerHTML = '';
 			}
 
-			// Title မှ Clean Slug ပြုလုပ်ခြင်း (ဥပမာ: "A Pre-Trip Haircut" -> "a-pre-trip-haircut")
+			// Title မှ Clean Slug ပြုလုပ်ခြင်း
 			const titleEn = post.titleEn || post.titleMm || `post-${index}`;
 			const cleanSlug = titleEn.toLowerCase()
 				.replace(/[^a-z0-9\s-]/g, '')
@@ -1588,7 +1588,9 @@
 				.replace(/\s+/g, '-');
 
 			const postSlug = cleanSlug || `id-${index}`;
-			window.location.hash = `post-${postSlug}`;
+			
+			// လက်ရှိ ရွေးထားသော Language (mm သို့မဟုတ် en) ကို Hash ထဲ ပါအောင် ထည့်ခြင်း
+			window.location.hash = `post-${currentLang}-${postSlug}`;
 
 			// Modal Elements ထဲသို့ မှတ်ထားခြင်း
 			const modalEl = document.getElementById('cmsNewsModal');
@@ -1600,9 +1602,7 @@
 		}
 
 
-
-
-					// CMS News Modal Direct Link Share Handler (With Post Excerpt)
+						// CMS News Modal Direct Link Share Handler (With Post Excerpt & Language Hash)
 		function shareCmsPost(platform) {
 			const modalEl = document.getElementById('cmsNewsModal');
 			const postTitle = modalEl.getAttribute('data-current-title') || document.getElementById('modalTitle').innerText || "Htwe Oo Myanmar News";
@@ -1612,16 +1612,16 @@
 			const rawBodyText = document.getElementById('modalBody').innerText || '';
 			const postExcerpt = rawBodyText.trim().replace(/\s+/g, ' ').substring(0, 150) + '...';
 
-			// ပို့စ်တစ်ခုချင်းစီ၏ သီးသန့် Direct URL
+			// လက်ရှိ Language အလိုက် Direct URL ထုတ်ပေးခြင်း (#post-mm-... သို့မဟုတ် #post-en-...)
 			const baseUrl = window.location.origin + window.location.pathname;
-			const directPostUrl = postSlug ? `${baseUrl}#post-${postSlug}` : baseUrl;
+			const directPostUrl = postSlug ? `${baseUrl}#post-${currentLang}-${postSlug}` : baseUrl;
 			
 			// စာအမြည်း ပါဝင်သော Share Text
 			const shareText = `🎭 ${postTitle}\n\n"${postExcerpt}"\n\n👉 Read full story here:\n${directPostUrl}`;
 
 			if (platform === 'facebook') {
 				window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(directPostUrl)}`, '_blank');
-						} else if (platform === 'messenger') {
+			} else if (platform === 'messenger') {
 				if (navigator.clipboard && window.isSecureContext) {
 					navigator.clipboard.writeText(shareText);
 				} else {
@@ -1630,7 +1630,6 @@
 				alert("Post summary & link copied! Opening Messenger... Please PASTE in chat.");
 				window.open(`fb-messenger://share/?link=${encodeURIComponent(directPostUrl)}`, '_blank');
 			} else if (platform === 'whatsapp') {
-
 				window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
 			} else if (platform === 'telegram') {
 				window.open(`https://t.me/share/url?url=${encodeURIComponent(directPostUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
@@ -1641,19 +1640,55 @@
 				const mailUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(shareText)}`;
 				window.location.href = mailUrl;
 			} else if (platform === 'copy') {
-				navigator.clipboard.writeText(shareText).then(() => {
-					alert("Post summary & link copied to clipboard!");
-				}).catch(() => {
-					alert("Copy failed. Please copy manually.");
-				});
+				if (navigator.clipboard && window.isSecureContext) {
+					navigator.clipboard.writeText(shareText).then(() => {
+						alert("Direct Post Link copied to clipboard!");
+					}).catch(() => {
+						fallbackCopyTextToClipboard(shareText);
+					});
+				} else {
+					fallbackCopyTextToClipboard(shareText);
+				}
 			}
 		}
 
+		// Helper function for Clipboard Copy Fallback (Local / Non-HTTPS Environments)
+		function fallbackCopyTextToClipboard(text) {
+			const textArea = document.createElement("textarea");
+			textArea.value = text;
+			textArea.style.position = "fixed";
+			textArea.style.left = "-9999px";
+			document.body.appendChild(textArea);
+			textArea.focus();
+			textArea.select();
+			try {
+				const successful = document.execCommand('copy');
+				if (successful) {
+					alert("Direct Post Link copied to clipboard!");
+				} else {
+					alert("Copy failed. Please copy manually.");
+				}
+			} catch (err) {
+				alert("Copy failed. Please copy manually.");
+			}
+			document.body.removeChild(textArea);
+		}
 
-			// Direct Link ဖြင့် ဝင်လာပါက Post Modal ကို တိုက်ရိုက် ပွင့်စေခြင်း
+		// Direct Link ဖြင့် ဝင်လာပါက Language အလိုက် Post Modal ကို တိုက်ရိုက် ပွင့်စေခြင်း
 		function checkAndOpenHashPost() {
 			if (window.location.hash && window.location.hash.startsWith('#post-')) {
-				const targetSlug = window.location.hash.replace('#post-', '');
+				const hashParts = window.location.hash.replace('#post-', '').split('-');
+				
+				let targetLang = 'en';
+				let targetSlug = '';
+
+				if (hashParts[0] === 'mm' || hashParts[0] === 'en') {
+					targetLang = hashParts[0];
+					targetSlug = hashParts.slice(1).join('-');
+				} else {
+					targetSlug = hashParts.join('-');
+				}
+
 				if (typeof newsPostsData !== 'undefined' && newsPostsData.length > 0) {
 					const foundIndex = newsPostsData.findIndex((p, idx) => {
 						const titleEn = p.titleEn || p.titleMm || `post-${idx}`;
@@ -1663,7 +1698,13 @@
 							.replace(/\s+/g, '-');
 						return slug === targetSlug;
 					});
+
 					if (foundIndex !== -1) {
+						if (typeof switchLanguage === 'function') {
+							switchLanguage(targetLang);
+						} else {
+							currentLang = targetLang;
+						}
 						openNewsModal(foundIndex);
 					}
 				} else {
@@ -1675,6 +1716,8 @@
 		window.addEventListener('load', function() {
 			setTimeout(checkAndOpenHashPost, 800);
 		});
+
+
 
 
 
