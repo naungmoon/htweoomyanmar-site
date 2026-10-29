@@ -1561,7 +1561,7 @@
 			}
 		}
 
-						function openNewsModal(index) {
+								function openNewsModal(index) {
 			const post = newsPostsData[index];
 			if (!post) return;
 
@@ -1580,10 +1580,14 @@
 				imgContainer.innerHTML = '';
 			}
 
-			// Post Slug ကို post.file.name သို့မဟုတ် post.name မှ တိကျစွာ ယူခြင်း
-			const fileName = post.file ? post.file.name : (post.name || '');
-			const postSlug = fileName ? fileName.replace('.md', '') : `id-${index}`;
-			
+			// Title မှ Clean Slug ပြုလုပ်ခြင်း (ဥပမာ: "A Pre-Trip Haircut" -> "a-pre-trip-haircut")
+			const titleEn = post.titleEn || post.titleMm || `post-${index}`;
+			const cleanSlug = titleEn.toLowerCase()
+				.replace(/[^a-z0-9\s-]/g, '')
+				.trim()
+				.replace(/\s+/g, '-');
+
+			const postSlug = cleanSlug || `id-${index}`;
 			window.location.hash = `post-${postSlug}`;
 
 			// Modal Elements ထဲသို့ မှတ်ထားခြင်း
@@ -1594,6 +1598,7 @@
 			const modal = new bootstrap.Modal(modalEl);
 			modal.show();
 		}
+
 
 
 
@@ -1645,21 +1650,23 @@
 		}
 
 
-		// Direct Link ဖြင့် ဝင်လာပါက Post Modal ကို တိုက်ရိုက် ပွင့်စေခြင်း
+			// Direct Link ဖြင့် ဝင်လာပါက Post Modal ကို တိုက်ရိုက် ပွင့်စေခြင်း
 		function checkAndOpenHashPost() {
 			if (window.location.hash && window.location.hash.startsWith('#post-')) {
 				const targetSlug = window.location.hash.replace('#post-', '');
 				if (typeof newsPostsData !== 'undefined' && newsPostsData.length > 0) {
 					const foundIndex = newsPostsData.findIndex((p, idx) => {
-						const fileName = p.file ? p.file.name : (p.name || '');
-						const slug = fileName ? fileName.replace('.md', '') : `id-${idx}`;
+						const titleEn = p.titleEn || p.titleMm || `post-${idx}`;
+						const slug = titleEn.toLowerCase()
+							.replace(/[^a-z0-9\s-]/g, '')
+							.trim()
+							.replace(/\s+/g, '-');
 						return slug === targetSlug;
 					});
 					if (foundIndex !== -1) {
 						openNewsModal(foundIndex);
 					}
 				} else {
-					// News Data ဆွဲယူမပြီးသေးပါက 500ms ခြား၍ ပြန်စစ်ခြင်း
 					setTimeout(checkAndOpenHashPost, 500);
 				}
 			}
@@ -1668,6 +1675,7 @@
 		window.addEventListener('load', function() {
 			setTimeout(checkAndOpenHashPost, 800);
 		});
+
 
 
 		let defaultGalleryContent = '';
