@@ -1613,9 +1613,16 @@
 
 			if (platform === 'facebook') {
 				window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(directPostUrl)}`, '_blank');
-			} else if (platform === 'messenger') {
+						} else if (platform === 'messenger') {
+				if (navigator.clipboard && window.isSecureContext) {
+					navigator.clipboard.writeText(shareText);
+				} else {
+					fallbackCopyTextToClipboard(shareText);
+				}
+				alert("Post summary & link copied! Opening Messenger... Please PASTE in chat.");
 				window.open(`fb-messenger://share/?link=${encodeURIComponent(directPostUrl)}`, '_blank');
 			} else if (platform === 'whatsapp') {
+
 				window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
 			} else if (platform === 'telegram') {
 				window.open(`https://t.me/share/url?url=${encodeURIComponent(directPostUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
