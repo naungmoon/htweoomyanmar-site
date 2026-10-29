@@ -1561,7 +1561,7 @@
 			}
 		}
 
-				function openNewsModal(index) {
+						function openNewsModal(index) {
 			const post = newsPostsData[index];
 			if (!post) return;
 
@@ -1580,11 +1580,13 @@
 				imgContainer.innerHTML = '';
 			}
 
-			// Post Slug ကို သုံး၍ URL တွင် Direct Hash Link သတ်မှတ်ခြင်း
-			const postSlug = post.name ? post.name.replace('.md', '') : index;
+			// Post Slug ကို post.file.name သို့မဟုတ် post.name မှ တိကျစွာ ယူခြင်း
+			const fileName = post.file ? post.file.name : (post.name || '');
+			const postSlug = fileName ? fileName.replace('.md', '') : `id-${index}`;
+			
 			window.location.hash = `post-${postSlug}`;
 
-			// Modal Data ထဲသို့ Current Post Index / Slug မှတ်ထားခြင်း
+			// Modal Elements ထဲသို့ မှတ်ထားခြင်း
 			const modalEl = document.getElementById('cmsNewsModal');
 			modalEl.setAttribute('data-current-slug', postSlug);
 			modalEl.setAttribute('data-current-title', title);
@@ -1592,6 +1594,7 @@
 			const modal = new bootstrap.Modal(modalEl);
 			modal.show();
 		}
+
 
 
 					// CMS News Modal Direct Link Share Handler (With Post Excerpt)
@@ -1642,19 +1645,28 @@
 		}
 
 
-		// Direct Link ဖြင့် ဝင်လာပါက Modal အလိုအလျောက် ပွင့်စေခြင်း
-		window.addEventListener('load', function() {
+		// Direct Link ဖြင့် ဝင်လာပါက Post Modal ကို တိုက်ရိုက် ပွင့်စေခြင်း
+		function checkAndOpenHashPost() {
 			if (window.location.hash && window.location.hash.startsWith('#post-')) {
 				const targetSlug = window.location.hash.replace('#post-', '');
-				setTimeout(() => {
-					if (typeof newsPostsData !== 'undefined') {
-						const foundIndex = newsPostsData.findIndex(p => p.name && p.name.replace('.md', '') === targetSlug);
-						if (foundIndex !== -1) {
-							openNewsModal(foundIndex);
-						}
+				if (typeof newsPostsData !== 'undefined' && newsPostsData.length > 0) {
+					const foundIndex = newsPostsData.findIndex((p, idx) => {
+						const fileName = p.file ? p.file.name : (p.name || '');
+						const slug = fileName ? fileName.replace('.md', '') : `id-${idx}`;
+						return slug === targetSlug;
+					});
+					if (foundIndex !== -1) {
+						openNewsModal(foundIndex);
 					}
-				}, 800);
+				} else {
+					// News Data ဆွဲယူမပြီးသေးပါက 500ms ခြား၍ ပြန်စစ်ခြင်း
+					setTimeout(checkAndOpenHashPost, 500);
+				}
 			}
+		}
+
+		window.addEventListener('load', function() {
+			setTimeout(checkAndOpenHashPost, 800);
 		});
 
 
