@@ -7,8 +7,6 @@ category: နိုင်ငံတကာခရီးစဉ်
 summary: Can’t we fly straight from Phnom Penh to Milan? Of course we can! But
   here is why stopping over in Bangkok saved us half the cost...
 ---
-### 🇹🇭 A Pit Stop in Thailand
-
 Can’t we fly straight from Phnom Penh to Milan?
 
 Of course we can! Last year, we flew Cathay Pacific via Hong Kong (Phnom Penh ➔ Hong Kong ➔ Milan). 
