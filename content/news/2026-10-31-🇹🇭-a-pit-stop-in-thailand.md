@@ -61,7 +61,7 @@ With deepest respect, love, and heartfelt gratitude to each and every one of you
 
 ထွေးနဲ့ဦး ဘယ်လေကြောင်းနဲ့ သွားကြမလဲ၊ နောက်ထပ် ဘယ်မှာ ခရီးတထောက် ထပ်နားကြမလဲ။ စိတ်ဝင်စားရင် စောင့်မျှော်အားပေးကြပါဦးလို့...
 
-https://.htweoomyanmar.com   
+https://htweoomyanmar.com   
 
 https://gofund.me/65efeac41 
 
