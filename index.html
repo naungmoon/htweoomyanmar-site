@@ -1857,21 +1857,18 @@
 	</script>
 
 <script>
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
+    // Touch Device (ဖုန်း/Tablet) ဟုတ်မဟုတ် စစ်ဆေးခြင်း
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    // Disable keyboard shortcuts for viewing source / inspect
-    document.addEventListener('keydown', function(e) {
-        if (
-            e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-            (e.ctrlKey && (e.key === 'U' || e.key === 'S'))
-        ) {
-            e.preventDefault();
-        }
-    });
+    // Desktop PC (Touch မဟုတ်သော စက်များ) တွင်သာ စာသား copy ယူခြင်း ပိတ်မည်
+    if (!isTouchDevice) {
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ('IJC'.includes(e.key))) || (e.ctrlKey && ('US'.includes(e.key)))) {
+                e.preventDefault();
+            }
+        });
+    }
 </script>
 
 </body>
