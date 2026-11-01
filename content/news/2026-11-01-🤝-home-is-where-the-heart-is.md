@@ -4,9 +4,9 @@ date: 2026-11-01T12:58:00.000+08:00
 thumbnail: images/uploads/1000462515.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
-summary: "\"As the Myanmar saying goes, 'The finest meal is one shared with
-  love, and true family is found in those we hold dear.' Thank you Than Than
-  Travel for two decades of family-like warmth...\""
+summary: As the Myanmar saying goes, 'The finest meal is one shared with love,
+  and true family is found in those we hold dear.' Thank you Than Than Travel
+  for two decades of family-like warmth...
 ---
 As the timeless Myanmar proverb goes: *"The finest meal is the one made with love, and true family is found in those we hold dear."* 
 
