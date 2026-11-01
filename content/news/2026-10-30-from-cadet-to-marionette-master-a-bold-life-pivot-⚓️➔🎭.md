@@ -16,7 +16,7 @@ So, I picked out a few photos of young Maung Yin Htwe and decided to share them 
 
 Old Htwe never quite made it to Captain, though. Fate had other plans; I didn't follow the director's script, and on my own terms, I retired in 2002  as an old-timer of a 2nd Officer. 🌊
 
-I may not have reached the very top of the maritime career ladder, but back during my year at the Institute of Marine Technology, I sure did climb all the way to the top of the ship's mast! 🧗‍♂️⚓️
+I may not have reached the very top of the maritime career ladder, but back during my year at the Institute of Marine Technology, *I sure did climb all the way to the top of* the ship's mast! 🧗‍♂️⚓️
 
 I remember shouting at the top of my lungs: *"May the nation's Socialist Systemic Change Revolution succeed!"* 
 
