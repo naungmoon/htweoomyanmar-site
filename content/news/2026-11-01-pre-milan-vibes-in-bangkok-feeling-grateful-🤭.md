@@ -4,11 +4,10 @@ date: 2026-11-01T17:14:00.000+08:00
 thumbnail: images/uploads/1000462535.jpg
 author: Htwe Oo Myanmar
 category: နိုင်ငံတကာခရီးစဉ်
-summary: A lighthearted and grateful note from Master Htwe before heading to
-  Milan. Special thanks to a generous friend in Bangkok for hospitality and
-  support!
+summary: A lighthearted and grateful note from Old Htwe before heading to Milan.
+  Special thanks to a generous friend in Bangkok for hospitality and support!
 ---
-# Show-Off Mode On, Uncle Htwe Style! 🤭
+# Show-Off Mode On, Old Htwe Style! 🤭
 
 Friend said hanging out with Khin Maung Htwe too often gets "puked on" ​by a certain famous someone! 🤮 *(That’s why I’d better keep the friend's name confidential... shh! 🤫)*
 
