@@ -4,6 +4,9 @@ date: 2026-11-01T23:09:00.000+08:00
 thumbnail: images/uploads/1000462591.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
+summary: Dressed up in fine Myanmar traditional attire, Old Htwe shares a
+  heartfelt thank-you to all supporters across the globe, family, and teachers
+  as the countdown to the Milan award ceremony reaches just 2 days.
 ---
 # Swapped the Gaung Baung (Burmese Turban) to White—So I Don't Look Like the Groom! 😃👔
 
