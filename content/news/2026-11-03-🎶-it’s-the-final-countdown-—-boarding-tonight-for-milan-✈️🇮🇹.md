@@ -35,7 +35,8 @@ With deep respect, love, and gratitude to every single one of you who cheered, s
 *(3-11-2026, Bangkok, Thailand 🇹🇭)*
 
 🎥 **Watch Htwe Oo Myanmar's Award-Winning Performance at Spazio Teatro No’hma (Milan, Italy) - 26.11.2025:**  
-👉 [Full Performance Video on YouTube]<iframe width="100%" height="315" src="https://www.youtube.com/embed/sw_vaZKihUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+👉 Full Performance Video on YouTube 📽
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/sw_vaZKihUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---MYANMAR---
 
@@ -83,6 +84,6 @@ Every donation, share, and warm encouragement brings Myanmar's marionette herita
 
 **#HtweOoMyanmar #MyanmarPuppetry #TeatroNohma #InternationalPrize #CulturalHeritage #Milan2026 #Fundraiser #GoFundMe**
 
-🎥 **ထွေးဦးမြန်မာ၏ မီလန် (Spazio Teatro No’hma) ဇာတ်ရုံကြီးတွင် ဖျော်ဖြေခဲ့သော တိုက်ရိုက်ရုပ်သေးပွဲစဉ် အပြည့်အစုံကို ကြည့်ရှုရန်:**  
-👉 [YouTube တွင် ဗီဒီယိုအပြည့်အစုံ ကြည့်ရှုရန် နှိပ်ပါ]
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/sw_vaZKihUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>)
+🎥 **ထွေးဦးမြန်မာ၏ မီလန် (Spazio Teatro No’hma) ဇာတ်ရုံကြီးတွင် ၂၀၂၅ ခုနှစ် နိုဝင်ဘာလ ၂၆ ရက်နေ့က ဖျော်ဖြေခဲ့သော တိုက်ရိုက်ရုပ်သေးပွဲစဉ် အပြည့်အစုံကို ကြည့်ရှုရန်:**  
+👉 YouTube တွင် ဗီဒီယိုအပြည့်အစုံ ကြည့်ရှုရန် 📽
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/sw_vaZKihUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
