@@ -38,6 +38,21 @@ With deep respect, love, and gratitude to every single one of you who cheered, s
 
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/sw_vaZKihUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+### 🎭 Performance Overview & Key Highlights
+
+This video features a traditional Myanmar Puppet Show (*Yoke thé*) performed by the **Htwe Oo Myanmar** ensemble as part of the prestigious **Premio Internazionale "Il Teatro Nudo" di Teresa Pomodoro** in Milan. The showcase highlights the intricate craftsmanship, storytelling, and cultural richness of this ancient art form.
+
+#### ✨ Key Highlights of the Performance:
+* 🪔 **[02:23] Ritual Opening:** A spiritual invocation and dance offering to the guardian spirits of the theatre to ensure a seamless, successful performance.
+* 🐎 **[13:11] Mythical Horse Dance:** The magical movement of the celestial horse (*Myin*) bringing the primordial world to life.
+* 🦅 **[16:47] Mythical Duel (Naga vs. Garuda):** A dramatic battle between the dragon (*Naga*) and the giant sun bird (*Garuda*), eternal rivals in Myanmar mythology.
+* 🐒 **[20:06] Monkey King (Hanuman):** An energetic, agile performance depicting the legendary monkey king from ancient epics.
+* 👹 **[22:17] Ogre Competition:** A playful battle of wits and strength between the noble Palace Ogre (*Baru*) and the wild Jungle Ogre.
+* 🪄 **[25:33] The Alchemist (Zawgyi):** A famous solo dance showcasing supernatural wizardry, alchemy, and dynamic aerial movements.
+* 🕊️ **[31:45] The Kinnara & Kinnari:** The tender, romantic legend of the half-human, half-bird celestial lovers separated by a stormy night.
+* 🤴 **[37:26] Prince & Princess Duet:** The classic courtly dance of the Royal Prince (*Mintha*) and Princess (*Minthami*) displaying formal royal attire and graceful dialogues.
+* 🪕 **[42:46] Comic Finale (U Shwe Yoe & Daw Moe):** A lively, joyous village comedy dance bringing warmth, laughter, and traditional folk culture to the stage.
+
 ---MYANMAR---
 
 #ဖိုင်နယ်ကောလ်ပါ ခင်ဗျ
@@ -87,3 +102,18 @@ Every donation, share, and warm encouragement brings Myanmar's marionette herita
 🎥 **ထွေးဦးမြန်မာ၏ မီလန် (Spazio Teatro No’hma) ဇာတ်ရုံကြီးတွင် ၂၀၂၅ ခုနှစ် နိုဝင်ဘာလ ၂၆ ရက်နေ့က ဖျော်ဖြေခဲ့သော တိုက်ရိုက်ရုပ်သေးပွဲစဉ် အပြည့်အစုံကို ကြည့်ရှုရန်:**  
 
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/sw_vaZKihUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+### 🎭 ဖျော်ဖြေပွဲ အကျဉ်းချုပ်နှင့် အဓိက အပိုင်းများ
+
+ဤဗီဒီယိုသည် အီတလီနိုင်ငံ၊ မီလန်မြို့ရှိ **Spazio Teatro No’hma** ဇာတ်ရုံကြီးတွင် **Premio Internazionale "Il Teatro Nudo"** ပြိုင်ပွဲဝင်အဖြစ် **ထွေးဦးမြန်မာ (Htwe Oo Myanmar)** မိသားစုမှ တင်ဆက်ခဲ့သည့် မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်သေး အနုပညာပွဲစဉ်ဖြစ်ပါသည်။ ရိုးရာရုပ်သေးစင်၏ နက်နဲသော အနုပညာလက်ရာ၊ ပုံပြင်ပြောပြဟန်နှင့် ယဉ်ကျေးမှု တန်ဖိုးများကို ပီပြင်စွာ ဖော်ထုတ်ပြသထားပါသည်။
+
+#### ✨ အဓိက ကြည့်ရှုရန် အပိုင်းများ:
+* 🪔 **[02:23] ပူဇော်ကန်တော့ပွဲ:** ဇာတ်သဘင်၏ အနှောင့်အယှက်ကင်းစင်ပြီး အောင်မြင်စွာ ဖျော်ဖြေနိုင်ရေးအတွက် မြေပိုင်၊ ဇာတ်ပိုင် မြင့်မြတ်သော နတ်မြတ်တို့အား သပ္ပါယ်စွာ ပူဇော်ကန်တော့သည့် အက။
+* 🐎 **[13:11] မြင်းအက:** ကမ္ဘာဦးအခါစက ရိုးရာယုံကြည်မှုဆိုင်ရာ ကောင်းကင် မြင်းပျံ၏ တက်ကြွဆန်းကြယ်သော လှုပ်ရှားမှုအက။
+* 🦅 **[16:47] နဂါးနှင့် ဂဠုန် စိန်ခေါ်ပွဲ:** မြန်မာ့ပုံပြင်ဆန်းများအတိုင်း ရှေးပကတိ ရန်ဘက်များဖြစ်ကြသော နဂါးနှင့် ဂဠုန်တို့၏ ရင်သပ်ရှုမောဖွယ် စိုက်ခင်းအက။
+* 🐒 **[20:06] မျိုးဆက်သစ် ဟာနုမာန် မောက်အက:** ရာမဇာတ်တော်လာ သက်ဝင်လှုပ်ရှားပြီး သွက်လက်လှပသော မျောက်ဘုရင် ဟာနုမာန်၏ အက။
+* 👹 **[22:17] ဘီလူးနှစ်ကောင် စိန်ခေါ်ပွဲ:** နန်းတွင်းဘီလူး (မလင်းယား) နှင့် တောဘီလူးတို့၏ ရွှင်မြူးဖွယ်ရာ ယှဉ်ပြိုင်ကပြပွဲ။
+* 🪄 **[25:33] ဇော်ဂျီအက:** ဝေဟင် ပျံသန်းခြင်း၊ ပြဒါးသေဆေး ကစားခြင်းတို့ဖြင့် ဆန်းကြယ်သော ဓာတ်လုံးဆရာ ဇော်ဂျီ၏ အလွန်ထင်ရှားသော သီးသန့်အက။
+* 🕊️ **[31:45] ကိန္နရာ ကိန္နရီ အက:** မိုးသက်မုန်တိုင်းကြောင့် တောင်ကြားစမ်းချောင်းတွင် တစ်ညတာ ခွဲခွာခဲ့ရသော ချစ်စနိုး ကိန္နရာ ကိန္နရီမောင်နှံတို့၏ မေတ္တာဖွဲ့ အက။
+* 🤴 **[37:26] မင်းသား မင်းသမီး စင်းလုံးချီအက:** ရိုးရာဝတ်စုံ ခန်းနားစွာဖြင့် မင်းသားနှင့် မင်းသမီးတို့၏ ယဉ်ကျေးသိမ်မွေ့သော စကားပြော၊ သီချင်းဆိုနှင့် နန်းတွင်းအက။
+* 🪕 **[42:46] ဦးရွှေရိုးနှင့် ဒေါ်မိုး (လူရွှင်တော်အက):** မြန်မာ့ကျေးလက် ရိုးရာယဉ်ကျေးမှု၏ ပျော်ရွှင်စရာ အငွေ့အသက်ကို ဆောင်ကြဉ်းပေးသည့် ပွဲသိမ်း ဦးရွှေရိုးနှင့် ဒေါ်မိုးတို့၏ ဟာသအက။
