@@ -2,7 +2,7 @@
 title: 🎶 "It’s the Final Countdown!" — Boarding Tonight for Milan ✈️🇮🇹
 date: 2026-11-03T13:27:00.000+08:00
 thumbnail: images/uploads/1000463306.jpg
-video_url: https://www.youtube.com/watch?v=sw_vaZKihUs
+video_url: ""
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
 summary: With 78% of the fundraiser goal achieved, Htwe Oo shares the final
@@ -33,6 +33,9 @@ With deep respect, love, and gratitude to every single one of you who cheered, s
 
 — Old Htwe (Khin Maung Htwe) 🧳🎭  
 *(3-11-2026, Bangkok, Thailand 🇹🇭)*
+
+🎥 **Watch Htwe Oo Myanmar's Award-Winning Performance at Spazio Teatro No’hma (Milan, Italy):**  
+👉 [Full Live Performance Video on YouTube](https://www.youtube.com/watch?v=sw_vaZKihUs)
 
 ---MYANMAR---
 
@@ -79,3 +82,6 @@ $1,395 (78%) ရရှိပါတယ်
 Every donation, share, and warm encouragement brings Myanmar's marionette heritage one step closer to Milan. Thank you so much from the bottom of our hearts for your generous support and love! 🙏✨
 
 **#HtweOoMyanmar #MyanmarPuppetry #TeatroNohma #InternationalPrize #CulturalHeritage #Milan2026 #Fundraiser #GoFundMe**
+
+🎥 **ထွေးဦးမြန်မာ၏ မီလန် (Spazio Teatro No’hma) ဇာတ်ရုံကြီးတွင် ဖျော်ဖြေခဲ့သော တိုက်ရိုက်ရုပ်သေးပွဲစဉ် အပြည့်အစုံကို ကြည့်ရှုရန်:**  
+👉 [YouTube တွင် ဗီဒီယိုအပြည့်အစုံ ကြည့်ရှုရန် နှိပ်ပါ](https://www.youtube.com/watch?v=sw_vaZKihUs)
