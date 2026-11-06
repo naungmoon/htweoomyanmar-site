@@ -10,7 +10,7 @@ summary: >
   of Premio Internazionale 'Il Teatro Nudo' di Teresa Pomodoro in Milan, Italy!
   Read the full ceremony recap, speech transcripts, and watch the video.
 ---
-#🏆🇲🇲✨
+# 🏆🇲🇲✨
 
 We are beyond honored and proud to announce that **Htwe Oo Myanmar** has officially won the **Audience Jury Award (Best Show)** at the **XVII Edition of the International Prize "Il Teatro Nudo" di Teresa Pomodoro** in Milan, Italy! 🇮🇹🎭
 
