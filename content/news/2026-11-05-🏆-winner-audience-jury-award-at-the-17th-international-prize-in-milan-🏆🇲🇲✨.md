@@ -2,7 +2,7 @@
 title: 🏆 WINNER! Audience Jury Award at the 17th International Prize in Milan!
   🏆🇲🇲✨
 date: 2026-11-05T21:00:00.000+08:00
-thumbnail: images/uploads/1000465220.jpg
+thumbnail: images/uploads/1000465232.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
 summary: >
