@@ -10,8 +10,7 @@ summary: >
   of Premio Internazionale 'Il Teatro Nudo' di Teresa Pomodoro in Milan, Italy!
   Read the full ceremony recap, speech transcripts, and watch the video.
 ---
-# 🏆 WINNER! Audience Jury Award at the 17th International Prize in Milan! 🏆🇲🇲✨
-
+#🏆🇲🇲✨
 
 We are beyond honored and proud to announce that **Htwe Oo Myanmar** has officially won the **Audience Jury Award (Best Show)** at the **XVII Edition of the International Prize "Il Teatro Nudo" di Teresa Pomodoro** in Milan, Italy! 🇮🇹🎭
 
@@ -62,7 +61,7 @@ This victory belongs to everyone who supported, cheered, donated, and believed i
 ---
 
 
-#### 🎙️ 4. Master Khin Maung Htwe's Acceptance Speech on Stage [01:16:08]
+#### 🎙️ 4. Master (U) Khin Maung Htwe's Acceptance Speech on Stage [01:16:08]
 > *"Buonasera a tutti! Thank you very much to the greatest audience in the world! Thank you very much, Presidente Pomodoro and Spazio Teatro No'hma! Thank you very much!"*
 
 
