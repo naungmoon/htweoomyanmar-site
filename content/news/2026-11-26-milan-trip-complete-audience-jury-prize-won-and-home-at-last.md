@@ -34,7 +34,7 @@ The prize itself is a bronze sculpture, **"Lo Schermo Distratto" by Carlo Ramous
 
 ### 🙏 Thank You
 
-Thank you to our **16 donors** who raised **$1,395 of our $1,800 goal (78%)** — your support carried our puppets to the world stage. This victory belongs to everyone who supported, cheered, donated, and believed in preserving Myanmar's intangible cultural heritage.
+Thank you to our **16 donors** who raised **$1,395 of our $1,800 goal (78%)** — your support carried our puppets to the world stage. The GoFundMe campaign is now closed to new donations. This victory belongs to everyone who supported, cheered, donated, and believed in preserving Myanmar's intangible cultural heritage.
 
 ### 🎥 Watch the Award Ceremony
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/4BFrKyUUHkk?start=873" title="Premio Internazionale Il Teatro Nudo Award Ceremony" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -71,7 +71,7 @@ Thank you to our **16 donors** who raised **$1,395 of our $1,800 goal (78%)** �
 
 ### 🙏 ကျေးဇူးတင်ပါသည်
 
-အလှူရှင် **၁၆ ဦး** မှ **$1,395 (ရည်မှန်းချက် $1,800 ၏ 78%)** လှူဒါန်းပေးခဲ့တဲ့အတွက် ကျေးဇူးအများကြီးတင်ပါတယ်။ ဒီအောင်မြင်မှုဟာ မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်သေး အနုပညာကို မြတ်နိုးတန်ဖိုးထားပြီး ကမ္ဘာ့စင်မြင့်ဆီ ရောက်ရှိအောင် ဝန်းရံ၊ အားပေး၊ ကူညီပံ့ပိုးပေးခဲ့ကြသည့် တဦးတယောက်ချင်းစီတိုင်း၏ အောင်မြင်မှုပဲ ဖြစ်ပါတယ်။
+အလှူရှင် **၁၆ ဦး** မှ **$1,395 (ရည်မှန်းချက် $1,800 ၏ 78%)** လှူဒါန်းပေးခဲ့တဲ့အတွက် ကျေးဇူးအများကြီးတင်ပါတယ်။ GoFundMe လှူဒါန်းမှုကို ပိတ်လိုက်ပါပြီ။ ဒီအောင်မြင်မှုဟာ မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်သေး အနုပညာကို မြတ်နိုးတန်ဖိုးထားပြီး ကမ္ဘာ့စင်မြင့်ဆီ ရောက်ရှိအောင် ဝန်းရံ၊ အားပေး၊ ကူညီပံ့ပိုးပေးခဲ့ကြသည့် တဦးတယောက်ချင်းစီတိုင်း၏ အောင်မြင်မှုပဲ ဖြစ်ပါတယ်။
 
 ### 🎥 မီလန်မြို့ ဆုပေးပွဲ အခမ်းအနား ရုပ်သံမှတ်တမ်း ကြည့်ရှုရန်
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/4BFrKyUUHkk?start=873" title="Premio Internazionale Il Teatro Nudo Award Ceremony" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
