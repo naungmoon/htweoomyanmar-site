@@ -18,6 +18,17 @@
 
 	<title>Htwe Oo Myanmar | Traditional Puppetry Art</title>
 
+	<!-- Open Graph / link share preview -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://htweoomyanmar.com/">
+	<meta property="og:title" content="Htwe Oo Myanmar — Myanmar Traditional String Puppetry (Yoke Thé)">
+	<meta property="og:description" content="Winner of the Audience Jury Prize at the XVII International Prize “Il Teatro Nudo” in Milan, 2026. Daily puppet show 3:00 PM in Phnom Penh.">
+	<meta property="og:image" content="https://htweoomyanmar.com/images/htweoo-og-cover.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Htwe Oo Myanmar marionettes on stage — Audience Jury Prize, Milan 2026">
+	<meta name="twitter:card" content="summary_large_image">
+
 	<style>
 		:root {
 			--primary-gold: #FFD700;
@@ -411,6 +422,45 @@
 			opacity: 1;
 		}
 
+		/* About teaser + raised story button */
+		#about-cms-body.about-teaser {
+			max-height: 132px;
+			overflow: hidden;
+			-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 98%);
+			mask-image: linear-gradient(180deg, #000 55%, transparent 98%);
+		}
+		#about-cms-body.about-teaser.expanded {
+			max-height: none;
+			-webkit-mask-image: none;
+			mask-image: none;
+		}
+		.btn-story {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			margin-top: 16px;
+			padding: 13px 26px;
+			border: none;
+			border-radius: 999px;
+			font-weight: 700;
+			font-size: .95rem;
+			color: #1a1405;
+			background: linear-gradient(135deg, #f2d98e, #d9a93f);
+			box-shadow: 0 5px 0 #a67c1a, 0 12px 26px rgba(217, 169, 63, .35);
+			cursor: pointer;
+			transition: transform .12s ease, box-shadow .12s ease;
+		}
+		.btn-story:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 7px 0 #a67c1a, 0 16px 30px rgba(217, 169, 63, .4);
+		}
+		.btn-story:active {
+			transform: translateY(3px);
+			box-shadow: 0 2px 0 #a67c1a, 0 6px 14px rgba(217, 169, 63, .3);
+		}
+		.btn-story .fa-chevron-down { transition: transform .25s ease; }
+		.btn-story.expanded .fa-chevron-down { transform: rotate(180deg); }
+
 		.stat-box {
 			background: var(--card-bg);
 			border: 1px solid rgba(255, 215, 0, 0.3);
@@ -729,7 +779,7 @@
 							<i class="fa-solid fa-heart-pulse text-danger me-2"></i><span data-i18n="about_heading">Pulling Strings by Emotion, Not Just by Hand</span>
 						</h3>
 						
-						<div id="about-cms-body">
+						<div id="about-cms-body" class="about-teaser">
 							<p class="opacity-75 small" data-i18n="about_p1">
 								<strong>HTWE OO MYANMAR</strong> is a premier cultural organization dedicated to preserving, promoting, and reviving the centuries-old art of <strong>Myanmar Traditional String Puppetry (Yoke Thé)</strong>.
 							</p>
@@ -737,6 +787,10 @@
 								Founded by master puppeteer & Art Director <strong>Khin Maung Htwe</strong>, our troupe brings to life ancient mythology, royal court dances, and folklore using intricate marionettes handcrafted with traditional craftsmanship.
 							</p>
 						</div>
+						<button id="about-more-btn" class="btn-story" onclick="toggleAboutFull()" type="button">
+							<span data-i18n="about_more">Read Our Full Story</span>
+							<i class="fa-solid fa-chevron-down"></i>
+						</button>
 					</div>
 					<div class="col-lg-6">
 						<div class="ratio ratio-16x9 rounded overflow-hidden border border-warning" id="about-video-container">
@@ -1314,7 +1368,9 @@
 				share_title: "SHARE HTWE OO MYANMAR",
 				contact_title: "Contact Information",
 				directions_btn: "Get Directions on Google Maps",
-				read_more: "Read Full Post"
+				read_more: "Read Full Post",
+				about_more: "Read Our Full Story",
+				about_less: "Show Less"
 			},
 			mm: {
 				nav_about: "အကြောင်းအရာ",
@@ -1358,7 +1414,9 @@
 				share_title: "မျှဝေရန်",
 				contact_title: "ဆက်သွယ်ရန် အချက်အလက်များ",
 				directions_btn: "Google Maps တွင် လမ်းညွှန်ကြည့်ရန်",
-				read_more: "အပြည့်အစုံဖတ်ရန်"
+				read_more: "အပြည့်အစုံဖတ်ရန်",
+				about_more: "ဇာတ်လမ်းအပြည့်အစုံ ဖတ်ရန်",
+				about_less: "အကျဉ်းပဲ ပြရန်"
 			}
 		};
 
@@ -1434,6 +1492,31 @@
 
 			const selectedContent = (currentLang === 'mm' && mmText) ? mmText : enText;
 			document.getElementById('about-cms-body').innerHTML = marked.parse(selectedContent);
+
+			const aboutBody = document.getElementById('about-cms-body');
+			const aboutBtn = document.getElementById('about-more-btn');
+			if (aboutBody) {
+				aboutBody.classList.add('about-teaser');
+				aboutBody.classList.remove('expanded');
+			}
+			if (aboutBtn) {
+				aboutBtn.classList.remove('expanded');
+				const label = aboutBtn.querySelector('[data-i18n]');
+				if (label) label.textContent = (translations[currentLang] && translations[currentLang].about_more) || 'Read Our Full Story';
+			}
+		}
+
+		function toggleAboutFull() {
+			const body = document.getElementById('about-cms-body');
+			const btn = document.getElementById('about-more-btn');
+			if (!body || !btn) return;
+			const expanded = body.classList.toggle('expanded');
+			btn.classList.toggle('expanded', expanded);
+			const label = btn.querySelector('[data-i18n]');
+			if (label) {
+				const key = expanded ? 'about_less' : 'about_more';
+				label.textContent = (translations[currentLang] && translations[currentLang][key]) || (expanded ? 'Show Less' : 'Read Our Full Story');
+			}
 		}
 
 		async function loadDecapCMSSchedule() {
