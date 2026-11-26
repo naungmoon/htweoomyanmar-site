@@ -2,7 +2,7 @@
 title: 🎭🇲🇲 Htwe Oo Myanmar — Live in Phu Quoc! International Puppet Festival
   2026 🇻🇳✨
 date: 2026-11-26T14:45:00.000+08:00
-thumbnail: images/uploads/1000489452.jpg
+thumbnail: images/uploads/1000489456.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
 summary: >
