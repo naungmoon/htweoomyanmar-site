@@ -7,5 +7,5 @@ showtime_val: 3:00 PM (Local Time)
 venue_label: VENUE LOCATION
 venue_val: "#8, Long Nget St. (258), Phnom Penh, Cambodia"
 ticket_text: Reserve Tickets Online
-ticket_url: https://www.theboxofficephnompenh.com/events
+ticket_url: https://www.theboxofficephnompenh.com/
 ---
