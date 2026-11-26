@@ -1,15 +1,15 @@
 ---
-title: 🎭🇲🇲 Htwe Oo Myanmar — Live in Phu Quoc! International Puppet Festival 2026 🇻🇳✨
+title: 🎭🇲🇲 Htwe Oo Myanmar — Live in Phu Quoc! International Puppet Festival
+  2026 🇻🇳✨
 date: 2026-11-26T14:45:00.000+08:00
-thumbnail: images/phuquoc-performance-1.jpg
+thumbnail: images/uploads/1000489339.jpg
 author: Htwe Oo Myanmar
 category: သတင်းနှင့်ထုတ်ပြန်ချက်
 summary: >
-  From Milan to Phu Quoc — our puppets keep dancing across the world!
-  Htwe Oo Myanmar is in Phu Quoc, Vietnam for the International Puppet
-  Festival 2026 (25 Nov – 5 Dec). Myanmar performs Friday 27 Nov at 8:00 PM
-  at A Oi Theater, and joins the cultural exchange on Wednesday 2 Dec at
-  5:00 PM at Kiss Stage.
+  From Milan to Phu Quoc — our puppets keep dancing across the world! Htwe Oo
+  Myanmar is in Phu Quoc, Vietnam for the International Puppet Festival 2026 (25
+  Nov – 5 Dec). Myanmar performs Friday 27 Nov at 8:00 PM at A Oi Theater, and
+  joins the cultural exchange on Wednesday 2 Dec at 5:00 PM at Kiss Stage.
 ---
 
 # 🎭🇲🇲 Htwe Oo Myanmar — Live in Phu Quoc! 🇻🇳✨
