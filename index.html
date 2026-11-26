@@ -130,7 +130,7 @@
 		}
 
 		.header-animated-brand {
-			font-family: 'Cinzel', serif;
+			font-family: 'Cinzel', 'Padauk', serif;
 			font-size: 0.95rem;
 			font-weight: 900;
 			letter-spacing: 0.5px;
@@ -259,6 +259,9 @@
 			font-size: clamp(1.4rem, 3.5vw, 2.5rem) !important;
 			font-weight: 800;
 			background: linear-gradient(45deg, var(--primary-gold), #FF6B6B, #4ECDC4);
+			background-size: 200% 100%;
+			line-height: 1.7;
+			padding: 0.08em 0;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			text-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -667,11 +670,281 @@
 			border-top: 1px solid rgba(255, 215, 0, 0.1);
 			padding: 20px 0;
 			width: 100%;
+		}		/* Visit & Learn card (Schedule section) */
+		.visit-card { color: inherit; text-decoration: none; }
+		.visit-card:hover { color: inherit; text-decoration: none; }
+		.visit-card .art-card { transition: border-color .2s, transform .2s; }
+		.visit-card:hover .art-card { border-color: rgba(255, 215, 0, 0.7); transform: translateY(-2px); }
+		.visit-card-img { width: 100%; height: 170px; object-fit: cover; object-position: 50% 30%; display: block; }
+
+/* ============ Stage curtain intro + spotlights ============ */
+		.curtain-intro {
+			position: fixed; inset: 0; z-index: 9999;
+			display: flex; flex-direction: column; align-items: center; justify-content: center;
+			background: radial-gradient(ellipse at 50% 0%, #9a1226 0%, #7a0e1e 45%, #42050d 100%);
+			box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+			animation: curtainRollUp 4.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+			will-change: transform;
 		}
+		.curtain-intro::before {
+			content: "";
+			position: absolute; inset: 0;
+			background:
+				repeating-linear-gradient(0deg, rgba(0,0,0,0.10) 0 24px, rgba(255,255,255,0.03) 24px 48px, rgba(0,0,0,0.10) 48px 72px),
+				repeating-linear-gradient(90deg, rgba(0,0,0,0.30) 0 3px, rgba(255,255,255,0.02) 9px, rgba(255,255,255,0.07) 15px, rgba(0,0,0,0.05) 21px, rgba(0,0,0,0.30) 30px),
+				repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0 4px, rgba(255,255,255,0.05) 9px, rgba(0,0,0,0.22) 14px, rgba(0,0,0,0.06) 18px);
+			-webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,1) 45%);
+			mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,1) 45%);
+		}
+		@keyframes curtainRollUp {
+			0% { transform: translateY(0); }
+			100% { transform: translateY(-102%); }
+		}
+		.curtain-roll {
+			position: fixed; left: 0; right: 0; bottom: 0; z-index: 10000;
+			height: 0;
+			background: transparent;
+			animation: rollTravel 4.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+			will-change: transform;
+		}
+		.curtain-roll::after {
+			content: "";
+			position: absolute; left: 0; right: 0; top: 100%; height: 6vw;
+			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60' viewBox='0 0 100 60' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%239a1226'/><stop offset='1' stop-color='%2342050d'/></linearGradient></defs><path d='M0 0H100V10A50 50 0 0 1 0 10Z' fill='url(%23g)'/></svg>");
+			background-size: 10vw 100%;
+			background-repeat: repeat-x;
+			transform: scaleY(0.25);
+			transform-origin: top center;
+			animation: swagGather 4.5s ease 0.6s both;
+		}
+		@keyframes swagGather {
+			0% { transform: scaleY(0.25); }
+			50% { transform: scaleY(0.67); }
+			100% { transform: scaleY(1); }
+		}
+		@keyframes rollTravel {
+			0% { transform: translateY(0); }
+			100% { transform: translateY(-102vh); }
+		}
+		.curtain-title {
+			position: relative; z-index: 1;
+			font-family: 'Cinzel', 'Padauk', serif;
+			color: #f2d98e;
+			font-size: clamp(1.6rem, 6vw, 2.4rem);
+			font-weight: 700;
+			letter-spacing: 0.12em;
+			text-align: center;
+			text-shadow: 0 2px 18px rgba(0,0,0,0.6);
+			animation: curtainTitleFade 4.5s ease 0.6s both;
+		}
+		@keyframes curtainTitleFade {
+			0% { opacity: 1; }
+			55% { opacity: 1; }
+			100% { opacity: 0; }
+		}
+		.curtain-sub {
+			position: relative; z-index: 1;
+			margin-top: 10px;
+			color: rgba(242,217,142,0.8);
+			letter-spacing: 0.35em;
+			font-size: 0.8rem;
+			animation: curtainTitleFade 4.5s ease 0.6s both;
+		}
+		.spotlight {
+			position: absolute;
+			top: -12px;
+			width: 130px;
+			background: linear-gradient(rgba(255, 240, 180, 0.5), rgba(255, 240, 180, 0.03));
+			clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+			transform-origin: top center;
+			filter: blur(1px);
+			pointer-events: none;
+			mix-blend-mode: screen;
+		}
+		@keyframes spotSwayL { from { transform: rotate(20deg); } to { transform: rotate(9deg); } }
+		@keyframes spotSwayR { from { transform: rotate(-20deg); } to { transform: rotate(-9deg); } }
+		.curtain-spot { height: 80vh; mix-blend-mode: normal; filter: none; }
+		.curtain-spot.gold { left: 2%; background: linear-gradient(rgba(255, 217, 122, 0.55), rgba(255, 217, 122, 0.03)); animation: curtainSwayL 4.2s ease-in-out infinite alternate; }
+		.curtain-spot.rose { left: 42%; background: linear-gradient(rgba(255, 122, 168, 0.3), rgba(255, 122, 168, 0.03)); animation: curtainSwayM 5.3s ease-in-out infinite alternate; }
+		.curtain-spot.cyan { right: 2%; background: linear-gradient(rgba(122, 224, 255, 0.5), rgba(122, 224, 255, 0.03)); animation: curtainSwayR 6.1s ease-in-out infinite alternate; }
+		@keyframes curtainSwayL { from { transform: rotate(24deg); } to { transform: rotate(-8deg); } }
+		@keyframes curtainSwayM { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+		@keyframes curtainSwayR { from { transform: rotate(-24deg); } to { transform: rotate(8deg); } }
+		@keyframes spotSwayM { from { transform: rotate(10deg); } to { transform: rotate(-10deg); } }
+		.page-fx { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+		.page-spot { position: fixed; top: -12px; height: 100vh; mix-blend-mode: normal; filter: none; }
+		.page-spot.gold { left: 2%; background: linear-gradient(rgba(255, 217, 122, 0.55), rgba(255, 217, 122, 0.03)); animation: spotSwayL 7s ease-in-out infinite alternate; }
+		.page-spot.rose { left: 44%; background: linear-gradient(rgba(255, 122, 168, 0.3), rgba(255, 122, 168, 0.03)); animation: spotSwayM 8.5s ease-in-out infinite alternate; }
+		.page-spot.cyan { right: 2%; background: linear-gradient(rgba(122, 224, 255, 0.5), rgba(122, 224, 255, 0.03)); animation: spotSwayR 9.5s ease-in-out infinite alternate; }
+		.ribbon {
+			position: absolute;
+			top: -24px;
+			width: 6px; height: 18px;
+			background: linear-gradient(180deg, #ffe98a, #d9a93f);
+			border-radius: 2px;
+			opacity: 0;
+			pointer-events: none;
+			animation: ribbonFall linear infinite;
+		}
+		@keyframes ribbonFall {
+			0% { transform: translate(0, -24px) rotate(0deg); opacity: 0; }
+			8% { opacity: 0.95; }
+			50% { transform: translate(12px, 130px) rotate(240deg); }
+			92% { opacity: 0.95; }
+			100% { transform: translate(-6px, 260px) rotate(380deg); opacity: 0; }
+		}
+		.page-ribbon { position: fixed; animation-name: ribbonFallPage; }
+		@keyframes ribbonFallPage {
+			0% { transform: translate(0, -24px) rotate(0deg); opacity: 0; }
+			8% { opacity: 0.95; }
+			50% { transform: translate(14px, 50vh) rotate(240deg); }
+			92% { opacity: 0.95; }
+			100% { transform: translate(-8px, 105vh) rotate(380deg); opacity: 0; }
+		}
+		/* ============ Curtain states: up / down / closed / rise ============ */
+		.curtain-intro.up { animation: none; transform: translateY(-102%); }
+		.curtain-roll.up { animation: none; transform: translateY(-110vh); }
+		.curtain-intro.up .curtain-title, .curtain-intro.up .curtain-sub { animation: none; opacity: 0; }
+		.curtain-intro.down { animation: curtainDown 4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+		.curtain-roll.down { animation: rollDown 4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+		.curtain-roll.down::after { animation: swagUnfurl 4s ease both; }
+		.curtain-intro.down .curtain-title, .curtain-intro.down .curtain-sub { animation: curtainTitleIn 4s ease both; }
+		@keyframes curtainDown {
+			0% { transform: translateY(-102%); }
+			100% { transform: translateY(0); }
+		}
+		@keyframes rollDown {
+			0% { transform: translateY(-102vh); }
+			100% { transform: translateY(0); }
+		}
+		@keyframes swagUnfurl {
+			from { transform: scaleY(1); }
+			to { transform: scaleY(0.25); }
+		}
+		@keyframes curtainTitleIn {
+			0% { opacity: 0; }
+			60% { opacity: 0; }
+			100% { opacity: 1; }
+		}
+		.curtain-intro.closed { animation: none; transform: translateY(0); }
+		.curtain-roll.closed { animation: none; transform: translateY(0); }
+		.curtain-roll.closed::after { animation: none; transform: scaleY(0.25); }
+		.curtain-intro.closed .curtain-title, .curtain-intro.closed .curtain-sub { animation: none; opacity: 1; }
+		.curtain-intro.rise { animation: curtainRollUp 4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+		.curtain-roll.rise { animation: rollTravel 4s cubic-bezier(0.4, 0, 0.2, 1) both; }
+		.curtain-roll.rise::after { animation: swagGather 4s ease both; }
+		.curtain-intro.rise .curtain-title, .curtain-intro.rise .curtain-sub { animation: curtainTitleFade 4s ease both; }
+		.curtain-hint {
+			position: relative; z-index: 1;
+			margin-top: 28px;
+			text-align: center;
+			color: rgba(242,217,142,0.9);
+			font-size: 0.9rem;
+			letter-spacing: 0.06em;
+			line-height: 1.7;
+			opacity: 0;
+			transition: opacity 0.8s ease;
+		}
+		.curtain-hint span { font-size: 0.8rem; opacity: 0.75; }
+		.curtain-intro.closed .curtain-hint { opacity: 1; }
+		@media (prefers-reduced-motion: reduce) {
+			.hero-title { animation: none; }
+			.puppet-strings, .puppet-strings span, .puppet-strings span::after { animation: none !important; }
+			.curtain-intro { display: none; }
+			.curtain-roll { display: none; }
+			.spotlight { animation: none !important; }
+			.ribbon { animation: none !important; }
+		}
+
 	</style>
 </head>
 
 <body class="animated-bg" data-theme="dark">
+
+	<div class="curtain-intro" id="curtainIntro" aria-hidden="true">
+		<div class="spotlight curtain-spot gold" aria-hidden="true"></div>
+		<div class="spotlight curtain-spot rose" aria-hidden="true"></div>
+		<div class="spotlight curtain-spot cyan" aria-hidden="true"></div>
+		<div class="curtain-title">HTWE OO MYANMAR</div>
+		<div class="curtain-sub">YOKE THÉ</div>
+		<div class="curtain-hint">↑ Scroll up to reopen<br><span>↑ အပေါ်ကို ပြန်ဆွဲပြီး ပြန်ဖွင့်ပါ</span></div>
+	</div>
+	<div class="curtain-roll" id="curtainRoll" aria-hidden="true"></div>
+	<div class="page-fx" aria-hidden="true">
+		<div class="spotlight page-spot gold" aria-hidden="true"></div>
+		<div class="spotlight page-spot rose" aria-hidden="true"></div>
+		<div class="spotlight page-spot cyan" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:6%;animation-duration:5.5s;animation-delay:-1s;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:14%;animation-duration:6.5s;animation-delay:-4s;width:5px;height:14px;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:26%;animation-duration:5s;animation-delay:-2.5s;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:38%;animation-duration:7s;animation-delay:-5.5s;width:7px;height:20px;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:55%;animation-duration:6s;animation-delay:-0.5s;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:66%;animation-duration:5.2s;animation-delay:-3.2s;width:5px;height:15px;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:78%;animation-duration:6.8s;animation-delay:-4.8s;" aria-hidden="true"></div>
+		<div class="ribbon page-ribbon" style="left:90%;animation-duration:5.8s;animation-delay:-1.8s;width:7px;height:19px;" aria-hidden="true"></div>
+	</div>
+	<script>
+	(function () {
+		var c = document.getElementById('curtainIntro');
+		var r = document.getElementById('curtainRoll');
+		if (!c || !r) return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		var state = 'intro';
+		var seen = false;
+		try { seen = sessionStorage.getItem('htweoo-curtain-shown') === '1'; } catch (e) {}
+		if (seen) {
+			c.classList.add('up'); r.classList.add('up');
+			state = 'up';
+		}
+		function checkScroll() {
+			var doc = document.documentElement;
+			var max = doc.scrollHeight - doc.clientHeight;
+			if (max <= 40) return;
+			var y = window.scrollY || doc.scrollTop || 0;
+			if (y >= max - 40) toDown();
+			else if (y < max - 160) toRise();
+		}
+		function toUp() {
+			c.classList.remove('down', 'closed', 'rise');
+			r.classList.remove('down', 'closed', 'rise');
+			c.classList.add('up'); r.classList.add('up');
+			state = 'up';
+			try { sessionStorage.setItem('htweoo-curtain-shown', '1'); } catch (e) {}
+			checkScroll();
+		}
+		function toClosed() {
+			c.classList.remove('down'); r.classList.remove('down');
+			c.classList.add('closed'); r.classList.add('closed');
+			state = 'closed';
+			checkScroll();
+		}
+		function toDown() {
+			if (state !== 'up') return;
+			c.classList.remove('up'); r.classList.remove('up');
+			c.classList.add('down'); r.classList.add('down');
+			state = 'down';
+			setTimeout(function () { if (state === 'down') toClosed(); }, 4300);
+		}
+		function toRise() {
+			if (state !== 'closed') return;
+			c.classList.remove('closed'); r.classList.remove('closed');
+			c.classList.add('rise'); r.classList.add('rise');
+			state = 'rise';
+			setTimeout(function () { if (state === 'rise') toUp(); }, 4300);
+		}
+		c.addEventListener('animationend', function (e) {
+			if (e.animationName === 'curtainRollUp' && (state === 'intro' || state === 'rise')) toUp();
+			else if (e.animationName === 'curtainDown' && state === 'down') toClosed();
+		});
+		setTimeout(function () { if (state === 'intro') toUp(); }, 6500);
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			checkScroll();
+			if (ticking) return; ticking = true;
+			requestAnimationFrame(function () { ticking = false; checkScroll(); });
+		}, { passive: true });
+	})();
+	</script>
 
 	<div class="string-overlay"></div>
 
@@ -856,12 +1129,24 @@
 			<div class="position-absolute top-0 start-0 w-100 h-100" style="background: repeating-linear-gradient(45deg, rgba(255,215,0,0.02) 0px, rgba(255,215,0,0.02) 2px, transparent 2px, transparent 15px); pointer-events: none;"></div>
 			
 			<div class="mb-3">
-				<span class="badge-gold mb-2"><i class="fa-solid fa-masks-theater me-2"></i><span id="schedule-badge" data-i18n="schedule_badge">LIVE PERFORMANCE STAGE</span></span>
-				<h3 class="text-warning h4 fw-bold mb-1"><i class="fa-solid fa-calendar-star me-2"></i><span id="schedule-title" data-i18n="schedule_title">Live Performance Schedule</span></h3>
-				<p id="schedule-subtitle" class="text-muted small" data-i18n="schedule_sub">Traditional Marionette Performances in Phnom Penh</p>
+				<span class="badge-gold mb-2"><i class="fa-solid fa-masks-theater me-2"></i><span id="schedule-badge" data-i18n="schedule_badge">VISIT &amp; LEARN</span></span>
+				<h3 class="text-warning h4 fw-bold mb-1"><i class="fa-solid fa-graduation-cap me-2"></i><span id="schedule-title" data-i18n="schedule_title">Learn With Us in Phnom Penh</span></h3>
+				<p id="schedule-subtitle" class="text-muted small" data-i18n="schedule_sub">Workshops &amp; school visits — contact us to arrange a session</p>
 			</div>
 
 			<div class="row g-3 justify-content-center my-3">
+				<div class="col-md-6">
+					<a href="https://visit.htweoomyanmar.com/" class="visit-card d-block h-100 text-decoration-none">
+						<div class="art-card h-100 overflow-hidden p-0 text-start">
+							<img src="images/puppets-zawgyi.jpg" alt="Visit & Learn — Htwe Oo Myanmar" class="visit-card-img">
+							<div class="p-3">
+								<div class="text-warning small fw-bold mb-1"><i class="fa-solid fa-graduation-cap me-1"></i> <span data-i18n="visit_card_title">Visit &amp; Learn</span></div>
+								<div class="small mb-2" data-i18n="visit_card_text">Learn Yoke Thé in Phnom Penh — workshops &amp; school visits for all ages.</div>
+								<div class="small fw-bold text-warning"><span data-i18n="visit_card_link">Learn more →</span></div>
+							</div>
+						</div>
+					</a>
+				</div>
 				<div class="col-md-6">
 					<div class="p-3 rounded art-card text-start h-100">
 						<div id="schedule-venue-label" class="text-warning small fw-bold mb-1"><i class="fa-solid fa-location-dot me-1"></i> VENUE LOCATION</div>
@@ -871,9 +1156,9 @@
 			</div>
 
 			<div class="mt-4 d-flex justify-content-center flex-wrap gap-2">
-				<button type="button" class="btn-glow px-4 py-2" onclick="openBookingModal()">
-					<i class="fa-solid fa-ticket me-2"></i><span id="schedule-ticket-text" data-i18n="ticket_btn">Reserve Tickets Online</span>
-				</button>
+				<a href="https://visit.htweoomyanmar.com/" class="btn-glow px-4 py-2 text-decoration-none d-inline-block">
+					<i class="fa-solid fa-graduation-cap me-2"></i><span id="schedule-ticket-text" data-i18n="ticket_btn">Explore Visit &amp; Learn</span>
+				</a>
 				<a id="schedule-ticket-btn" href="https://www.theboxofficephnompenh.com/" target="_blank" class="btn btn-outline-warning rounded-pill px-3 py-2 fw-bold align-self-center">
 					<i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Box Office Website
 				</a>
@@ -1341,10 +1626,13 @@
 				news_subtitle: "Global Recognition, Updates & Special Announcements",
 				songkhla_desc: "HTWE OO MYANMAR has been officially invited to participate in the prestigious UNIMA Asia Pacific Forum Thailand!",
 				milan_desc: "Won the Audience Jury Prize (Audience Jury Award – Best Show) at the XVII International Prize \"Il Teatro Nudo\" by Teresa Pomodoro at Spazio Teatro No'hma, Milan, Italy, on 5 November 2026.",
-				schedule_badge: "LIVE PERFORMANCE STAGE",
-				schedule_title: "Live Performance Schedule",
-				schedule_sub: "Traditional Marionette Performances in Phnom Penh",
-				ticket_btn: "Reserve Tickets Online",
+				schedule_badge: "VISIT & LEARN",
+				schedule_title: "Learn With Us in Phnom Penh",
+				schedule_sub: "Workshops & school visits — contact us to arrange a session",
+				ticket_btn: "Explore Visit & Learn",
+				visit_card_title: "Visit & Learn",
+				visit_card_text: "Learn Yoke Thé in Phnom Penh — workshops & school visits for all ages.",
+				visit_card_link: "Learn more →",
 				moments_title: "PERFORMANCE MOMENTS",
 				videos_title: "FEATURED PERFORMANCES",
 				support_title: "SUPPORT HTWE OO MYANMAR",
@@ -1380,17 +1668,20 @@
 				hero_btn: "​ထွေးဦးမြန်မာ အကြောင်း ဖတ်ရန်",
 				about_title: "ထွေးဦးမြန်မာ အကြောင်း",
 				about_subtitle: "မြန်မာ့ဒြပ်မဲ့ယဉ်ကျေးမှုအမွေအနှစ်ကို ထိန်းသိမ်းစောင့်ရှောက်ခြင်း",
-				about_heading: "လက်ဖြင့်တင်မကဘဲ နှလုံးသားဖြင့် ကြိုးဆွဲကပြသူများ",
+				about_heading: "နှလုံးသားနဲ့ ကြိုးဆွဲတဲ့ ရုပ်စုံဆရာများ",
 				about_p1: "<strong>ထွေးဦးမြန်မာ (HTWE OO MYANMAR)</strong> သည် နှစ်ပေါင်းရာချီ သက်တမ်းရှိသော <strong>မြန်မာ့ရိုးရာ ကြိုးဆွဲရုပ်စုံသဘင် (Yoke Thé)</strong> အနုပညာကို ထိန်းသိမ်း၊ မြှင့်တင်၊ ဖော်ထုတ်နေသည့် ထိပ်တန်းယဉ်ကျေးမှုအဖွဲ့အစည်းဖြစ်ပါသည်။",
 				about_p2: "ရုပ်စုံဆရာကြီးနှင့် အနုပညာဒါရိုက်တာ <strong>ဦးခင်မောင်ထွေး</strong> မှ တည်ထောင်ထားပြီး၊ ရိုးရာလက်ရာမြောက် ပြုလုပ်ထားသော ကြိုးဆွဲရုပ်စုံများဖြင့် ရှေးဟောင်းဒဏ္ဍာရီများ၊ နန်းတွင်းအကများနှင့် ရိုးရာပုံပြင်များကို အသက်ဝင်စွာ ကပြဖျော်ဖြေလျက်ရှိပါသည်။",
 				news_title: "သတင်းများနှင့် ပွဲစဉ်များ",
 				news_subtitle: "ကမ္ဘာ့အသိအမှတ်ပြုမှုများ၊ သတင်းအချက်အလက်များနှင့် ထူးခြားထုတ်ပြန်ချက်များ",
 				songkhla_desc: "ထွေးဦးမြန်မာ အဖွဲ့သည် ထိုင်းနိုင်ငံတွင် ကျင်းပမည့် UNIMA Asia Pacific Forum သို့ တရားဝင် ဖိတ်ကြားခြင်း ခံရပါသည်။",
 				milan_desc: "၂၀၂၆ နိုဝင်ဘာ ၅ ရက်နေ့တွင် အီတလီနိုင်ငံ၊ မီလန်မြို့ Spazio Teatro No'hma တွင် ကျင်းပသော XVII International Prize \"Il Teatro Nudo\" တွင် Audience Jury Prize (Audience Jury Award – Best Show) ရရှိခဲ့ပါသည်။",
-				schedule_badge: "ရုပ်စုံသဘင် ကပြဖျော်ဖြေမှုဇုန်",
-				schedule_title: "ကပြဖျော်ဖြေပွဲ အစီအစဉ်များ",
-				schedule_sub: "ဖနွမ်းပင်မြို့တွင် ရိုးရာကြိုးဆွဲရုပ်စုံ ဖျော်ဖြေပွဲများ",
-				ticket_btn: "လက်မှတ်ကြိုတင်ဝယ်ယူရန်",
+				schedule_badge: "လာရောက် သင်ယူပါ",
+				schedule_title: "ဖနွမ်းပင်မှာ အတူ သင်ယူကြရအောင်",
+				schedule_sub: "အလုပ်ရုံသင်တန်းများနဲ့ ကျောင်းတွေဆီ လာရောက် သင်ကြားပေးပါတယ် — စီစဉ်ဖို့ ဆက်သွယ်ပါ",
+				ticket_btn: "Visit & Learn ကို ကြည့်ပါ",
+				visit_card_title: "လာရောက် သင်ယူပါ",
+				visit_card_text: "ဖနွမ်းပင်မှာ ရုပ်စုံသဘင်ကို သင်ယူပါ — အသက်အရွယ်မရွေး အလုပ်ရုံသင်တန်းနဲ့ ကျောင်းတွေ လာရောက်လေ့လာနိုင်ပါတယ်။",
+				visit_card_link: "အသေးစိတ် ကြည့်ပါ →",
 				moments_title: "ဖျော်ဖြေမှု အမှတ်တရပုံရိပ်များ",
 				videos_title: "ထူးခြားသော ကပြဖျော်ဖြေမှု ဗီဒီယိုများ",
 				support_title: "ထွေးဦးမြန်မာ ကို ကူညီပံ့ပိုးရန်",
