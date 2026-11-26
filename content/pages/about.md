@@ -15,7 +15,7 @@ HTWE OO MYANMAR performs regularly across Myanmar and actively brings traditiona
 * **First-Ever Traditional Puppet Show in Laos:** Successfully presented a historic performance at Hotel Lexi, Vientiane (10 October 2026).
 * **Myanmar Puppet & Jazz/POP Fusion:** Featured at Vintage Pratunam in Bangkok (30 August 2026).
 * **International & Cultural Showcases:** Hosting performances in Yangon and international cultural stages, welcoming local families and global visitors.
-* **European Tour & 50th International Milestone:** Honored to reach our **50th International Participation** representing Myanmar's intangible heritage across European cultural platforms, including upcoming showcases in Italy.
+* **European Tour & 50th International Milestone:** Honored to reach our **50th International Participation** representing Myanmar's intangible heritage across European cultural platforms, including our award-winning showcase in Milan, Italy, in November 2026, where we won the Audience Jury Prize.
 
 ---MYANMAR---
 
@@ -30,4 +30,4 @@ HTWE OO MYANMAR performs regularly across Myanmar and actively brings traditiona
 * **လာအိုနိုင်ငံ၏ ပထမဦးဆုံး ရိုးရာရုပ်စုံပွဲစဉ်:** ဗီယန်းကျင်းမြို့ Hotel Lexi တွင် သမိုင်းဝင် ပထမဦးဆုံးအကြိမ် ရိုးရာရုပ်စုံပွဲစဉ်ကို အောင်မြင်စွာ ကပြခဲ့ပါသည်။ (၂၀၂၆ ခုနှစ်၊ အောက်တိုဘာ ၁၀ ရက်)
 * **မြန်မာ့ရုပ်စုံနှင့် Jazz/POP ပေါင်းစပ်မှု:** ဘန်ကောက်မြို့ Vintage Pratunam တွင် ပြုလုပ်သည့် မြန်မာ့ရုပ်စုံနှင့် Jazz/POP ဂီတ ပေါင်းစပ်ဖျော်ဖြေပွဲတွင် ပါဝင်တင်ဆက်ခဲ့ပါသည်။ (၂၀၂၆ ခုနှစ်၊ ဩဂုတ် ၃၀ ရက်)
 * **နိုင်ငံတကာနှင့် ယဉ်ကျေးမှုဆိုင်ရာ ပြပွဲများ:** ရန်ကုန်မြို့တွင် နေ့စဉ် ကပြပေးလျက်ရှိသည့်အပြင် နိုင်ငံတကာ ယဉ်ကျေးမှုစင်မြင့်များတွင်လည်း ဒေသခံမိသားစုများနှင့် ကမ္ဘာ့လှည့်ခရီးသွားများကို ကြိုဆိုကပြပေးလျက်ရှိပါသည်။
-* **ဥရောပခရီးစဉ်နှင့် အကြိမ် (၅၀) မြောက် အထိန်းအမှတ်:** အီတလီနိုင်ငံအပါအဝင် ဥရောပယဉ်ကျေးမှု စင်မြင့်များတွင် မြန်မာ့ဒြပ်မဲ့ယဉ်ကျေးမှုကို ကိုယ်စားပြုကာ **အကြိမ် (၅၀) မြောက် နိုင်ငံတကာ ပါဝင်ကပြမှု** အဖြစ် ဂုဏ်ယူစွာ စိုက်ထူနိုင်ခဲ့ပါသည်။
+* **ဥရောပခရီးစဉ်နှင့် အကြိမ် (၅၀) မြောက် အထိန်းအမှတ်:** အီတလီနိုင်ငံအပါအဝင် ဥရောပယဉ်ကျေးမှု စင်မြင့်များတွင် မြန်မာ့ဒြပ်မဲ့ယဉ်ကျေးမှုကို ကိုယ်စားပြုကာ **အကြိမ် (၅၀) မြောက် နိုင်ငံတကာ ပါဝင်ကပြမှု** အဖြစ် ဂုဏ်ယူစွာ စိုက်ထူနိုင်ခဲ့ပါသည်။ ၂၀၂၆ ခုနှစ် နိုဝင်ဘာလတွင် မီလန်မြို့၌ Audience Jury Prize ရရှိခဲ့ပါသည်။
