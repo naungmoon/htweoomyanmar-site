@@ -330,7 +330,7 @@
 			cursor: pointer;
 		}
 
-		#modalBody img, 
+		#modalBody img,
 		#about-cms-body img {
 			max-width: 100% !important;
 			height: auto !important;
@@ -339,6 +339,76 @@
 			margin: 12px 0;
 			display: block;
 			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		}
+
+		/* News article view (CMS post modal) — v8 style: serif gold headings, soft gold accents */
+		#cmsNewsModal .modal-content {
+			border-radius: 18px;
+			overflow: hidden;
+		}
+		#cmsNewsModal #modalTitle {
+			font-family: 'Cinzel', 'Padauk', serif;
+			font-weight: 700;
+			letter-spacing: .02em;
+			line-height: 1.35;
+		}
+		#cmsNewsModal #modalImage {
+			box-shadow: 0 12px 32px rgba(0, 0, 0, .55);
+		}
+		#cms-news-container h3 {
+			font-family: 'Cinzel', 'Padauk', serif;
+			font-weight: 700;
+		}
+		#modalBody {
+			line-height: 1.8;
+		}
+		#modalBody > h1:first-child {
+			display: none;
+		}
+		#modalBody h1,
+		#modalBody h2,
+		#modalBody h3 {
+			font-family: 'Cinzel', 'Padauk', serif;
+			font-weight: 700;
+			color: var(--primary-gold);
+			line-height: 1.4;
+			margin: 1.4em 0 .6em;
+		}
+		#modalBody h1 { font-size: 1.6rem; }
+		#modalBody h2 { font-size: 1.35rem; }
+		#modalBody h3 { font-size: 1.2rem; }
+		#modalBody h2::after,
+		#modalBody h3::after {
+			content: "";
+			display: block;
+			width: 44px;
+			height: 3px;
+			border-radius: 2px;
+			background: linear-gradient(90deg, var(--primary-gold), transparent);
+			margin-top: 8px;
+		}
+		#modalBody blockquote {
+			font-family: 'Cinzel', 'Padauk', serif;
+			font-style: italic;
+			font-size: 1.15rem;
+			line-height: 1.6;
+			text-align: center;
+			color: #f6ead0;
+			border: none;
+			border-top: 1px solid rgba(255, 215, 0, .25);
+			border-bottom: 1px solid rgba(255, 215, 0, .25);
+			padding: 14px 10px;
+			margin: 22px 0;
+		}
+		#modalBody blockquote p { margin: 0; }
+		#modalBody ul li::marker { color: var(--primary-gold); }
+		#modalBody a { color: #8ec9ff; }
+		#modalBody strong { color: #f6ead0; }
+		#modalBody hr {
+			border: none;
+			border-top: 1px solid rgba(255, 215, 0, .25);
+			margin: 22px 0;
+			opacity: 1;
 		}
 
 		.stat-box {
