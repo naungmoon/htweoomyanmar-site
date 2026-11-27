@@ -671,13 +671,14 @@
 			padding: 20px 0;
 			width: 100%;
 		}		/* Visit & Learn card (Schedule section) */
-		.visit-card { color: inherit; text-decoration: none; }
-		.visit-card:hover { color: inherit; text-decoration: none; }
-		.visit-card .art-card { transition: border-color .2s, transform .2s; }
-		.visit-card:hover .art-card { border-color: rgba(255, 215, 0, 0.7); transform: translateY(-2px); }
+		.visit-card, .pq-card { color: inherit; text-decoration: none; }
+		.visit-card:hover, .pq-card:hover { color: inherit; text-decoration: none; }
+		.visit-card .art-card, .pq-card .art-card { transition: border-color .2s, transform .2s; }
+		.visit-card:hover .art-card, .pq-card:hover .art-card { border-color: rgba(255, 215, 0, 0.7); transform: translateY(-2px); }
 		.visit-card-img { width: 100%; height: 170px; object-fit: cover; object-position: 50% 30%; display: block; }
+		.pq-card-img { object-position: 50% 45%; }
 
-/* ============ Stage curtain intro + spotlights ============ */
+	/* ============ Stage curtain intro + spotlights ============ */
 		.curtain-intro {
 			position: fixed; inset: 0; z-index: 9999;
 			display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -855,13 +856,11 @@
 			.spotlight { animation: none !important; }
 			.ribbon { animation: none !important; }
 		}
-
 	</style>
 </head>
 
 <body class="animated-bg" data-theme="dark">
-
-	<div class="curtain-intro" id="curtainIntro" aria-hidden="true">
+<div class="curtain-intro" id="curtainIntro" aria-hidden="true">
 		<div class="spotlight curtain-spot gold" aria-hidden="true"></div>
 		<div class="spotlight curtain-spot rose" aria-hidden="true"></div>
 		<div class="spotlight curtain-spot cyan" aria-hidden="true"></div>
@@ -1135,7 +1134,7 @@
 			</div>
 
 			<div class="row g-3 justify-content-center my-3">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<a href="https://visit.htweoomyanmar.com/" class="visit-card d-block h-100 text-decoration-none">
 						<div class="art-card h-100 overflow-hidden p-0 text-start">
 							<img src="images/puppets-zawgyi.jpg" alt="Visit & Learn — Htwe Oo Myanmar" class="visit-card-img">
@@ -1147,7 +1146,19 @@
 						</div>
 					</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
+					<a href="https://phuquoc.htweoomyanmar.com/" class="pq-card d-block h-100 text-decoration-none">
+						<div class="art-card h-100 overflow-hidden p-0 text-start">
+							<img src="images/phuquoc-cover-card.jpg" alt="Live in Phu Quoc — Htwe Oo Myanmar" class="visit-card-img pq-card-img">
+							<div class="p-3">
+								<div class="text-warning small fw-bold mb-1"><i class="fa-solid fa-masks-theater me-1"></i> <span data-i18n="pq_card_title">Live in Phu Quoc!</span></div>
+								<div class="small mb-2" data-i18n="pq_card_text">From Milan to Phu Quoc — our puppets perform at the International Puppet Festival 2026. Myanmar performs Fri 27 Nov, 8:00 PM.</div>
+								<div class="small fw-bold text-warning"><span data-i18n="pq_card_link">See the festival →</span></div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4">
 					<div class="p-3 rounded art-card text-start h-100">
 						<div id="schedule-venue-label" class="text-warning small fw-bold mb-1"><i class="fa-solid fa-location-dot me-1"></i> VENUE LOCATION</div>
 						<div id="schedule-venue-val" class="small mb-0">#8, Long Nget St. (258), Phnom Penh, Cambodia</div>
@@ -1633,6 +1644,9 @@
 				visit_card_title: "Visit & Learn",
 				visit_card_text: "Learn Yoke Thé in Phnom Penh — workshops & school visits for all ages.",
 				visit_card_link: "Learn more →",
+				pq_card_title: "Live in Phu Quoc!",
+				pq_card_text: "From Milan to Phu Quoc — our puppets perform at the International Puppet Festival 2026. Myanmar performs Fri 27 Nov, 8:00 PM.",
+				pq_card_link: "See the festival →",
 				moments_title: "PERFORMANCE MOMENTS",
 				videos_title: "FEATURED PERFORMANCES",
 				support_title: "SUPPORT HTWE OO MYANMAR",
@@ -1682,6 +1696,9 @@
 				visit_card_title: "လာရောက် သင်ယူပါ",
 				visit_card_text: "ဖနွမ်းပင်မှာ ရုပ်စုံသဘင်ကို သင်ယူပါ — အသက်အရွယ်မရွေး အလုပ်ရုံသင်တန်းနဲ့ ကျောင်းတွေ လာရောက်လေ့လာနိုင်ပါတယ်။",
 				visit_card_link: "အသေးစိတ် ကြည့်ပါ →",
+				pq_card_title: "ဖူကွက်မှာ တိုက်ရိုက်ကပြနေပြီ!",
+				pq_card_text: "မီလန်မှသည် ဖူကွက်ဆီသို့ — ၂၀၂၆ နိုင်ငံတကာ ရုပ်သေးပွဲတော်ကြီးမှာ မြန်မာအဖွဲ့ သောကြာနေ့ ၂၇ နိုဝင်ဘာ ည ၈ နာရီ ကပြဖျော်ဖြေပါမယ်။",
+				pq_card_link: "ပွဲတော်အကြောင်း ကြည့်ပါ →",
 				moments_title: "ဖျော်ဖြေမှု အမှတ်တရပုံရိပ်များ",
 				videos_title: "ထူးခြားသော ကပြဖျော်ဖြေမှု ဗီဒီယိုများ",
 				support_title: "ထွေးဦးမြန်မာ ကို ကူညီပံ့ပိုးရန်",
