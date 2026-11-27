@@ -677,6 +677,9 @@
 		.visit-card:hover .art-card, .pq-card:hover .art-card { border-color: rgba(255, 215, 0, 0.7); transform: translateY(-2px); }
 		.visit-card-img { width: 100%; height: 170px; object-fit: cover; object-position: 50% 30%; display: block; }
 		.pq-card-img { object-position: 50% 45%; }
+		.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; vertical-align: middle; animation: livePulse 1.6s infinite; }
+		@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(255, 59, 48, .7); } 70% { box-shadow: 0 0 0 7px rgba(255, 59, 48, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); } }
+		@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
 
 	/* ============ Stage curtain intro + spotlights ============ */
 		.curtain-intro {
@@ -1039,6 +1042,10 @@
 
 		<!-- LIVE NOW — Phu Quoc Festival (featured card) -->
 		<section class="my-4" data-aos="fade-up">
+			<div class="text-center mb-3">
+				<span class="badge-gold mb-2"><span class="live-dot"></span> <span data-i18n="pq_heading_badge">LIVE NOW</span></span>
+				<h3 class="text-warning h4 fw-bold mb-0"><span data-i18n="pq_heading">LATEST ACTIVITY</span></h3>
+			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-8">
 					<a href="https://phuquoc.htweoomyanmar.com/" class="pq-card d-block h-100 text-decoration-none">
@@ -1653,6 +1660,8 @@
 				pq_card_title: "Live in Phu Quoc!",
 				pq_card_text: "From Milan to Phu Quoc — our puppets perform at the International Puppet Festival 2026. Myanmar performs Fri 27 Nov, 8:00 PM.",
 				pq_card_link: "See the festival →",
+				pq_heading_badge: "LIVE NOW",
+				pq_heading: "LATEST ACTIVITY",
 				moments_title: "PERFORMANCE MOMENTS",
 				videos_title: "FEATURED PERFORMANCES",
 				support_title: "SUPPORT HTWE OO MYANMAR",
@@ -1705,6 +1714,8 @@
 				pq_card_title: "ဖူကွက်မှာ တိုက်ရိုက်ကပြနေပြီ!",
 				pq_card_text: "မီလန်မှသည် ဖူကွက်ဆီသို့ — ၂၀၂၆ နိုင်ငံတကာ ရုပ်သေးပွဲတော်ကြီးမှာ မြန်မာအဖွဲ့ သောကြာနေ့ ၂၇ နိုဝင်ဘာ ည ၈ နာရီ ကပြဖျော်ဖြေပါမယ်။",
 				pq_card_link: "ပွဲတော်အကြောင်း ကြည့်ပါ →",
+				pq_heading_badge: "အခု တိုက်ရိုက်",
+				pq_heading: "လတ်တလော လှုပ်ရှားမှု",
 				moments_title: "ဖျော်ဖြေမှု အမှတ်တရပုံရိပ်များ",
 				videos_title: "ထူးခြားသော ကပြဖျော်ဖြေမှု ဗီဒီယိုများ",
 				support_title: "ထွေးဦးမြန်မာ ကို ကူညီပံ့ပိုးရန်",
